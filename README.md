@@ -7,7 +7,7 @@ CyExcは、産業技術大学院大学瀬戸Project Based Learning (PBL) が開�
 
 CyExcはVirtualbox (Vagrant) とdockerを使用して演習プログラムを作成している。
 
-![構成図](https://github.com/CyExc/CyExc/blob/master/images/diagram.png)
+![構成図](https://github.com/CyExc/CyExc/blob/master/images/diagram.png =319x240)
 
 また、CyExcではInfoSecツールの導入の手助けを目的として、Useful Links/Toolsを紹介する。
 
