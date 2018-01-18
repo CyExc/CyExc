@@ -70,23 +70,23 @@ ie) http://target.server/searchform?Input=test&SUBMIT=Search
 vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log
 [18/Jan/2018:13:02:12 +0000] "GET /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span> HTTP/1.1" 200 0 "http://webgoat.cyexc-target/WebGoat/start.mvc" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"
 
-"http&#58;//webgoat.cyexc-target/WebGoat/start.mvc"へのGETリクエストでuserとpasswordの値が漏れていることがわかる。
+'http&#58;//webgoat.cyexc-target/WebGoat/start.mvc'へのGETリクエストでuserとpasswordの値が漏れていることがわかる。
 取得したログはこちら＠[proxy.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/proxy.log)
 
 ### IDSログの検知
 vagrant@www:~/apps$ cp /var/log/suricata/http.log .
 01/18/18-13:02:12.886696 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0 HTTP/1.1 GET webgoat.cyexc-target /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span> 200 0 192.168.33.1:58713 -> <span style="color:Green">192.168.33.10:80</span> (proxyサーバ)
 
-IDSのhttpログからも、"http&#58;//webgoat.cyexc-target/WebGoat/start.mvc"でuserとpasswordの情報が漏れていることがわかる。
+IDSのhttpログからも、'http&#58;//webgoat.cyexc-target/WebGoat/start.mvc'でuserとpasswordの情報が漏れていることがわかる。
 取得したログはこちら＠[http.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/http.log)
 
 ### WEBスキャナー（Arachni）の実施
-どのような脆弱性が"http&#58;//webgoat.cyexc-target/WebGoat/start.mvc"に存在するのかWEBスキャナーを実施する。
+どのような脆弱性が`http&#58;//webgoat.cyexc-target/WebGoat/start.mvc`に存在するのかWEBスキャナーを実施する。
 *NOTE: DockerネットワークにDNSサーバを置いていないので、WebGoatのdocker IPアドレスを使ってスキャンを実施する。*
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/scan.png" title="Archniスキャン">  
 
-"http&#58;//webgoat.cyexc-target/WebGoat/start.mvc"に対して、"Unencrypted password form"や"Clickjacking"を検出している。
+'http&#58;//webgoat.cyexc-target/WebGoat/start.mvc'に対して、"Unencrypted password form"や"Clickjacking"を検出している。
 取得したログはこちら＠[index.html](http://htmlpreview.github.com/?https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/arachni/index.html) 
 
 ### proxyサーバでHTTP通信をキャプチャ
@@ -109,8 +109,6 @@ IDSのhttpログからも、"http&#58;//webgoat.cyexc-target/WebGoat/start.mvc"�
 
 取得したログはこちら＠[ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/ngrep.log)
 
-ngrep.log
-~~~~
 /// 192.168.0.100(proxyサーバ)でXMLHttpRequestを受信
 T 192.168.33.1:58712 -> 192.168.0.100:80 [AP]
 POST /WebGoat/attack?Screen=1382523204&menu=900 HTTP/1.1.
