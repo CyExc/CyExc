@@ -84,10 +84,10 @@ IDSのhttpログからも、"http&#58;//webgoat.cyexc-target/WebGoat/start.mvc"�
 どのような脆弱性が"http&#58;//webgoat.cyexc-target/WebGoat/start.mvc"に存在するのかWEBスキャナーを実施する。
 *NOTE: DockerネットワークにDNSサーバを置いていないので、WebGoatのdocker IPアドレスを使ってスキャンを実施する。*
 
-<img src="http://htmlpreview.github.com/?https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/scan.png" title="Archniスキャン">  
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/scan.png" title="Archniスキャン">  
 
 "http&#58;//webgoat.cyexc-target/WebGoat/start.mvc"に対して、"Unencrypted password form"や"Clickjacking"を検出している。
-取得したログはこちら＠[index.html](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/arachni/index.html) 
+取得したログはこちら＠[index.html](http://htmlpreview.github.com/?https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/arachni/index.html) 
 
 ### proxyサーバでHTTP通信をキャプチャ
 実際にどのようなことが起きているのかは、WEBサーバのログを取得しないとわからない。
