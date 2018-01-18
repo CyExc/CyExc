@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  proxy:
+    build: ./proxy
+    image: myproxy
+    networks:
+      honeynet:
+        ipv4_address: 192.168.0.100
+    ports:
+      - "80:80"
+    links:
+      - webgoat
+
+# WebGoat service
+  webgoat:
+    image: webgoat/webgoat-7.1
+    networks:
+      honeynet:
+        ipv4_address: 192.168.0.10
+    ports:
+      - "8080:8080"
+
+# Arachni service
+  arachni:
+    build: ./arachni
+    image: myarachni
+    networks:
+      - honeynet
+    ports:
+      - "9292:9292"
+
+networks:
+  honeynet:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 192.168.0.0/24
+        gateway: 192.168.0.1

