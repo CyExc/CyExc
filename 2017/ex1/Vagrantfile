@@ -1,0 +1,36 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.box_url = 'https://atlas.hashicorp.com/ubuntu/boxes/trusty64'
+
+  config.landrush.enabled = true
+
+  config.vm.define "target" do |target|
+    target.landrush.tld = 'cyexc-target'
+    target.vm.hostname = "target.cyexc-target"
+    target.vm.box_check_update = false
+    target.vm.network "forwarded_port", guest: 80, host: 8000
+    target.vm.network "private_network", ip: "192.168.33.10"
+    target.vm.synced_folder "./apps/target", "/home/vagrant/target", owner: "vagrant", group: "vagrant"
+    target.vm.provision "shell", path: "./target_bootstrap.sh"
+    target.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", 2048]
+    end
+  end
+
+  config.vm.define "attacker" do |attacker|
+    attacker.landrush.tld = 'cyexc-attacker'
+    attacker.vm.hostname = "attacker.cyexc-attacker"
+    attacker.vm.box_check_update = false
+    attacker.vm.network "forwarded_port", guest: 8081, host: 8081
+    attacker.vm.network "private_network", ip: "192.168.33.20"
+    attacker.vm.synced_folder "./apps/attacker", "/home/vagrant/attacker", owner: "vagrant", group: "vagrant"
+    attacker.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", 1024]
+    end
+    attacker.vm.provision "shell", path: "./attacker_bootstrap.sh"
+  end
+
+end
