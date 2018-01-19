@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+
+  webapp:
+    build: ./webapp
+    image: myweb
+    networks:
+      cyexc1t:
+        ipv4_address: 192.168.1.10
+    ports:
+      - "8080:8080"
+
+  proxy:
+    build: ./proxy
+    image: myproxy
+    networks:
+      cyexc1t:
+        ipv4_address: 192.168.1.100
+    ports:
+      - "80:80"
+    links:
+      - webapp
+
+networks:
+  cyexc1t:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 192.168.1.0/24
+        gateway: 192.168.1.1
