@@ -5,8 +5,6 @@ CySecが提供する本演習では、学習者に対してのセキュリティ
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/block.png" title="WebGoat演習環境構成図">
 
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/network.png" title="ネットワーク図">
-
 ## Motivation
 OWASPトップ10において、クロスサイトスクリプティング (以下、XSS) は年間2位 (2010年)、3位 (2013年)、7位 (2017年) と徐々に順位は下げてきてはいるが、発生頻度としてはトップ10の脆弱性の中で全体として二番目であり、その攻撃事象や対策について理解を深めることは非常に重要である。  
 
@@ -38,7 +36,9 @@ XSSのトップ10における順位が近年降下した理由としては、ウ
    ii.$ sudo docker-compose up --build　　　　　    
    iii. Browse to http://webgoat.cyexc-target/WebGoat　　　　　　    
    iv. Browse to http://webgoat.cyexc-target:9292/ for arachni　　　   
-   
+
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/network.png" title="ネットワーク図">
+
 ## XSS脆弱性を用いたフィッシング補助
 ### 学習目標
 XSS脆弱性があるWEBページが、どのようにして｢フィッシング攻撃｣として利用されるのか、またログからの検知方法を学習する。
