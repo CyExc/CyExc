@@ -31,7 +31,7 @@ XSSのトップ10における順位が近年降下した理由としては、ウ
 ゲストOSのIPアドレスとhostnameが以下のようにマッチしていない場合は、vagrant destroyを行う必要がある。　　　   
    ``webgoat.cyexc-target           192.168.33.10`` <br>
    ``10.33.168.192.in-addr.arpa     webgoat.cyexc-target``
-3. vagrant ssh　　　   
+3. $ vagrant ssh　　　   
    i. $ cd apps/　　　　　    
    ii.$ sudo docker-compose up --build　　　　　    
    iii. Browse to http://webgoat.cyexc-target/WebGoat　　　　　　    
