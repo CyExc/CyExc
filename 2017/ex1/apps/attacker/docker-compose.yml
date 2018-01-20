@@ -2,9 +2,9 @@ version: '2'
 
 services:
 # myNode.js web service
-  mynode:
-    build: .
-    image: mynode
+  webapp:
+    build: ./webapp
+    image: myweb
     networks:
       - cyexc1a
     ports:
