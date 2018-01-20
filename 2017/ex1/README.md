@@ -68,7 +68,7 @@ nmapは、ネットワーク調査ツールおよびセキュリティ/ポート
   * ファイアウォールの特定
 本演習環境でAttacker OSからTarget OSをnmapでスキャンすると、以下の情報が得られる。
 
-/// OS情報
+/// OS情報、ポート情報
 ```
 vagrant@attacker:~$ sudo nmap -O target.cyexc-target
 
@@ -84,22 +84,6 @@ PORT     STATE SERVICE
 MAC Address: 08:00:27:A1:5A:8A (Cadmus Computer Systems)
 No exact OS matches for host (If you know what OS is running on it, see http://nmap.org/submit/ ).
 ````
-/// ポート情報
-```
-vagrant@attacker:~$ sudo nmap -O target.cyexc-target
-
-Starting Nmap 6.40 ( http://nmap.org ) at 2018-01-20 07:53 UTC
-Nmap scan report for target.cyexc-target (192.168.33.10)
-Host is up (0.00076s latency).
-Not shown: 996 closed ports
-PORT     STATE SERVICE
-22/tcp   open  ssh
-80/tcp   open  http
-111/tcp  open  rpcbind
-8080/tcp open  http-proxy
-MAC Address: 08:00:27:A1:5A:8A (Cadmus Computer Systems)
-No exact OS matches for host (If you know what OS is running on it, see http://nmap.org/submit/ ).
-```
 /// 特定ポートのサービスアプリケーション
 ```
 vagrant@attacker:~$ sudo nmap -sV -p 80,8080 target.cyexc-target
