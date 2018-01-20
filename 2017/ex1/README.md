@@ -104,21 +104,27 @@ Struts2脆弱性はWEBアプリケーションの脆弱性であるため、prox
 
 ## proxyサーバでHTTP通信をキャプチャ
 実際にどのようなことが起きているのかは、WEBサーバのログで確認する。
-
-  1. proxyサーバにログイン
-  vagrant@webgoat:~/apps$ sudo docker-compose exec proxy bash
-  2. ngrepを使用してHTTP通信をキャプチャ
-  root@c56fe08a3ea2:/# ngrep -W byline 'HTTP' -q > ngrep.log
-  3. proxyサーバをログアウト
-  root@c56fe08a3ea2:/#
-  4. ゲストOSでproxyサーバのcontainer IDを調べる
-  vagrant@webgoat:~/apps$ sudo docker ps
-  CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES
-  937fb140f393        myproxy               "nginx -g 'daemon of…"   6 minutes ago       Up 6 minutes        0.0.0.0:80->80/tcp       apps_proxy_1
-  64742ebbea0f        myarachni             "bin/arachni_web --h…"   6 minutes ago       Up 6 minutes        0.0.0.0:9292->9292/tcp   apps_arachni_1
-  425df1dc54ac        webgoat/webgoat-7.1   "java -Djava.securit…"   6 minutes ago       Up 6 minutes        0.0.0.0:8080->8080/tcp   apps_webgoat_1
-  5. 取得したngrepのログをゲストOSにコピー
-  vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .
+1. proxyサーバにログイン
+```
+vagrant@webgoat:~/apps$ sudo docker-compose exec proxy bash
+```
+2. ngrepを使用してHTTP通信をキャプチャ
+```
+root@c56fe08a3ea2:/# ngrep -W byline 'HTTP' -q > ngrep.log
+```
+3. proxyサーバをログアウト
+4. ゲストOSでproxyサーバのcontainer IDを調べる
+```
+vagrant@webgoat:~/apps$ sudo docker ps
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES
+937fb140f393        myproxy               "nginx -g 'daemon of…"   6 minutes ago       Up 6 minutes        0.0.0.0:80->80/tcp       apps_proxy_1
+64742ebbea0f        myarachni             "bin/arachni_web --h…"   6 minutes ago       Up 6 minutes        0.0.0.0:9292->9292/tcp   apps_arachni_1
+425df1dc54ac        webgoat/webgoat-7.1   "java -Djava.securit…"   6 minutes ago       Up 6 minutes        0.0.0.0:8080->8080/tcp   apps_webgoat_1
+```
+5. 取得したngrepのログをゲストOSにコピー  <br>
+```
+vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .  
+```
 
 /// Attacker OSからproxyサーバへのHTTPリクエスト
 /// シェルコマンドが送信されているのがわかる

