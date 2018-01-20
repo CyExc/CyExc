@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+# myNode.js web service
+  webapp:
+    build: ./webapp
+    image: myweb
+    privileged: true
+    networks:
+      cyexc2t:
+        ipv4_address: 192.168.1.10
+    ports:
+      - "8080:8080"
+      - "443:443"
+
+# reverse proxy service
+  proxy:
+    build: ./proxy
+    image: myproxy
+    networks:
+      cyexc2t:
+        ipv4_address: 192.168.1.100
+    ports:
+      - "80:80"
+    links:
+      - webapp
+
+networks:
+  cyexc2t:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 192.168.1.0/24
+        gateway: 192.168.1.1

@@ -1,0 +1,5 @@
+[TYPECHECK]
+# List of classes names for which member attributes should not be checked
+# (useful for classes with attributes dynamically set).
+# https://www.logilab.org/ticket/108156
+ignored-classes=SQLObject,_socketobject

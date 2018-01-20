@@ -1,0 +1,29 @@
+{
+  "name": "attacker",
+  "version": "1.0.0",
+  "description": "Attacker server for Shell Injection",
+  "main": "aserver.js",
+  "scripts": {
+    "start": "node aserver.js",
+    "lint": "eslint -c standard aserver.js",
+    "test": "mocha test/*.js"
+  },
+  "author": "Naoko Sato",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
+  },
+  "dependencies": {
+    "errorhandler": "^1.5.0",
+    "argv": "0.0.2",
+    "express": "^4.16.2"
+  }
+}

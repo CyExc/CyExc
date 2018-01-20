@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Send HTML Payload</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+  <form method="GET" action="/getPage">
+    <p>
+      <input type="text" name="host">
+      <input type="submit" value="ping host">
+    </p>
+  </form>
+
+  <h5 style="color:red">
+    <% if (message) { %>
+      <br><hr>
+      <%= message %><br>
+    <% } %>
+  </h5>
+</body>
+</html>
