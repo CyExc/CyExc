@@ -25,11 +25,13 @@ curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compos
 chmod +x /usr/local/bin/docker-compose
 
 echo "Installing node.js and npm"
-apt-get install -y linux-image-generic-lts-trusty
-apt-get install -y nodejs npm
+apt-get install -y nodejs
 npm -g install n
 npm update npm -g
 n stable
+
+echo "Installing nmap"
+apt-get install -y nmap
 
 echo "Checking versions"
 python --version

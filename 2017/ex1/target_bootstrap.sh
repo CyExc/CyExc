@@ -1,6 +1,7 @@
 echo "Updating package."
 apt-get update -y
 apt-get upgrade -y
+apt-get -y install software-properties-common
 sudo apt-get install -y git wget curl
 
 echo "Installing Python 2.7.9"
@@ -26,8 +27,7 @@ curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compos
 chmod +x /usr/local/bin/docker-compose
 
 echo "Installing node.js and npm"
-apt-get install -y linux-image-generic-lts-trusty
-apt-get install -y nodejs npm
+apt-get install -y nodejs
 npm -g install n
 npm update npm -g
 n stable
@@ -43,6 +43,12 @@ suricata -D -c /etc/suricata/suricata.yaml -i eth1 --init-errors-fatal
 
 echo "Installing nkf"
 apt-get install -f nkf
+
+echo "Installing ufw"
+apt-get install -f ufw
+ufw default ALLOW
+ufw enable
+ufw logging full
 
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

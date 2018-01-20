@@ -17,6 +17,8 @@ Vagrant.configure("2") do |config|
     target.vm.provision "shell", path: "./target_bootstrap.sh"
     target.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--memory", 2048]
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
   end
 
@@ -29,6 +31,8 @@ Vagrant.configure("2") do |config|
     attacker.vm.synced_folder "./apps/attacker", "/home/vagrant/attacker", owner: "vagrant", group: "vagrant"
     attacker.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--memory", 1024]
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     end
     attacker.vm.provision "shell", path: "./attacker_bootstrap.sh"
   end
