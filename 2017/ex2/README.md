@@ -140,8 +140,8 @@ vagrant@www:~/apps$ cp /var/log/suricata/fast.log .<br>
 * ポートスキャンを受信  <br>
 01/20/2018-15:23:29.762176  [**] [1:2002911:6] ET SCAN Potential VNC Scan 5900-5920 [**] [Classification: Attempted Information Leak] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:5903  <br>
 01/20/2018-15:23:29.769568  [**] [1:2010939:2] ET POLICY Suspicious inbound to PostgreSQL port 5432 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:5432  <br>
-<br>
-取得したログはこちら＠[fast.log](https://github.com/CyExc/CyExc/blob/master/2017/ex2/logs/fast.log)
+
+取得したログはこちら@[fast.log](https://github.com/CyExc/CyExc/blob/master/2017/ex2/logs/fast.log)
 
 ### proxyサーバでHTTP通信をキャプチャ
 実際にどのようなことが起きているのかは、WEBサーバのログで確認する。
