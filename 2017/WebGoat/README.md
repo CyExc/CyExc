@@ -23,8 +23,8 @@ XSSのトップ10における順位が近年降下した理由としては、ウ
 * VirtualBox
 1. $ cd apps/　　　
 2. $ sudo docker-compose up --build　　　　
-3. Browse to http://webgoat.cyexc-target/WebGoat　　　
-4. Browse to http://webgoat.cyexc-target:9292/ for arachni　　　　　
+3. Browse to ht&#8203;tp://webgoat.cyexc-target/WebGoat　　　
+4. Browse to ht&#8203;tp://webgoat.cyexc-target:9292/ for arachni　　　　　
 * Vagrant　　　
 1. $ vagrant up --provision　　　   
 2. $ vagrant landrush ls　　　   
@@ -35,9 +35,9 @@ webgoat.cyexc-target           192.168.33.10
 ```
 3. $ vagrant ssh　　　   
    i. $ cd apps/　　　　　    
-   ii.$ sudo docker-compose up --build　　　　　    
-   iii. Browse to http://webgoat.cyexc-target/WebGoat　　　　　　    
-   iv. Browse to http://webgoat.cyexc-target:9292/ for arachni　　　   
+   ii.$ sudo docker-compose up --build　　　
+   iii. Browse to ht&#8203;tp://webgoat.cyexc-target/WebGoat  
+   iv. Browse to ht&#8203;tp://webgoat.cyexc-target:9292/ for arachni　　　   
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/network.png" title="ネットワーク図">
 
@@ -47,7 +47,7 @@ XSSの脆弱性の持ったウェブページへの攻撃や、ログによる�
 ### シナリオ
 XSSの脆弱性を持った、検索サービスを提供するウェブサイト"target.server"がある。このtarget.serverは認証を必要とする。このウェブサイトtarget.serverの検索フィールドに｢test｣を入力し｢SUBMIT｣ボタンをクリックすると、ウェブアプリケーションサーバに以下のようなリクエストを送信するように攻撃者により設定されている。  
 
-ie) http://target.server/searchform?Input=test&SUBMIT=Search
+ie) ht&#8203;tp://target.server/searchform?Input=test&SUBMIT=Search
 
 被害者がこのような悪意あるウェブページにアクセスし、｢検索文字列｣と共に｢スクリプトを含む有害なコード｣がtarget.serverに送信されると、被害者のウェブブラウザにtarget.serverサイトから｢検索結果｣とともに、ユーザ名とパスワードの認証情報の入力を促すページが表示される。被害者がこのページを正規のウェブサイトであることを疑わずにユーザ名とパスワードを入力してしまうと、悪意あるウェブサイトに被害者の個人情報が送信されて漏洩してしまう。
 ### WebGoatでの学習
@@ -73,9 +73,9 @@ ex)
 
 ### proxyサーバログの検知
 vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log<br>
-[18/Jan/2018:13:02:12 +0000] **"GET /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** HTTP/1.1" 200 0 "http://webgoat.cyexc-target/WebGoat/start.mvc" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"<br>
+[18/Jan/2018:13:02:12 +0000] **"GET /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** HTTP/1.1" 200 0 "ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvc" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"<br>
 
-http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>へのGETリクエストでuserとpasswordの値が漏れていることがわかる。<br>
+ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvc <span></span>へのGETリクエストでuserとpasswordの値が漏れていることがわかる。<br>
 
 取得したログはこちら＠[proxy.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/proxy.log)<br>
 
@@ -83,17 +83,17 @@ http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>へのGETリク�
 vagrant@www:~/apps$ cp /var/log/suricata/http.log .<br>
 01/18/18-13:02:12.886696 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0 HTTP/1.1 **GET webgoat.cyexc-target /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** 200 0 192.168.33.1:58713 -> <span style="color:Green">192.168.33.10:80</span> (proxyサーバ)<br>
 
-IDSのhttpログからも、http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>でuserとpasswordの情報が漏れていることがわかる。<br>
+IDSのhttpログからも、ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvcでuserとpasswordの情報が漏れていることがわかる。<br>
 
 取得したログはこちら＠[http.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/http.log)<br>
 
 ### WEBスキャナー（Arachni）の実施
-どのような脆弱性がhttp&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>に存在するのかWEBスキャナーを実施する。<br>
+どのような脆弱性がht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvcに存在するのかWEBスキャナーを実施する。<br>
 *NOTE: DockerネットワークにDNSサーバを置いていないので、WebGoatのdocker IPアドレスを使ってスキャンを実施する。*<br>
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/scan.png" title="Archniスキャン">  
 
-http&#58;//webgoat.cyexc-target/WebGoat/start.mvc <span></span>に対して**Unencrypted password form**や**Clickjacking**を検出している。<br>
+ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvc <span></span>に対して**Unencrypted password form**や**Clickjacking**を検出している。<br>
 
 取得したログはこちら＠[index.html](http://htmlpreview.github.com/?https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/arachni/index.html)
 
