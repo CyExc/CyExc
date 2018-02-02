@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+# myNode.js web service
+  webapp:
+    build: ./webapp
+    image: myweb
+    networks:
+      - cyexc3a
+    ports:
+      - "8081:80"
+
+networks:
+  cyexc3a:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 192.168.2.0/24
+        gateway: 192.168.2.1
