@@ -1,0 +1,52 @@
+Attaching to target_wordpress_1, target_db_1
+[36mwordpress_1  |[0m WordPress not found in /var/www/html - copying now...
+[36mwordpress_1  |[0m WARNING: /var/www/html is not empty - press Ctrl+C now if this is an error!
+[36mwordpress_1  |[0m + ls -A
+[36mwordpress_1  |[0m php
+[36mwordpress_1  |[0m + sleep 10
+[36mwordpress_1  |[0m Complete! WordPress has been successfully copied to /var/www/html
+[36mwordpress_1  |[0m AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.1.10. Set the 'ServerName' directive globally to suppress this message
+[36mwordpress_1  |[0m AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.1.10. Set the 'ServerName' directive globally to suppress this message
+[36mwordpress_1  |[0m [Fri Feb 02 12:20:06.685171 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/5.6.33 configured -- resuming normal operations
+[36mwordpress_1  |[0m [Fri Feb 02 12:20:06.685579 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:17 +0000] "GET / HTTP/1.1" 200 3420 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:18 +0000] "GET /wp-content/uploads/2018/02/img-srca-onerroralertdocument.cookie-300x199.jpg HTTP/1.1" 404 9036 "http://target.cyexc-target:8000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:25 +0000] "GET /wp-login.php HTTP/1.1" 200 1591 "http://target.cyexc-target:8000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:31 +0000] "POST /wp-login.php HTTP/1.1" 302 1138 "http://target.cyexc-target:8000/wp-login.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:31 +0000] "GET /wp-admin/ HTTP/1.1" 302 438 "http://target.cyexc-target:8000/wp-login.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:31 +0000] "GET /wp-admin/upgrade.php?_wp_http_referer=%2Fwp-admin%2F HTTP/1.1" 200 1088 "http://target.cyexc-target:8000/wp-login.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:33 +0000] "GET /wp-admin/upgrade.php?step=1&backto=%2Fwp-admin%2F HTTP/1.1" 200 1019 "http://target.cyexc-target:8000/wp-admin/upgrade.php?_wp_http_referer=%2Fwp-admin%2F" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:34 +0000] "GET /wp-admin/ HTTP/1.1" 200 12819 "http://target.cyexc-target:8000/wp-admin/upgrade.php?step=1&backto=%2Fwp-admin%2F" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:36 +0000] "GET /wp-admin/admin-ajax.php?action=wp-compression-test&test=1&1517574213235 HTTP/1.1" 200 1106 "http://target.cyexc-target:8000/wp-admin/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:36 +0000] "GET /wp-admin/admin-ajax.php?action=wp-compression-test&test=no&1517574213372 HTTP/1.1" 200 484 "http://target.cyexc-target:8000/wp-admin/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:38 +0000] "GET /wp-admin/about.php HTTP/1.1" 200 8467 "http://target.cyexc-target:8000/wp-admin/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:42 +0000] "GET /wp-admin/edit.php HTTP/1.1" 200 10790 "http://target.cyexc-target:8000/wp-admin/about.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:20:46 +0000] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 479 "http://target.cyexc-target:8000/wp-admin/edit.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:21:01 +0000] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 480 "http://target.cyexc-target:8000/wp-admin/edit.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:21:16 +0000] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 480 "http://target.cyexc-target:8000/wp-admin/edit.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:23:16 +0000] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 480 "http://target.cyexc-target:8000/wp-admin/edit.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:25:16 +0000] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 480 "http://target.cyexc-target:8000/wp-admin/edit.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:26:05 +0000] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 480 "http://target.cyexc-target:8000/wp-admin/edit.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:26:20 +0000] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 480 "http://target.cyexc-target:8000/wp-admin/edit.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:26:20 +0000] "GET /php/xss.php HTTP/1.1" 200 565 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:26:56 +0000] "POST /php/xss.php HTTP/1.1" 200 596 "http://target.cyexc-target:8000/php/xss.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.20 - - [02/Feb/2018:12:27:47 +0000] "HEAD /php/xss.php HTTP/1.1" 200 355 "-" "curl/7.35.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:29:31 +0000] "POST /php/xss.php HTTP/1.1" 200 636 "http://target.cyexc-target:8000/php/xss.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m [Fri Feb 02 12:31:46.576867 2018] [mpm_prefork:warn] [pid 1] (13)Permission denied: AH00168: killpg SIGTERM
+[36mwordpress_1  |[0m [Fri Feb 02 12:31:46.609694 2018] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[36mwordpress_1  |[0m AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.1.10. Set the 'ServerName' directive globally to suppress this message
+[36mwordpress_1  |[0m AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.1.10. Set the 'ServerName' directive globally to suppress this message
+[36mwordpress_1  |[0m [Fri Feb 02 12:31:47.589780 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/5.6.33 configured -- resuming normal operations
+[36mwordpress_1  |[0m [Fri Feb 02 12:31:47.589934 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[36mwordpress_1  |[0m [Fri Feb 02 12:34:07.712691 2018] [mpm_prefork:warn] [pid 1] (13)Permission denied: AH00168: killpg SIGTERM
+[36mwordpress_1  |[0m [Fri Feb 02 12:34:07.744946 2018] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[36mwordpress_1  |[0m AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.1.10. Set the 'ServerName' directive globally to suppress this message
+[36mwordpress_1  |[0m AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.1.10. Set the 'ServerName' directive globally to suppress this message
+[36mwordpress_1  |[0m [Fri Feb 02 12:34:09.128640 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/5.6.33 configured -- resuming normal operations
+[36mwordpress_1  |[0m [Fri Feb 02 12:34:09.129457 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[36mwordpress_1  |[0m 192.168.33.20 - - [02/Feb/2018:12:34:32 +0000] "HEAD /php/xss.php HTTP/1.1" 200 404 "-" "curl/7.35.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:36:13 +0000] "GET /php/xss.php HTTP/1.1" 200 599 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:36:19 +0000] "POST /php/xss.php HTTP/1.1" 200 629 "http://target.cyexc-target:8000/php/xss.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:44:34 +0000] "POST /php/xss.php HTTP/1.1" 200 669 "http://target.cyexc-target:8000/php/xss.php" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+[36mwordpress_1  |[0m 192.168.33.1 - - [02/Feb/2018:12:51:35 +0000] "GET / HTTP/1.1" 200 5176 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0"
+
