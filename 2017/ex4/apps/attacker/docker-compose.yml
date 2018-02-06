@@ -1,0 +1,11 @@
+version: '2'
+services:
+  webapp:
+      build: ./webapp
+      image: myweb
+      cap_add:
+        - NET_ADMIN
+      ports:
+        - "8081:80"
+      volumes:
+        - "./webapp:/works"

