@@ -204,6 +204,7 @@ vagrant@target:~/target/wordpress$ sudo docker cp 64ff6b86f93b:/var/www/html/ngr
 
 ### CVE-2016-7168の確認
 * XSSコードが含まれている画像のアップロード
+
 ``
 T 192.168.33.1:60465 -> 192.168.1.10:80 [AP]
 GET /wp-content/uploads/2018/02/img-srca-onerroralertdocument.cookie-300x300.png HTTP/1.1
@@ -211,6 +212,7 @@ Host: target.cyexc-target:8000.
 ``
 
 * XSSコードが含まれている画像ファイル名が動的WEBページに紛れ込んでいることがわかる。
+
 ``
 T 192.168.33.1:60475 -> 192.168.1.10:80 [A]
 POST /wp-admin/async-upload.php HTTP/1.1.
