@@ -67,7 +67,7 @@ itop_1  | ======================================================================
 ```
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/itop.png" title="Screenshot1">
 
-3. iTop利用者がht&#8203;tp://www.attacker.cyexc-attacker:8081/login.htmlへのアクセスをメール等で誘導されたとし、このURLにアクセスし「submit」ボタンを押下する。
+3. iTop利用者がht&#8203;tp://ww&#8203;w.attacker.cyexc-attacker:8081/login.htmlへのアクセスをメール等で誘導されたとし、このURLにアクセスし「submit」ボタンを押下する。
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/csrfhtml.png" width=400 title="Screenshot2">
 
 4. adminアカウントでログインする。
@@ -184,7 +184,7 @@ nc: connect to 192.168.33.10 port 4444 (tcp) failed: Connection refused
 ```
 
 ## 標的型攻撃段階2
-ここでは、AttackerはRCE via CSRF in iTopの脆弱性を含むHTMLを作成し、iTopのAdminアカウントユーザに対して、ht&#8203;tp://www.attacker.cyexc-attacker:8081/login.htmlのアクセスを促すようなメールを送付する。
+ここでは、AttackerはRCE via CSRF in iTopの脆弱性を含むHTMLを作成し、iTopのAdminアカウントユーザに対して、ht&#8203;tp://ww&#8203;w.attacker.cyexc-attacker:8081/login.htmlのアクセスを促すようなメールを送付する。
 
 ### CSRF
 CSRFはクロスサイトスクリプティング（XSS）と似ているウェブ脆弱性のひとつである。XSSは「動的ウェブサイト」の脆弱性でJavaScriptを利用した攻撃に対し、CSRFはウェブアプリケーションに対する、またはその脆弱性を利用したウェブサーバに対する攻撃である。CSRFはウェブサーバ上で不正なスクリプトを実行する。
@@ -223,10 +223,10 @@ Attacker画面
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/rce2.png" width=400 title="Screenshot5">
 
-取得したログはこちら
-＠[iTopコンテナプロキシ ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/ngrep.log)
-＠[iTopコンテナプロキシ access.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/access.log)
-＠[iTopコンテナプロキシ error.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/error.log)
+取得したログはこちら <br>
+＠[iTopコンテナプロキシ ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/ngrep.log) <br>
+＠[iTopコンテナプロキシ access.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/access.log) <br>
+＠[iTopコンテナプロキシ error.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/error.log) <br>
 
 ## 標的型攻撃段階4
 Targetウェブサーバの情報を収集するため、TCP snifferプログラムとKeyloggerプログラムを設置する。
@@ -235,7 +235,7 @@ Targetウェブサーバの情報を収集するため、TCP snifferプログラ
 
 ### TCP snifferプログラム
 
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/sniffer.png" heigh=280 title="Screenshot7">
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/sniffer.png" height=270 title="Screenshot7">
 
 * ufwファイアウォールログ
     - IN: the ingoing interface
@@ -245,8 +245,8 @@ Targetウェブサーバの情報を収集するため、TCP snifferプログラ
     - SRC: Source IP address
     - TTL: time to live
     - DF: "Don't Fragment" bit
-    - SPT: the source port
-    - DPT: the destination port
+    - SPT: Source port
+    - DPT: Destination port
 
 TCPポート4444に対してTCPパケットが送信されている。
 ```
@@ -280,7 +280,9 @@ Cache-Control: max-age=0
 ### Keyloggerプログラム
 特定のHTMLに入力されたキーボード情報をAttackerに送信する。
 
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/keylogger.png" heigh=280 title="Screenshot8">
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/keylogger.png" height=270 title="Screenshot8">
+
+TargetウェブサーバでHTML Keylggerのスクリーンショット
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/html_keylogger.png" width=400 title="Screenshot9">
 
