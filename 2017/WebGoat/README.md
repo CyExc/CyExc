@@ -100,7 +100,8 @@ ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvc <span></span>に対して**
 取得したログはこちら＠[index.html](http://htmlpreview.github.com/?https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/arachni/index.html)
 
 ### proxyサーバでHTTP通信をキャプチャ
-実際にどのようなことが起きているのかは、WEBサーバのログを取得しないとわからない。
+WEBサーバのログで事象を確認する。
+
 1. proxyサーバにログイン
 ```
 vagrant@webgoat:~/apps$ sudo docker-compose exec proxy bash
