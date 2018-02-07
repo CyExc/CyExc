@@ -74,7 +74,6 @@ ex)
 ### proxyサーバログの検知
 proxyサーバのログは`vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log`で取得した。
 
-
 ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvcへのGETリクエストでuserとpasswordの値が漏れていることがわかる。<br>
 
 [18/Jan/2018:13:02:12 +0000] **"GET /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** HTTP/1.1" 200 0 "ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvc" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"<br>
