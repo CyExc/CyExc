@@ -249,14 +249,16 @@ Targetウェブサーバの情報を収集するため、TCP snifferプログラ
     - DPT: Destination port
 
 TCPポート4444に対してTCPパケットが送信されている。
-```
+
+``
 Feb  6 10:22:26 vagrant-ubuntu-trusty-64 kernel: [33106.625147] [UFW AUDIT] IN=eth1 OUT= MAC=08:00:27:8f:41:70:08:00:27:18:2f:2c:08:00 SRC=192.168.33.20 DST=192.168.33.10 LEN=52 TOS=0x00 PREC=0x00 TTL=64 ID=15051 DF PROTO=TCP SPT=4444 DPT=49477 WINDOW=227 RES=0x00 ACK FIN URGP=0
 Feb  6 10:22:26 vagrant-ubuntu-trusty-64 kernel: [33106.625180] [UFW AUDIT INVALID] IN=eth1 OUT= MAC=08:00:27:8f:41:70:08:00:27:18:2f:2c:08:00 SRC=192.168.33.20 DST=192.168.33.10 LEN=52 TOS=0x00 PREC=0x00 TTL=64 ID=15051 DF PROTO=TCP SPT=4444 DPT=49477 WINDOW=227 RES=0x00 ACK FIN URGP=0
 Feb  6 10:22:26 vagrant-ubuntu-trusty-64 kernel: [33106.625186] [UFW BLOCK] IN=eth1 OUT= MAC=08:00:27:8f:41:70:08:00:27:18:2f:2c:08:00 SRC=192.168.33.20 DST=192.168.33.10 LEN=52 TOS=0x00 PREC=0x00 TTL=64 ID=15051 DF PROTO=TCP SPT=4444 DPT=49477 WINDOW=227 RES=0x00 ACK FIN URGP=0
-```
+``
 
 以下はAttackerで受信したTCPパケット
-```
+
+``
 src: 192.168.33.1:61210
 dest: 172.18.0.2:80
 data
@@ -272,7 +274,7 @@ Upgrade-Insecure-Requests: 1
 If-Modified-Since: Mon, 05 Feb 2018 21:13:57 GMT
 If-None-Match: "3cf-5647d8a44af40-gzip"
 Cache-Control: max-age=0
-```
+``
 
 取得したログはこちら
 ＠[Target OS ufw.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/ufw.log)
