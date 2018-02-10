@@ -1,7 +1,7 @@
 echo "Updating package."
-apt-get update
-
-sudo apt-get install -y git wget curl
+apt-get update -y
+apt-get upgrade -y
+sudo apt-get install -y git curl
 
 echo "Installing docker and docker-compose"
 apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
@@ -27,10 +27,6 @@ apt-get install -f nkf
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 echo "Checking versions"
-python --version
 docker --version
 docker-compose --version
-echo "nodejs: `node -v`"
-echo "npm: `npm -v`"
-echo "node: `node -v`"
 suricata -V

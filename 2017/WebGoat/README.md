@@ -18,16 +18,19 @@ XSSのトップ10における順位が近年降下した理由としては、ウ
   * Install: docker, docker-compose
 * Vagrant
   * Plugin: landrush, vagrant-vbguest
+  * Packer
 
 ## Installation
 * VirtualBox
 1. $ cd apps/　　　
 2. $ sudo docker-compose up --build　　　　
 3. Browse to ht&#8203;tp://webgoat.cyexc-target/WebGoat　　　
-4. Browse to ht&#8203;tp://webgoat.cyexc-target:9292/ for arachni　　　　　
+4. Browse to ht&#8203;tp://webgoat.cyexc-target:9292/ for arachni　　　
+　　
 * Vagrant　　　
-1. $ vagrant up --provision　　　   
-2. $ vagrant landrush ls　　　   
+1. [CyExc用box](https://github.com/CyExc/CyExc/tree/master/2017/CyExc_Box)を作成する。
+2. $ vagrant up --provision　　　   
+3. $ vagrant landrush ls　　　   
 ゲストOSのIPアドレスとhostnameが以下のようにマッチしていない場合は、vagrant destroyを行う必要がある。　　　   
 ```
 webgoat.cyexc-target           192.168.33.10

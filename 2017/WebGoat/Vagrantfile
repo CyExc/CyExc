@@ -1,18 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+BOX_NAME = "my-cyexc"
+
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.box_url = 'https://atlas.hashicorp.com/ubuntu/boxes/trusty64'
+  config.vm.box = BOX_NAME
+
   config.landrush.enabled = true
   config.landrush.tld = 'cyexc-target'
   config.vm.box_check_update = false
-  config.vm.network "forwarded_port", guest: 80, host: 8000
+  config.vm.network "forwarded_port", guest: 80, host: 80
   config.vm.network "private_network", ip: "192.168.33.10"
   config.vm.hostname = "webgoat.cyexc-target"
   config.vm.synced_folder "./apps", "/home/vagrant/apps", owner: "vagrant", group: "vagrant"
-  config.vm.provider :virtualbox do |v|
-    v.customize ["modifyvm", :id, "--memory", 2048]
-  end
   config.vm.provision "shell", path: "./bootstrap.sh"
 end

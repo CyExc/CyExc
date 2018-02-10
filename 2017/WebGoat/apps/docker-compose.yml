@@ -5,7 +5,7 @@ services:
     build: ./proxy
     image: myproxy
     networks:
-      honeynet:
+      cyexc:
         ipv4_address: 192.168.0.100
     ports:
       - "80:80"
@@ -16,7 +16,7 @@ services:
   webgoat:
     image: webgoat/webgoat-7.1
     networks:
-      honeynet:
+      cyexc:
         ipv4_address: 192.168.0.10
     ports:
       - "8080:8080"
@@ -26,12 +26,12 @@ services:
     build: ./arachni
     image: myarachni
     networks:
-      - honeynet
+      - cyexc
     ports:
       - "9292:9292"
 
 networks:
-  honeynet:
+  cyexc:
     driver: bridge
     ipam:
       config:
