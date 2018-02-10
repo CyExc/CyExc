@@ -1,9 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+BOX_NAME = "my-cyexc"
+
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.box_url = 'https://atlas.hashicorp.com/ubuntu/boxes/trusty64'
+  config.vm.box = BOX_NAME
 
   config.landrush.enabled = true
 
@@ -11,7 +12,7 @@ Vagrant.configure("2") do |config|
     target.landrush.tld = 'cyexc-target'
     target.vm.hostname = "target.cyexc-target"
     target.vm.box_check_update = false
-    target.vm.network "forwarded_port", guest: 80, host: 8000
+    target.vm.network "forwarded_port", guest: 80, host: 80
     target.vm.network "private_network", ip: "192.168.33.10"
     target.vm.synced_folder "./apps/target", "/home/vagrant/target", owner: "vagrant", group: "vagrant"
     target.vm.provision "shell", path: "./target_bootstrap.sh"
