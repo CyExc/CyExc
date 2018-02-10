@@ -36,7 +36,7 @@ XSSのトップ10における順位が近年降下した理由としては、ウ
 webgoat.cyexc-target           192.168.33.10
 10.33.168.192.in-addr.arpa     webgoat.cyexc-target
 ```
-3. $ vagrant ssh　　　   
+4. $ vagrant ssh　　　   
    i. $ cd apps/  <br>
    ii.$ sudo docker-compose up --build  <br>
    iii. Browse to ht&#8203;tp://webgoat.cyexc-target/WebGoat  <br>
