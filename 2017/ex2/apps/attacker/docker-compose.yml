@@ -6,12 +6,12 @@ services:
     build: ./webapp
     image: myweb
     networks:
-      - cyexc2
+      - cyexc2a
     ports:
       - "8081:8081"
 
 networks:
-  cyexc2:
+  cyexc2a:
     driver: bridge
     ipam:
       config:
