@@ -1,21 +1,7 @@
 echo "Updating package."
 apt-get update -y
 apt-get upgrade -y
-apt-get -y install software-properties-common
-sudo apt-get install -y git wget curl
-
-echo "Installing Python 2.7.9"
-sudo apt-get install build-essential
-sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev \
-libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
-mkdir -p ~/software
-cd ~/software
-wget https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz
-tar -xvf Python-2.7.9.tgz
-cd Python-2.7.9
-./configure
-make
-sudo make install
+apt-get install -y git curl
 
 echo "Installing docker and docker-compose"
 apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
@@ -35,14 +21,11 @@ cp /vagrant/suricata.yaml /etc/suricata
 service suricata stop
 suricata -D -c /etc/suricata/suricata.yaml -i eth1 --init-errors-fatal
 
-echo "Installing nkf"
-apt-get install -f nkf
-
 echo "Installing ufw"
 apt-get install -f ufw
 ufw default ALLOW
-ufw enable
 ufw logging full
+ufw enable
 
 echo "Installing php7"
 add-apt-repository ppa:ondrej/php
@@ -52,7 +35,6 @@ apt-get install -y php7.0
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 echo "Checking versions"
-python --version
 docker --version
 docker-compose --version
 suricata -V
