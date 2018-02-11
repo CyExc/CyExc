@@ -37,12 +37,12 @@ attacker.cyexc-attacker        192.168.33.20
 20.33.168.192.in-addr.arpa     attacker.cyexc-attacker
 ````
 
-4. target側のOS起動
+4. target側のOS起動  <br>
 $ vagrant ssh target  <br>
 	i. $ cd target/　　　    <br>
 	ii.$ sudo docker-compose up --build  <br>
 	iii. Browse to ht&#8203;tp://target.cyexc-target/  <br>
-5. attacker側のOS起動
+5. attacker側のOS起動  <br>
 $ vagrant ssh attacker  <br>
 	i. $ cd attacker/　　　      <br>
 	ii.$ sudo docker-compose up --build  <br>
