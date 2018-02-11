@@ -16,23 +16,27 @@ CyExcが提供する本演習では、XSSの脆弱性やこれが利用された
 ## Prerequisite
 * Vagrant
   * Plugin: landrush, vagrant-vbguest
+  * Packer
 
 ## Installation　　
 * Vagrant　　　
-1. $ vagrant up --provision　　　   
-2. $ vagrant landrush ls　　　   
-ゲストOSのIPアドレスとhostnameが以下のようにマッチしていない場合は、vagrant destroyを行う必要がある。　　　   
+1. [CyExc用box](https://github.com/CyExc/CyExc/tree/master/2017/CyExc_Box)を作成する。
+2. $ vagrant up --provision　　　   
+3. $ vagrant landrush ls　　　   
+ゲストOSのIPアドレスとhostnameが以下のようにマッチしていない場合は、vagrant destroyを行う必要がある。　　　
+
 ```
 target.cyexc-target            192.168.33.10
 10.33.168.192.in-addr.arpa     target.cyexc-target
 attacker.cyexc-attacker        192.168.33.20
 20.33.168.192.in-addr.arpa     attacker.cyexc-attacker
 ````
-3. target側のOS起動
+
+4. target側のOS起動
 $ vagrant ssh target  <br>
 	i. $ cd target/　　　    <br>
 	ii.$ sudo docker-compose up --build  <br>
-4. attacker側のOS起動
+5. attacker側のOS起動
 $ vagrant ssh attacker  <br>
 	i. $ cd attacker/　　　      <br>
 	ii.$ sudo docker-compose up --build  <br>

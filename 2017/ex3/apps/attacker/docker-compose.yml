@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-# myNode.js web service
+# Apache2 web service
   webapp:
     build: ./webapp
     image: myweb
