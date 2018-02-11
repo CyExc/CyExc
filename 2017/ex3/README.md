@@ -24,19 +24,17 @@ CyExcが提供する本演習では、XSSの脆弱性やこれが利用された
 2. $ vagrant up --provision　　　   
 3. $ vagrant landrush ls　　　   
 ゲストOSのIPアドレスとhostnameが以下のようにマッチしていない場合は、vagrant destroyを行う必要がある。　　　
-
 ```
 target.cyexc-target            192.168.33.10
 10.33.168.192.in-addr.arpa     target.cyexc-target
 attacker.cyexc-attacker        192.168.33.20
 20.33.168.192.in-addr.arpa     attacker.cyexc-attacker
 ````
-
-4. target側のOS起動
+4. target側のOS起動  <br>
 $ vagrant ssh target  <br>
 	i. $ cd target/　　　    <br>
 	ii.$ sudo docker-compose up --build  <br>
-5. attacker側のOS起動
+5. attacker側のOS起動  <br>
 $ vagrant ssh attacker  <br>
 	i. $ cd attacker/　　　      <br>
 	ii.$ sudo docker-compose up --build  <br>
