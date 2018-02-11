@@ -1,7 +1,7 @@
 echo "Updating package."
 apt-get update -y
 apt-get upgrade -y
-sudo apt-get install -y git curl
+apt-get install -y git curl
 
 echo "Installing docker and docker-compose"
 apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
@@ -25,7 +25,7 @@ echo "Installing nkf"
 apt-get install -f nkf
 
 echo "Installing netcat-traditional"
-apt-get install -y netcat-traditional 
+apt-get install -y netcat-traditional
 
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
